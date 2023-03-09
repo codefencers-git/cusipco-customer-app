@@ -26,7 +26,7 @@ class ResturantManuListScreen extends StatefulWidget {
     required this.resturentName,
   }) : super(key: key);
   final String resturentId;
-
+// changes
   final String resturentName;
 
   @override
