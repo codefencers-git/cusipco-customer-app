@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/pages/rating_screen.dart';
+import 'package:cusipco/pages/rating_screen.dart';
 
-import 'package:heal_u/screens/main_screen/my_account/order_detail_screen.dart';
-import 'package:heal_u/service/prowider/order_history_provider.dart';
+import 'package:cusipco/screens/main_screen/my_account/order_detail_screen.dart';
+import 'package:cusipco/service/prowider/order_history_provider.dart';
 
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';

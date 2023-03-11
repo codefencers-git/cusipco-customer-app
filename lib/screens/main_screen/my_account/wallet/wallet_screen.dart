@@ -1,11 +1,11 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/my_account/wallet/wallet_model.dart';
-import 'package:heal_u/screens/main_screen/my_account/wallet/wallet_service.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/button_widget/small_blue_button_widget.dart';
-import 'package:heal_u/widgets/future_builder_widget.dart';
+import 'package:cusipco/screens/main_screen/my_account/wallet/wallet_model.dart';
+import 'package:cusipco/screens/main_screen/my_account/wallet/wallet_service.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/button_widget/small_blue_button_widget.dart';
+import 'package:cusipco/widgets/future_builder_widget.dart';
 import 'package:intl/intl.dart';
 
 class WalletScreen extends StatefulWidget {

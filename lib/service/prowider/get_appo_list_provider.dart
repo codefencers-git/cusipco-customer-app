@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:heal_u/Global/global_variable_for_show_messge.dart';
+import 'package:cusipco/Global/global_variable_for_show_messge.dart';
 
-import 'package:heal_u/model/get_appo_model.dart';
-import 'package:heal_u/service/http_service/http_service.dart';
+import 'package:cusipco/model/get_appo_model.dart';
+import 'package:cusipco/service/http_service/http_service.dart';
 
 class GetAppoServices with ChangeNotifier {
   GetAppoModel? getAppoModel;

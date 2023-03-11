@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:heal_u/model/city_list_model.dart';
-import 'package:heal_u/service/prowider/location_prowider_service.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_location.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/text_boxes/text_box_with_sufix.dart';
+import 'package:cusipco/model/city_list_model.dart';
+import 'package:cusipco/service/prowider/location_prowider_service.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_location.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/text_boxes/text_box_with_sufix.dart';
 import 'package:provider/provider.dart';
 
 class SelectAddressScreen extends StatefulWidget {

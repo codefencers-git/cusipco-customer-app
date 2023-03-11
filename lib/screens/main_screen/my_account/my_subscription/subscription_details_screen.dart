@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/my_account/my_subscription/chart_model.dart';
-import 'package:heal_u/screens/main_screen/my_account/my_subscription/subscription_service.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/screens/main_screen/my_account/my_subscription/chart_model.dart';
+import 'package:cusipco/screens/main_screen/my_account/my_subscription/subscription_service.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
 
 class SubscriptionDetailsScreen extends StatefulWidget {
   SubscriptionDetailsScreen({Key? key, required this.id}) : super(key: key);

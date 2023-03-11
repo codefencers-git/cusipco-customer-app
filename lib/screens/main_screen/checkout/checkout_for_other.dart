@@ -4,30 +4,30 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:heal_u/Global/global_variable_for_show_messge.dart';
-import 'package:heal_u/Global/globle_methd.dart';
-import 'package:heal_u/Global/web_view_screen.dart';
-import 'package:heal_u/model/book_appo_model.dart';
-import 'package:heal_u/model/payment_method_model.dart';
-import 'package:heal_u/screens/main_screen/cart/cart_prowider_service.dart';
-import 'package:heal_u/screens/main_screen/home/Diet/model/diet_plan_model.dart';
-import 'package:heal_u/screens/main_screen/home/Food/active_plans_and_subscription_screen.dart';
-import 'package:heal_u/screens/main_screen/home/Food/model/my_subscription_model.dart';
-import 'package:heal_u/screens/main_screen/my_account/booking_result_screen.dart';
-import 'package:heal_u/screens/main_screen/my_account/family_members/service/family_prowider_service.dart';
-import 'package:heal_u/service/book_appo_services.dart';
-import 'package:heal_u/service/http_service/http_service.dart';
-import 'package:heal_u/service/navigation_service.dart';
+import 'package:cusipco/Global/global_variable_for_show_messge.dart';
+import 'package:cusipco/Global/globle_methd.dart';
+import 'package:cusipco/Global/web_view_screen.dart';
+import 'package:cusipco/model/book_appo_model.dart';
+import 'package:cusipco/model/payment_method_model.dart';
+import 'package:cusipco/screens/main_screen/cart/cart_prowider_service.dart';
+import 'package:cusipco/screens/main_screen/home/Diet/model/diet_plan_model.dart';
+import 'package:cusipco/screens/main_screen/home/Food/active_plans_and_subscription_screen.dart';
+import 'package:cusipco/screens/main_screen/home/Food/model/my_subscription_model.dart';
+import 'package:cusipco/screens/main_screen/my_account/booking_result_screen.dart';
+import 'package:cusipco/screens/main_screen/my_account/family_members/service/family_prowider_service.dart';
+import 'package:cusipco/service/book_appo_services.dart';
+import 'package:cusipco/service/http_service/http_service.dart';
+import 'package:cusipco/service/navigation_service.dart';
 
-import 'package:heal_u/service/prowider/payment_method_service.dart';
-import 'package:heal_u/service/shared_pref_service/user_pref_service.dart';
+import 'package:cusipco/service/prowider/payment_method_service.dart';
+import 'package:cusipco/service/shared_pref_service/user_pref_service.dart';
 
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/alert_dialog_subscription_under_review_widget.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/button_widget/rounded_button_widget.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/alert_dialog_subscription_under_review_widget.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 
-import 'package:heal_u/widgets/general_widget.dart';
+import 'package:cusipco/widgets/general_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import 'package:provider/provider.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/cart/cart_prowider_service.dart';
-import 'package:heal_u/screens/main_screen/cart/cart_screen.dart';
-import 'package:heal_u/service/prowider/location_prowider_service.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/select_address_screen.dart';
+import 'package:cusipco/screens/main_screen/cart/cart_prowider_service.dart';
+import 'package:cusipco/screens/main_screen/cart/cart_screen.dart';
+import 'package:cusipco/service/prowider/location_prowider_service.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/select_address_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 

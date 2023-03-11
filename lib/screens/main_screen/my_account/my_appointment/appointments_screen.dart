@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/Global/globle_methd.dart';
+import 'package:cusipco/Global/globle_methd.dart';
 
-import 'package:heal_u/screens/main_screen/my_account/my_appointment/appointment_detail_screen.dart';
-import 'package:heal_u/service/prowider/get_appo_list_provider.dart';
+import 'package:cusipco/screens/main_screen/my_account/my_appointment/appointment_detail_screen.dart';
+import 'package:cusipco/service/prowider/get_appo_list_provider.dart';
 
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
 
-import 'package:heal_u/widgets/button_widget/small_blue_button_widget.dart';
+import 'package:cusipco/widgets/button_widget/small_blue_button_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';

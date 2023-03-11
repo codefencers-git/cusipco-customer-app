@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/home/Diet/customized_diet_plan.dart';
-import 'package:heal_u/screens/main_screen/home/Diet/standard_diet_plan.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/slider_widget.dart';
+import 'package:cusipco/screens/main_screen/home/Diet/customized_diet_plan.dart';
+import 'package:cusipco/screens/main_screen/home/Diet/standard_diet_plan.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/slider_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class DietGridScreen extends StatefulWidget {

@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:heal_u/model/general_information_model.dart';
-import 'package:heal_u/service/prowider/general_information_service.dart';
-import 'package:heal_u/service/prowider/main_navigaton_prowider_service.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/button_widget/rounded_button_widget.dart';
+import 'package:cusipco/model/general_information_model.dart';
+import 'package:cusipco/service/prowider/general_information_service.dart';
+import 'package:cusipco/service/prowider/main_navigaton_prowider_service.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';

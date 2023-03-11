@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:heal_u/model/general_information_model.dart';
-import 'package:heal_u/service/http_service/http_service.dart';
+import 'package:cusipco/model/general_information_model.dart';
+import 'package:cusipco/service/http_service/http_service.dart';
 
 class GeneralInfoService with ChangeNotifier {
   GeneralInformation? generalData;

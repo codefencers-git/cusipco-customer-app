@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/home/Diet/model/diet_plan_model.dart';
-import 'package:heal_u/themedata.dart'; //ignore: file_names
+import 'package:cusipco/screens/main_screen/home/Diet/model/diet_plan_model.dart';
+import 'package:cusipco/themedata.dart'; //ignore: file_names
 
 //ignore: file_names
 class ExpandableListView extends StatefulWidget {

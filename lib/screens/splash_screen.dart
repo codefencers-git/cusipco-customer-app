@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/routes.dart';
-import 'package:heal_u/screens/authentication_screen/login_screen.dart';
-import 'package:heal_u/screens/main_screen/main_screen.dart';
-import 'package:heal_u/screens/main_screen/my_account/family_members/service/family_prowider_service.dart';
-import 'package:heal_u/screens/onboarding_screen.dart';
-import 'package:heal_u/service/prowider/initial_data_prowider.dart';
-import 'package:heal_u/service/shared_pref_service/onboaring_pref_service.dart';
-import 'package:heal_u/service/shared_pref_service/user_pref_service.dart';
-import 'package:heal_u/themedata.dart';
+import 'package:cusipco/routes.dart';
+import 'package:cusipco/screens/authentication_screen/login_screen.dart';
+import 'package:cusipco/screens/main_screen/main_screen.dart';
+import 'package:cusipco/screens/main_screen/my_account/family_members/service/family_prowider_service.dart';
+import 'package:cusipco/screens/onboarding_screen.dart';
+import 'package:cusipco/service/prowider/initial_data_prowider.dart';
+import 'package:cusipco/service/shared_pref_service/onboaring_pref_service.dart';
+import 'package:cusipco/service/shared_pref_service/user_pref_service.dart';
+import 'package:cusipco/themedata.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {

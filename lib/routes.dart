@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:heal_u/screens/authentication_screen/login_screen.dart';
-import 'package:heal_u/screens/authentication_screen/register_screen.dart';
-import 'package:heal_u/screens/authentication_screen/verify_mobile_screen.dart';
-import 'package:heal_u/screens/main_screen/main_screen.dart';
-import 'package:heal_u/screens/onboarding_screen.dart';
-import 'package:heal_u/screens/splash_screen.dart';
+import 'package:cusipco/screens/authentication_screen/login_screen.dart';
+import 'package:cusipco/screens/authentication_screen/register_screen.dart';
+import 'package:cusipco/screens/authentication_screen/verify_mobile_screen.dart';
+import 'package:cusipco/screens/main_screen/main_screen.dart';
+import 'package:cusipco/screens/onboarding_screen.dart';
+import 'package:cusipco/screens/splash_screen.dart';
 
 class Routes {
   static const String mainRoute = "/main";

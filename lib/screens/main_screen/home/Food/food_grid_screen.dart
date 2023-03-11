@@ -1,13 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import 'package:heal_u/screens/main_screen/home/Food/food_items_and_restaurant_screen.dart';
-import 'package:heal_u/screens/main_screen/home/Food/active_plans_and_subscription_screen.dart';
-import 'package:heal_u/screens/main_screen/home/Food/restaurent_list_screen.dart';
-import 'package:heal_u/screens/main_screen/home/Food/resturent_list_widget.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/slider_widget.dart';
+import 'package:cusipco/screens/main_screen/home/Food/food_items_and_restaurant_screen.dart';
+import 'package:cusipco/screens/main_screen/home/Food/active_plans_and_subscription_screen.dart';
+import 'package:cusipco/screens/main_screen/home/Food/restaurent_list_screen.dart';
+import 'package:cusipco/screens/main_screen/home/Food/resturent_list_widget.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/slider_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class FoodGridScreen extends StatefulWidget {

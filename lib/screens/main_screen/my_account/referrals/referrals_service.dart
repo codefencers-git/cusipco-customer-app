@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:heal_u/Global/global_variable_for_show_messge.dart';
-import 'package:heal_u/screens/main_screen/my_account/referrals/share_reference_model.dart';
-import 'package:heal_u/service/http_service/http_service.dart';
-import 'package:heal_u/service/navigation_service.dart';
-import 'package:heal_u/service/shared_pref_service/user_pref_service.dart';
-import 'package:heal_u/widgets/general_widget.dart';
+import 'package:cusipco/Global/global_variable_for_show_messge.dart';
+import 'package:cusipco/screens/main_screen/my_account/referrals/share_reference_model.dart';
+import 'package:cusipco/service/http_service/http_service.dart';
+import 'package:cusipco/service/navigation_service.dart';
+import 'package:cusipco/service/shared_pref_service/user_pref_service.dart';
+import 'package:cusipco/widgets/general_widget.dart';
 
 class ReferralsService with ChangeNotifier {
   ShareAndReferralsData? referralsData;

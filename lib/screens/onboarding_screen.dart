@@ -2,9 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:heal_u/screens/authentication_screen/login_screen.dart';
-import 'package:heal_u/service/shared_pref_service/onboaring_pref_service.dart';
-import 'package:heal_u/themedata.dart';
+import 'package:cusipco/screens/authentication_screen/login_screen.dart';
+import 'package:cusipco/service/shared_pref_service/onboaring_pref_service.dart';
+import 'package:cusipco/themedata.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   OnBoardingScreen({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/service/prowider/order_details_provider.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/service/prowider/order_details_provider.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 

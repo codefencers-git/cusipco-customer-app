@@ -1,12 +1,12 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/home/Doctor/doctor_list_screen.dart';
-import 'package:heal_u/service/animation_service.dart';
-import 'package:heal_u/service/prowider/doctor_category_provider.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/online_offline_bottom_sheet.dart';
+import 'package:cusipco/screens/main_screen/home/Doctor/doctor_list_screen.dart';
+import 'package:cusipco/service/animation_service.dart';
+import 'package:cusipco/service/prowider/doctor_category_provider.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/online_offline_bottom_sheet.dart';
 
-import 'package:heal_u/widgets/slider_widget.dart';
+import 'package:cusipco/widgets/slider_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 

@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:heal_u/service/prowider/general_information_service.dart';
-import 'package:heal_u/service/shared_pref_service/user_pref_service.dart';
-import 'package:heal_u/widgets/general_widget.dart';
+import 'package:cusipco/service/prowider/general_information_service.dart';
+import 'package:cusipco/service/shared_pref_service/user_pref_service.dart';
+import 'package:cusipco/widgets/general_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';

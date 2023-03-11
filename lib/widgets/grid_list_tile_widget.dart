@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/model/category_model.dart';
+import 'package:cusipco/model/category_model.dart';
 
 // ignore: must_be_immutable
 class GridListTileWidget extends StatefulWidget {

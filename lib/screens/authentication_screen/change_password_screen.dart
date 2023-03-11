@@ -2,16 +2,16 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:heal_u/Global/global_variable_for_show_messge.dart';
+import 'package:cusipco/Global/global_variable_for_show_messge.dart';
 
-import 'package:heal_u/screens/authentication_screen/login_screen.dart';
+import 'package:cusipco/screens/authentication_screen/login_screen.dart';
 
-import 'package:heal_u/service/http_service/http_service.dart';
+import 'package:cusipco/service/http_service/http_service.dart';
 
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/button_widget/rounded_button_widget.dart';
-import 'package:heal_u/widgets/general_widget.dart';
-import 'package:heal_u/widgets/text_boxes/text_box_with_sufix.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
+import 'package:cusipco/widgets/general_widget.dart';
+import 'package:cusipco/widgets/text_boxes/text_box_with_sufix.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen(
