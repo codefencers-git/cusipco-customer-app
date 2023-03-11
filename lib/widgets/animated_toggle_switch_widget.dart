@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/themedata.dart';
+import 'package:cusipco/themedata.dart';
 
 class AnimatedToggle extends StatefulWidget {
   final List<String> values;

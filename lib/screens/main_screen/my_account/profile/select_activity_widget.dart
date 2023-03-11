@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/service/prowider/general_information_service.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/expanable_widget.dart';
+import 'package:cusipco/service/prowider/general_information_service.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/expanable_widget.dart';
 import 'package:provider/provider.dart';
 
 class SelectActivityDropdownWidget extends StatefulWidget {

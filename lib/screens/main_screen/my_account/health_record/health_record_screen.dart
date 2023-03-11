@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:heal_u/screens/main_screen/my_account/health_record/health_record_model.dart';
-import 'package:heal_u/screens/main_screen/my_account/health_record/health_service.dart';
-import 'package:heal_u/service/save_file_service.dart';
+import 'package:cusipco/screens/main_screen/my_account/health_record/health_record_model.dart';
+import 'package:cusipco/screens/main_screen/my_account/health_record/health_service.dart';
+import 'package:cusipco/service/save_file_service.dart';
 
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/future_builder_widget.dart';
-import 'package:heal_u/widgets/general_widget.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/future_builder_widget.dart';
+import 'package:cusipco/widgets/general_widget.dart';
 import 'package:open_file/open_file.dart';
 
 class HealthRecordScreen extends StatefulWidget {

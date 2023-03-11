@@ -4,23 +4,23 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/home/Dental_care/dental_care_category_scree.dart';
-import 'package:heal_u/screens/main_screen/home/Diet/diet_grid_screen.dart';
+import 'package:cusipco/screens/main_screen/home/Dental_care/dental_care_category_scree.dart';
+import 'package:cusipco/screens/main_screen/home/Diet/diet_grid_screen.dart';
 
-import 'package:heal_u/screens/main_screen/home/Doctor/doctors_category_screen.dart';
-import 'package:heal_u/screens/main_screen/home/Food/food_grid_screen.dart';
+import 'package:cusipco/screens/main_screen/home/Doctor/doctors_category_screen.dart';
+import 'package:cusipco/screens/main_screen/home/Food/food_grid_screen.dart';
 
-import 'package:heal_u/screens/main_screen/home/fitness/fitness_category_screen.dart';
-import 'package:heal_u/screens/main_screen/home/lab_category/lab_category_screen.dart';
-import 'package:heal_u/screens/main_screen/home/skin_and_care/skin_grid_screen.dart';
-import 'package:heal_u/screens/main_screen/home/store/store_grid_screen.dart';
-import 'package:heal_u/screens/main_screen/home/therapy/therapy_screen.dart';
+import 'package:cusipco/screens/main_screen/home/fitness/fitness_category_screen.dart';
+import 'package:cusipco/screens/main_screen/home/lab_category/lab_category_screen.dart';
+import 'package:cusipco/screens/main_screen/home/skin_and_care/skin_grid_screen.dart';
+import 'package:cusipco/screens/main_screen/home/store/store_grid_screen.dart';
+import 'package:cusipco/screens/main_screen/home/therapy/therapy_screen.dart';
 
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_for_home.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_location.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_for_home.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_location.dart';
 
-import 'package:heal_u/widgets/slider_widget.dart';
+import 'package:cusipco/widgets/slider_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomeScreen extends StatefulWidget {

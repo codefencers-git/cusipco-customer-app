@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/home/skin_and_care/global_product_detail_screen.dart';
-import 'package:heal_u/service/prowider/skincare_list_provider.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_location.dart';
-import 'package:heal_u/widgets/general_button.dart';
-import 'package:heal_u/widgets/text_boxes/text_box_with_sufix.dart';
+import 'package:cusipco/screens/main_screen/home/skin_and_care/global_product_detail_screen.dart';
+import 'package:cusipco/service/prowider/skincare_list_provider.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_location.dart';
+import 'package:cusipco/widgets/general_button.dart';
+import 'package:cusipco/widgets/text_boxes/text_box_with_sufix.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 

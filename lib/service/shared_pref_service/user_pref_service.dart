@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
-import 'package:heal_u/model/user_model.dart';
-import 'package:heal_u/screens/main_screen/my_account/family_members/model/family_list_model.dart';
+import 'package:cusipco/model/user_model.dart';
+import 'package:cusipco/screens/main_screen/my_account/family_members/model/family_list_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPrefService with ChangeNotifier {

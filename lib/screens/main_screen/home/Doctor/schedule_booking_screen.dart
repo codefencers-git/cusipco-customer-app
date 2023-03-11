@@ -2,22 +2,22 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-import 'package:heal_u/Global/global_variable_for_show_messge.dart';
-import 'package:heal_u/Global/web_view_screen.dart';
-import 'package:heal_u/model/book_appo_model.dart';
-import 'package:heal_u/model/doctors_detail_model.dart';
-import 'package:heal_u/screens/main_screen/checkout/checkout_for_other.dart';
+import 'package:cusipco/Global/global_variable_for_show_messge.dart';
+import 'package:cusipco/Global/web_view_screen.dart';
+import 'package:cusipco/model/book_appo_model.dart';
+import 'package:cusipco/model/doctors_detail_model.dart';
+import 'package:cusipco/screens/main_screen/checkout/checkout_for_other.dart';
 
-import 'package:heal_u/screens/main_screen/my_account/booking_result_screen.dart';
-import 'package:heal_u/service/book_appo_services.dart';
-import 'package:heal_u/service/time_slot_service/time_slot_model.dart';
-import 'package:heal_u/service/time_slot_service/time_slot_service.dart';
+import 'package:cusipco/screens/main_screen/my_account/booking_result_screen.dart';
+import 'package:cusipco/service/book_appo_services.dart';
+import 'package:cusipco/service/time_slot_service/time_slot_model.dart';
+import 'package:cusipco/service/time_slot_service/time_slot_service.dart';
 
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/button_widget/rounded_button_widget.dart';
-import 'package:heal_u/widgets/general_widget.dart';
-import 'package:heal_u/widgets/text_boxes/text_box_with_sufix.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
+import 'package:cusipco/widgets/general_widget.dart';
+import 'package:cusipco/widgets/text_boxes/text_box_with_sufix.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';

@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import 'package:heal_u/Global/global_variable_for_show_messge.dart';
-import 'package:heal_u/model/category_model.dart';
+import 'package:cusipco/Global/global_variable_for_show_messge.dart';
+import 'package:cusipco/model/category_model.dart';
 
-import 'package:heal_u/service/http_service/http_service.dart';
+import 'package:cusipco/service/http_service/http_service.dart';
 
 class DoctorsCategoryService with ChangeNotifier {
   late CategoryModel categoryModel;

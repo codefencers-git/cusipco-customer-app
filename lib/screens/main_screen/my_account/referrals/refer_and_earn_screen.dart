@@ -4,14 +4,14 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:heal_u/screens/main_screen/my_account/referrals/referrals_service.dart';
-import 'package:heal_u/screens/main_screen/my_account/referrals/share_reference_model.dart';
-import 'package:heal_u/service/http_service/http_service.dart';
+import 'package:cusipco/screens/main_screen/my_account/referrals/referrals_service.dart';
+import 'package:cusipco/screens/main_screen/my_account/referrals/share_reference_model.dart';
+import 'package:cusipco/service/http_service/http_service.dart';
 
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/general_button.dart';
-import 'package:heal_u/widgets/general_widget.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/general_button.dart';
+import 'package:cusipco/widgets/general_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
 

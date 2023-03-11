@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/material.dart';
-import 'package:heal_u/model/slider_list_model.dart';
-import 'package:heal_u/model/slider_model.dart';
-import 'package:heal_u/service/prowider/initial_data_prowider.dart';
-import 'package:heal_u/themedata.dart';
+import 'package:cusipco/model/slider_list_model.dart';
+import 'package:cusipco/model/slider_model.dart';
+import 'package:cusipco/service/prowider/initial_data_prowider.dart';
+import 'package:cusipco/themedata.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 

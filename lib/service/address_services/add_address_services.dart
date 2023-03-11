@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:heal_u/model/common_model.dart';
-import 'package:heal_u/model/get_address_model.dart';
+import 'package:cusipco/model/common_model.dart';
+import 'package:cusipco/model/get_address_model.dart';
 
-import 'package:heal_u/service/http_service/http_service.dart';
+import 'package:cusipco/service/http_service/http_service.dart';
 
 Future<CommonModel?> addNewAddress(String name, String type, String address,
     String pincode, String lattitude, String longitide, String phone,

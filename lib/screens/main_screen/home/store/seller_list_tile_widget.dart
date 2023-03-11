@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:heal_u/screens/main_screen/home/store/store_product_details_model.dart';
-import 'package:heal_u/screens/main_screen/home/store/store_product_details_screen.dart';
+import 'package:cusipco/screens/main_screen/home/store/store_product_details_model.dart';
+import 'package:cusipco/screens/main_screen/home/store/store_product_details_screen.dart';
 
-import 'package:heal_u/themedata.dart';
+import 'package:cusipco/themedata.dart';
 
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 

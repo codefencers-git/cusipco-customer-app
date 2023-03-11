@@ -2,17 +2,17 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:heal_u/Global/global_variable_for_show_messge.dart';
-import 'package:heal_u/model/category_model.dart';
-import 'package:heal_u/screens/main_screen/home/global_product_list_screen.dart';
-import 'package:heal_u/service/http_service/http_service.dart';
-import 'package:heal_u/service/navigation_service.dart';
-import 'package:heal_u/service/shared_pref_service/user_pref_service.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/general_widget.dart';
-import 'package:heal_u/widgets/grid_list_tile_widget.dart';
-import 'package:heal_u/widgets/slider_widget.dart';
+import 'package:cusipco/Global/global_variable_for_show_messge.dart';
+import 'package:cusipco/model/category_model.dart';
+import 'package:cusipco/screens/main_screen/home/global_product_list_screen.dart';
+import 'package:cusipco/service/http_service/http_service.dart';
+import 'package:cusipco/service/navigation_service.dart';
+import 'package:cusipco/service/shared_pref_service/user_pref_service.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/general_widget.dart';
+import 'package:cusipco/widgets/grid_list_tile_widget.dart';
+import 'package:cusipco/widgets/slider_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class TherapyGridScreen extends StatefulWidget {

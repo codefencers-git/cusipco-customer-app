@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/my_account/my_appointment/appointments_screen.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/button_widget/rounded_button_widget.dart';
+import 'package:cusipco/screens/main_screen/my_account/my_appointment/appointments_screen.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class BookingResultScreen extends StatelessWidget {

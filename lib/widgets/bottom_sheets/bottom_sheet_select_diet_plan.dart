@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/home/Diet/diet_grid_screen.dart';
-import 'package:heal_u/screens/main_screen/home/Food/model/my_subscription_model.dart';
-import 'package:heal_u/screens/main_screen/my_account/my_subscription/my_subscription_sevice.dart';
-import 'package:heal_u/themedata.dart';
+import 'package:cusipco/screens/main_screen/home/Diet/diet_grid_screen.dart';
+import 'package:cusipco/screens/main_screen/home/Food/model/my_subscription_model.dart';
+import 'package:cusipco/screens/main_screen/my_account/my_subscription/my_subscription_sevice.dart';
+import 'package:cusipco/themedata.dart';
 
-import 'package:heal_u/widgets/bottom_sheets/bottom_sheet_for_select_address_widget.dart';
-import 'package:heal_u/widgets/bottom_sheets/bottom_sheet_select_days_widget.dart';
-import 'package:heal_u/widgets/button_widget/rounded_button_widget.dart';
-import 'package:heal_u/widgets/general_widget.dart';
+import 'package:cusipco/widgets/bottom_sheets/bottom_sheet_for_select_address_widget.dart';
+import 'package:cusipco/widgets/bottom_sheets/bottom_sheet_select_days_widget.dart';
+import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
+import 'package:cusipco/widgets/general_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 

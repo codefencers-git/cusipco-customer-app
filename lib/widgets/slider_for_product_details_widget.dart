@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:heal_u/themedata.dart';
+import 'package:cusipco/themedata.dart';
 
 class SliderProductDetailsWidget extends StatefulWidget {
   final List<String> image;

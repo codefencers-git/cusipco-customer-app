@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/screens/main_screen/home/Food/food_item_list_widget.dart';
-import 'package:heal_u/screens/main_screen/home/Food/resturent_list_widget.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_location.dart';
+import 'package:cusipco/screens/main_screen/home/Food/food_item_list_widget.dart';
+import 'package:cusipco/screens/main_screen/home/Food/resturent_list_widget.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_location.dart';
 
 class FoodItemsAndRestaurantScreen extends StatefulWidget {
   FoodItemsAndRestaurantScreen({Key? key, this.isshowToggle = true})

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/Global/globle_methd.dart';
+import 'package:cusipco/Global/globle_methd.dart';
 
-import 'package:heal_u/screens/main_screen/calarie_counter/calorie_counter_screen.dart';
-import 'package:heal_u/screens/main_screen/cart/cart_prowider_service.dart';
-import 'package:heal_u/screens/main_screen/home/home_screen.dart';
-import 'package:heal_u/screens/main_screen/my_account/my_account_main_screen.dart';
-import 'package:heal_u/screens/main_screen/support/support_screen.dart';
-import 'package:heal_u/service/prowider/main_navigaton_prowider_service.dart';
-import 'package:heal_u/themedata.dart';
+import 'package:cusipco/screens/main_screen/calarie_counter/calorie_counter_screen.dart';
+import 'package:cusipco/screens/main_screen/cart/cart_prowider_service.dart';
+import 'package:cusipco/screens/main_screen/home/home_screen.dart';
+import 'package:cusipco/screens/main_screen/my_account/my_account_main_screen.dart';
+import 'package:cusipco/screens/main_screen/support/support_screen.dart';
+import 'package:cusipco/service/prowider/main_navigaton_prowider_service.dart';
+import 'package:cusipco/themedata.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 

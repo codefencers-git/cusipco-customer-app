@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/routes.dart';
+import 'package:cusipco/routes.dart';
 
 NavigationService navigationService = NavigationService().get();
 

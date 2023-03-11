@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:heal_u/screens/main_screen/checkout/checkout_for_other.dart';
+import 'package:cusipco/screens/main_screen/checkout/checkout_for_other.dart';
 
-import 'package:heal_u/screens/main_screen/home/Food/model/my_subscription_model.dart';
-import 'package:heal_u/screens/main_screen/my_account/my_subscription/my_subscription_sevice.dart';
-import 'package:heal_u/screens/main_screen/my_account/my_subscription/subscription_details_screen.dart';
-import 'package:heal_u/service/download_server.dart';
-import 'package:heal_u/service/save_file_service.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/general_widget.dart';
+import 'package:cusipco/screens/main_screen/home/Food/model/my_subscription_model.dart';
+import 'package:cusipco/screens/main_screen/my_account/my_subscription/my_subscription_sevice.dart';
+import 'package:cusipco/screens/main_screen/my_account/my_subscription/subscription_details_screen.dart';
+import 'package:cusipco/service/download_server.dart';
+import 'package:cusipco/service/save_file_service.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/general_widget.dart';
 import 'package:open_file/open_file.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';

@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:heal_u/model/city_list_model.dart';
-import 'package:heal_u/service/http_service/http_service.dart';
-import 'package:heal_u/widgets/general_widget.dart';
+import 'package:cusipco/model/city_list_model.dart';
+import 'package:cusipco/service/http_service/http_service.dart';
+import 'package:cusipco/widgets/general_widget.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LocationProwiderService with ChangeNotifier {

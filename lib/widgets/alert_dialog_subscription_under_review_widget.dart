@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heal_u/themedata.dart';
+import 'package:cusipco/themedata.dart';
 
 class AlertDialogSubcsriptionUnderReview extends StatelessWidget {
   const AlertDialogSubcsriptionUnderReview({Key? key, required this.title})

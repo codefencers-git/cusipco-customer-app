@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:heal_u/service/prowider/skincare_details_provider.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/service/prowider/skincare_details_provider.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
 
-import 'package:heal_u/widgets/bottom_sheets/bottom_sheet_for_book_appointment.dart';
-import 'package:heal_u/widgets/button_widget/rounded_button_widget.dart';
-import 'package:heal_u/widgets/slider_for_product_details_widget.dart';
+import 'package:cusipco/widgets/bottom_sheets/bottom_sheet_for_book_appointment.dart';
+import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
+import 'package:cusipco/widgets/slider_for_product_details_widget.dart';
 import 'package:provider/provider.dart';
 import '../../../../themedata.dart';
 

@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:heal_u/screens/main_screen/home/Doctor/schedule_booking_screen.dart';
-import 'package:heal_u/service/prowider/doctor_details_provider.dart';
-import 'package:heal_u/themedata.dart';
-import 'package:heal_u/widgets/app_bars/appbar_with_text.dart';
-import 'package:heal_u/widgets/button_widget/rounded_button_widget.dart';
+import 'package:cusipco/screens/main_screen/home/Doctor/schedule_booking_screen.dart';
+import 'package:cusipco/service/prowider/doctor_details_provider.dart';
+import 'package:cusipco/themedata.dart';
+import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
+import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
