@@ -317,7 +317,7 @@ class _ReferAndEarnScreenState extends State<ReferAndEarnScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Center(
         child: Text(
-          "Your Friend gets 50 HealU points on signup and, you get 100 HealU points too everytime!",
+          "Your Friend gets 50 cusipco points on signup and, you get 100 cusipco points too everytime!",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 12,

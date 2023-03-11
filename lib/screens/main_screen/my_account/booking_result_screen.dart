@@ -47,7 +47,7 @@ class BookingResultScreen extends StatelessWidget {
             ),
             Text(
               success == true
-                  ? "Kudos! Your booking is complete. Welcome to HealU community!"
+                  ? "Kudos! Your booking is complete. Welcome to cusipco community!"
                   : "Oops! We couldn't complete your order. Sorry for the inconvenience.",
               style: TextStyle(
                 color: ThemeClass.greyColor,

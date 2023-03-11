@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "healu-customer-app",
+            "name": "cusipco-customer-app",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "healu-customer-app (profile mode)",
+            "name": "cusipco-customer-app (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "healu-customer-app (release mode)",
+            "name": "cusipco-customer-app (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

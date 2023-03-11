@@ -362,7 +362,7 @@ class _StoreProductDetailsScreenState extends State<StoreProductDetailsScreen> {
                   height: 20,
                 ),
                 Text(
-                  "Other Seller on HealU",
+                  "Other Seller on cusipco",
                   style: TextStyle(
                       overflow: TextOverflow.ellipsis,
                       fontSize: 14,
