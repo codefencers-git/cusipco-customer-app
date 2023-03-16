@@ -1,3 +1,4 @@
+import 'package:cusipco/screens/main_screen/notifications/notifications_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cusipco/screens/main_screen/cart/cart_prowider_service.dart';
 import 'package:cusipco/screens/main_screen/cart/cart_screen.dart';
@@ -8,9 +9,14 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 class AppbarForHomeWidget extends StatefulWidget {
-  const AppbarForHomeWidget(
-      {Key? key, this.isBackShow = false, this.onbackPress})
-      : super(key: key);
+  final String? headerText;
+
+  const AppbarForHomeWidget({
+    Key? key,
+    this.isBackShow = false,
+    this.onbackPress,
+    this.headerText,
+  }) : super(key: key);
 
   final bool isBackShow;
   final Function? onbackPress;
@@ -40,17 +46,17 @@ class _AppbarForHomeWidgetState extends State<AppbarForHomeWidget> {
           Expanded(
             child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 5),
-                  child: Container(
-                    height: 32,
-                    width: 32,
-                    child: Image.asset(
-                      "assets/images/dashboard/manu_icon.png",
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 5),
+                //   child: Container(
+                //     height: 32,
+                //     width: 32,
+                //     child: Image.asset(
+                //       "assets/images/dashboard/manu_icon.png",
+                //       fit: BoxFit.contain,
+                //     ),
+                //   ),
+                // ),
                 SizedBox(
                   width: 10,
                 ),
@@ -58,7 +64,7 @@ class _AppbarForHomeWidgetState extends State<AppbarForHomeWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hi, John Doe",
+                      "Hello! ${widget.headerText}",
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -116,13 +122,24 @@ class _AppbarForHomeWidgetState extends State<AppbarForHomeWidget> {
                   padding: const EdgeInsets.only(right: 0),
                   child: Stack(
                     children: [
-                      Align(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 5),
-                          child: Image.asset(
-                            "assets/images/dashboard/notification_icon.png",
-                            height: 30,
-                            width: 30,
+                      InkWell(
+                        onTap: () {
+                          pushNewScreen(
+                            context,
+                            screen: NotificationsScreen(),
+                            withNavBar: false,
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                          );
+                        },
+                        child: Align(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 5),
+                            child: Image.asset(
+                              "assets/images/dashboard/notification_icon.png",
+                              height: 30,
+                              width: 30,
+                            ),
                           ),
                         ),
                       ),

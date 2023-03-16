@@ -351,7 +351,6 @@ class _MyProfileScreenState extends State<MyProfileScreen>
                                       showToast("Please select activity");
                                     }
                                     // registerData()
-
                                   }
                                 }),
                             SizedBox(

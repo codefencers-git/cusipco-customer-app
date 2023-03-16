@@ -1,9 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cusipco/model/general_information_model.dart';
+import 'package:cusipco/screens/main_screen/home/Dental_care/dental_care_category_scree.dart';
+import 'package:cusipco/screens/main_screen/home/Diet/diet_grid_screen.dart';
+import 'package:cusipco/screens/main_screen/home/Doctor/doctors_category_screen.dart';
+import 'package:cusipco/screens/main_screen/home/store/store_grid_screen.dart';
 import 'package:cusipco/themedata.dart';
 import 'package:cusipco/widgets/app_bars/appbar_for_home.dart';
 import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 import 'package:cusipco/widgets/slider_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:provider/provider.dart';
+
+import '../../../model/user_model.dart';
+import '../../../service/prowider/order_history_provider.dart';
+import '../../../service/shared_pref_service/user_pref_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,23 +31,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List corporateBenifit = [
     {
+      "id": 0,
       "image": "assets/images/dashboard/nutrition_icon.png",
       "text": "Diet Consultation"
     },
     {
+      "id": 1,
       "image": "assets/images/dashboard/page_icon.png",
       "text": "Health Checkup"
     },
     {
+      "id": 2,
       "image": "assets/images/dashboard/girl_icon.png",
       "text": "Women's Health (OBG)"
     },
-    {"image": "assets/images/dashboard/corona_icon.png", "text": "Covid Test"},
     {
+      "id": 3,
+      "image": "assets/images/dashboard/corona_icon.png",
+      "text": "Covid Test"
+    },
+    {
+      "id": 4,
       "image": "assets/images/dashboard/tablet_icon.png",
       "text": "Pregnancy Test"
     },
     {
+      "id": 5,
       "image": "assets/images/dashboard/thermometer_icon.png",
       "text": "Blood Sugar Test"
     },
@@ -44,28 +64,45 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List helthBenifit = [
     {
+      "id": 6,
       "image": "assets/images/dashboard/heart1_icon.png",
       "text": "Health Checkup"
     },
     {
+      "id": 7,
       "image": "assets/images/dashboard/hospital_icon.png",
       "text": "Order Pharmacy"
     },
     {
+      "id": 8,
       "image": "assets/images/dashboard/doctor_icon.png",
       "text": "Doctor Consultation"
     },
     {
+      "id": 9,
       "image": "assets/images/dashboard/covid_icon.png",
       "text": "Covid Care Plan"
     },
     {
+      "id": 10,
       "image": "assets/images/dashboard/injection_icon.png",
       "text": "Vaccinations"
     },
-    {"image": "assets/images/dashboard/teeth_icon.png", "text": "Dental Care"},
-    {"image": "assets/images/dashboard/eye_icon.png", "text": "Eye Care"},
-    {"image": "assets/images/dashboard/manu1_icon.png", "text": "More"},
+    {
+      "id": 11,
+      "image": "assets/images/dashboard/teeth_icon.png",
+      "text": "Dental Care"
+    },
+    {
+      "id": 12,
+      "image": "assets/images/dashboard/eye_icon.png",
+      "text": "Eye Care"
+    },
+    {
+      "id": 13,
+      "image": "assets/images/dashboard/manu1_icon.png",
+      "text": "More"
+    },
   ];
 
   @override
@@ -78,7 +115,12 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Scaffold(
           appBar: PreferredSize(
               preferredSize: Size.fromHeight(65.0),
-              child: AppbarForHomeWidget()),
+              child: Consumer<UserPrefService>(
+                  builder: (context, navProwider, child) {
+                return AppbarForHomeWidget(
+                    headerText:
+                        navProwider.globleUserModel!.data!.name ?? "User");
+              })),
           body: Container(
               color: ThemeClass.whiteColor,
               height: height,
@@ -113,36 +155,86 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  goto(Widget _screen) {
+    pushNewScreen(
+      context,
+      screen: _screen,
+      withNavBar: false,
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
+  }
+
   _buildGridListTile(item) {
-    return Column(
-      children: [
-        Container(
-          height: 32,
-          width: 32,
-          child: Image.asset(
-            item['image'],
-            fit: BoxFit.contain,
+    return InkWell(
+      onTap: () {
+        //For Corporate Benefits
+        if (item["id"] == 0) {
+          goto(DietGridScreen());
+          print("Diet Consultation");
+        } else if (item["id"] == 1) {
+          print("Health Checkup");
+        } else if (item["id"] == 2) {
+          print("Women's Health");
+        } else if (item["id"] == 3) {
+          print("Covid Test");
+        } else if (item["id"] == 4) {
+          print("Pregnancy Test");
+        } else if (item["id"] == 5) {
+          print("Blood Sugar Test");
+        }
+
+        //For Health Benefits
+        if (item["id"] == 6) {
+          print("Health Checkup");
+        } else if (item["id"] == 7) {
+          goto(StoreGridScreen());
+          print("Order Pharmacy");
+        } else if (item["id"] == 8) {
+          goto(DoctorsCategoryScreen());
+          print("Doctor Consultation");
+        } else if (item["id"] == 9) {
+          print("Covid Care Plan");
+        } else if (item["id"] == 10) {
+          print("Vaccinations");
+        } else if (item["id"] == 11) {
+          goto(DentalCareCategoryScreen());
+          print("Dental Care");
+        } else if (item["id"] == 12) {
+          print("Eye Care");
+        } else if (item["id"] == 13) {
+          print("More");
+        }
+      },
+      child: Column(
+        children: [
+          Container(
+            height: 32,
+            width: 32,
+            child: Image.asset(
+              item['image'],
+              fit: BoxFit.contain,
+            ),
           ),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6),
-            child: Text(
-              item['text'],
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: ThemeClass.blackColor,
-                fontFamily: "Gilory",
-                fontWeight: FontWeight.w400,
-                fontSize: 12,
+          SizedBox(
+            height: 5,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              child: Text(
+                item['text'],
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: ThemeClass.blackColor,
+                  fontFamily: "Gilory",
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
