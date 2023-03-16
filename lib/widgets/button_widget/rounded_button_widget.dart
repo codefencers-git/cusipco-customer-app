@@ -7,6 +7,7 @@ class ButtonWidget extends StatelessWidget {
       this.isLoading = false,
       required this.title,
       required this.color,
+      this.fontsize = 16,
       this.isdisable = false,
       required this.callBack})
       : super(key: key);
@@ -15,6 +16,7 @@ class ButtonWidget extends StatelessWidget {
   final String title;
   final Function callBack;
   final Color color;
+  final double fontsize;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class ButtonWidget extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                      fontSize: fontsize,
                     ),
                   ),
           ),

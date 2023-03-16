@@ -14,6 +14,7 @@ class ThemeClass {
 
   static final Color blueColor = Color(0xFF36D1DC);
   static final Color blueColor3 = Color(0xFF5B86E5);
+  static final Color blueColor22 = Color(0xFF4D73C8);
   static final Color blueDarkColor = Color(0xFF124C61);
   static final Color blueDarkColor1 = Color(0xFFD5DBFF);
   static final Color blueDarkColor2 = Color(0xFFD9FFFE);
@@ -40,7 +41,7 @@ class ThemeClass {
   static final Color greyLightColor = Color(0xFFD0D0D0);
   static final Color greyLightColor1 = Color(0xFFE8E8E8);
 
-  static final Color safeareBackGround = blueColor;
+  static final Color safeareBackGround = blackColor;
 
   static final themeData = ThemeData(
       primaryColor: ThemeClass.blueColor,

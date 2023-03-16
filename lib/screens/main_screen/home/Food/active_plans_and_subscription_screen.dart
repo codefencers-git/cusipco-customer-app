@@ -189,8 +189,6 @@ class _ActivePlansAndSubscritionScreenState
                     onTap: () {
                       showAlertDialogProgress(
                           context, [dietPlan.dietChartUrl.toString()]);
-                      // _downloadPdf(
-                      //     'http://healu.codefencers.com/default/default-508X320.jpg');
                     },
                     child: Container(
                         padding: EdgeInsets.all(7),

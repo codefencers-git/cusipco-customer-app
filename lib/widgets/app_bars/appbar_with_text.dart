@@ -25,7 +25,7 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: ThemeClass.blueColor,
+      backgroundColor: ThemeClass.blackColor,
       toolbarHeight: 70,
       leading: IconButton(
         onPressed: () {

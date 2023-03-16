@@ -203,7 +203,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          color: ThemeClass.yellowColor,
+                          color: ThemeClass.blueColor2,
                           fontWeight: FontWeight.w500,
                           fontFamily: 'Oswald',
                           fontSize: 32,
@@ -227,6 +227,14 @@ class _SliderWidgetState extends State<SliderWidget> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                         decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: FractionalOffset.topCenter,
+                            end: FractionalOffset.bottomCenter,
+                            colors: [
+                              ThemeClass.blueColor,
+                              ThemeClass.blueColor3,
+                            ],
+                          ),
                           borderRadius: BorderRadius.all(
                             Radius.circular(10),
                           ),
@@ -258,7 +266,7 @@ class _SliderWidgetState extends State<SliderWidget> {
         borderRadius: BorderRadius.circular(10),
         child: Container(
           height: 20,
-          color: ThemeClass.skyblueColor,
+          color: ThemeClass.blackColor,
           child: Padding(
             padding: EdgeInsets.only(left: 5, right: 5),
             child: Row(
@@ -270,6 +278,18 @@ class _SliderWidgetState extends State<SliderWidget> {
                     curve: Curves.easeInOut,
                     margin: EdgeInsets.all(2),
                     decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: FractionalOffset.topCenter,
+                          end: FractionalOffset.bottomCenter,
+                          colors: [
+                            _activePage != index
+                                ? ThemeClass.greyLightColor
+                                : ThemeClass.blueColor,
+                            _activePage != index
+                                ? ThemeClass.greyLightColor
+                                : ThemeClass.blueColor3,
+                          ],
+                        ),
                         color: _activePage == index
                             ? ThemeClass.whiteColor
                             : ThemeClass.blueColor,

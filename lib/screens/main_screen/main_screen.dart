@@ -1,3 +1,5 @@
+import 'package:cusipco/screens/main_screen/my_account/my_appointment/appointments_screen.dart';
+import 'package:cusipco/screens/main_screen/my_account/my_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cusipco/Global/globle_methd.dart';
 
@@ -107,7 +109,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
         icon: Column(
           children: [
             Image.asset(
-              "assets/images/home_white_icon.png",
+              "assets/images/dashboard/home_icon.png",
               height: 30,
               width: 30,
             ),
@@ -118,7 +120,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
               offset: Offset(0, -2),
               child: Text(
                 "Home",
-                style: TextStyle(color: ThemeClass.whiteColor, fontSize: 10),
+                style: TextStyle(color: ThemeClass.whiteColor, fontSize: 8),
               ),
             )
           ],
@@ -128,7 +130,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
         icon: Column(
           children: [
             Image.asset(
-              "assets/images/counter_white_icon.png",
+              "assets/images/dashboard/heart_icon.png",
               height: 30,
               width: 30,
             ),
@@ -136,8 +138,8 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
               height: 3,
             ),
             Text(
-              "Calorie Counter",
-              style: TextStyle(color: ThemeClass.whiteColor, fontSize: 10),
+              "HRA",
+              style: TextStyle(color: ThemeClass.whiteColor, fontSize: 8),
             )
           ],
         ),
@@ -146,7 +148,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
         icon: Column(
           children: [
             Image.asset(
-              "assets/images/support_white_icon.png",
+              "assets/images/dashboard/calender_icon.png",
               height: 30,
               width: 30,
             ),
@@ -154,8 +156,8 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
               height: 3,
             ),
             Text(
-              "Support",
-              style: TextStyle(color: ThemeClass.whiteColor, fontSize: 10),
+              "Appointments",
+              style: TextStyle(color: ThemeClass.whiteColor, fontSize: 8),
             )
           ],
         ),
@@ -164,7 +166,25 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
         icon: Column(
           children: [
             Image.asset(
-              "assets/images/user_white_icon.png",
+              "assets/images/dashboard/msg_icon.png",
+              height: 30,
+              width: 30,
+            ),
+            const SizedBox(
+              height: 3,
+            ),
+            Text(
+              "Orders",
+              style: TextStyle(color: ThemeClass.whiteColor, fontSize: 8),
+            )
+          ],
+        ),
+      ),
+      PersistentBottomNavBarItem(
+        icon: Column(
+          children: [
+            Image.asset(
+              "assets/images/dashboard/user_icon.png",
               height: 30,
               width: 30,
             ),
@@ -173,7 +193,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
             ),
             Text(
               "Account",
-              style: TextStyle(color: ThemeClass.whiteColor, fontSize: 10),
+              style: TextStyle(color: ThemeClass.whiteColor, fontSize: 8),
             )
           ],
         ),
@@ -185,7 +205,8 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
     return [
       HomeScreen(),
       CalorieCounterScreen(),
-      SupportScreen(),
+      AppointmentsScreen(),
+      MyOrderScreen(),
       MyAccountMainScreen()
     ];
   }

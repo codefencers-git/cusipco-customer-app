@@ -43,8 +43,8 @@ class _AppbarForHomeWidgetState extends State<AppbarForHomeWidget> {
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: Container(
-                    height: 25,
-                    width: 25,
+                    height: 32,
+                    width: 32,
                     child: Image.asset(
                       "assets/images/dashboard/manu_icon.png",
                       fit: BoxFit.contain,
@@ -52,32 +52,51 @@ class _AppbarForHomeWidgetState extends State<AppbarForHomeWidget> {
                   ),
                 ),
                 SizedBox(
-                  width: 5,
+                  width: 10,
                 ),
-                Consumer<LocationProwiderService>(
-                    builder: (context, locationService, child) {
-                  return InkWell(
-                    onTap: () {
-                      pushNewScreen(
-                        context,
-                        screen: SelectAddressScreen(),
-                        withNavBar: false,
-                        pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                      );
-                    },
-                    child: Text(
-                      locationService.currentLocationCity == null
-                          ? "Select City"
-                          : locationService.currentLocationCity!.name
-                              .toString(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Hi, John Doe",
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: ThemeClass.whiteColor),
                     ),
-                  );
-                }),
+                    Text(
+                      "Lorem Ipsum dollar sit",
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: ThemeClass.whiteColor.withOpacity(0.6)),
+                    ),
+                  ],
+                )
+                // Consumer<LocationProwiderService>(
+                //     builder: (context, locationService, child) {
+                //   return InkWell(
+                //     onTap: () {
+                //       pushNewScreen(
+                //         context,
+                //         screen: SelectAddressScreen(),
+                //         withNavBar: false,
+                //         pageTransitionAnimation:
+                //             PageTransitionAnimation.cupertino,
+                //       );
+                //     },
+                //     child: Text(
+                //       locationService.currentLocationCity == null
+                //           ? "Select City"
+                //           : locationService.currentLocationCity!.name
+                //               .toString(),
+                //       style: TextStyle(
+                //           fontSize: 14,
+                //           fontWeight: FontWeight.w400,
+                //           color: ThemeClass.whiteColor),
+                //     ),
+                //   );
+                // }),
               ],
             ),
           ),
@@ -101,7 +120,7 @@ class _AppbarForHomeWidgetState extends State<AppbarForHomeWidget> {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 5),
                           child: Image.asset(
-                            "assets/images/dashboard/cart_icon.png",
+                            "assets/images/dashboard/notification_icon.png",
                             height: 30,
                             width: 30,
                           ),

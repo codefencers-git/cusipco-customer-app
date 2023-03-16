@@ -21,15 +21,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   // ignore: must_call_super
   void initState() {
-    // _navigatxeTo();
-    Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushAndRemoveUntil<void>(
-        context,
-        MaterialPageRoute<void>(
-            builder: (BuildContext context) => OnBoardingScreen()),
-        ModalRoute.withName(Routes.onBoardingScreen),
-      );
-    });
+    _navigateTo();
+    // Future.delayed(Duration(seconds: 2), () {
+    //   Navigator.pushAndRemoveUntil<void>(
+    //     context,
+    //     MaterialPageRoute<void>(
+    //         builder: (BuildContext context) => OnBoardingScreen()),
+    //     ModalRoute.withName(Routes.onBoardingScreen),
+    //   );
+    // });
   }
 
   _navigateTo() async {
