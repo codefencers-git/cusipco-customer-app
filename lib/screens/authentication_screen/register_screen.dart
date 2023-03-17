@@ -734,13 +734,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Stack _buildHeaderImage(double height) {
     return Stack(
       children: [
-        Transform.translate(
-          offset: Offset(0.0, -20.0),
+        Transform.scale(
+          scale: 1.3,
           child: Container(
-            height: height * 0.23,
+            height: height * 1,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/login_top_background.png"),
+                  image: AssetImage("assets/images/login_top_bg.png"),
                   fit: BoxFit.cover,
                   alignment: Alignment.bottomCenter),
             ),
@@ -748,15 +748,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         Align(
           alignment: Alignment.topCenter,
-          child: Padding(
-            padding: EdgeInsets.only(top: height * 0.02),
-            child: Container(
-              height: height * 0.12,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/splash_header_icon.png"),
-                  // fit: BoxFit.fill,
-                ),
+          child: Container(
+            height: height * 0.2,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/splash_main_icon.png"),
+                // fit: BoxFit.fill,
               ),
             ),
           ),
