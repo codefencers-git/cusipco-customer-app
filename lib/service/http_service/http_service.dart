@@ -13,10 +13,10 @@ import 'package:provider/provider.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class HttpService with ChangeNotifier {
-  static const String API_BASE_URL_BASE = "http://admin.healuconsultancy.com/";
+  static const String API_BASE_URL_BASE = "http://cusipco.codefencers.com/";
 
   static const String API_BASE_URL =
-      "http://admin.healuconsultancy.com/api/customer/";
+      "http://cusipco.codefencers.com/api/customer/";
 
   static Map<String, String> requestHeaders = {
     HttpHeaders.contentTypeHeader: 'application/json',
@@ -82,7 +82,6 @@ class HttpService with ChangeNotifier {
 
       print("----------------------------${memberid}");
       print("----------------------------${data}");
-
       print("----------------------------${API_BASE_URL + url}");
       print("----------------------------${token}");
       return http.post(
@@ -94,6 +93,26 @@ class HttpService with ChangeNotifier {
             'City': _currentCity != null ? _currentCity.id.toString() : "0",
           }),
         // headers: requestHeaders,
+      );
+    } else {
+      throw GlobalVariableForShowMessage.internetNotConneted;
+    }
+  }
+
+  static Future<Response> httpPostWithoutHeaders(String url, dynamic map,
+      {required BuildContext context}) async {
+    bool isHasConnection = await InternetConnectionChecker().hasConnection;
+
+    if (isHasConnection) {
+      var token = await UserPrefService().getToken();
+      var locationService =
+      Provider.of<LocationProwiderService>(context, listen: false);
+      print("----------------------------${API_BASE_URL + url}");
+      print("----------------------------${token}");
+      return http.post(
+        Uri.parse(API_BASE_URL + url),
+        body: map,
+
       );
     } else {
       throw GlobalVariableForShowMessage.internetNotConneted;
