@@ -1,4 +1,8 @@
+import 'package:cusipco/service/prowider/blood_sugar_test_service.dart';
 import 'package:cusipco/service/prowider/checkup_category_provider.dart';
+import 'package:cusipco/service/prowider/covid_test_service.dart';
+import 'package:cusipco/service/prowider/pregnancy_test_service.dart';
+import 'package:cusipco/service/prowider/women_health_category_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -219,6 +223,18 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<CheckupCategoryService>(
             create: (_) => CheckupCategoryService(),
           ),
+          ChangeNotifierProvider<WomenHealthCategoryProvider>(
+            create: (_) => WomenHealthCategoryProvider(),
+          ),
+          ChangeNotifierProvider<CovidTestService>(
+            create: (_) => CovidTestService(),
+          ),
+          ChangeNotifierProvider<PregnancyTestService>(
+            create: (_) => PregnancyTestService(),
+          ),
+          ChangeNotifierProvider<BloodSugarTestService>(
+            create: (_) => BloodSugarTestService(),
+          )
         ],
         child: MaterialApp(
             title: 'Cusipco',

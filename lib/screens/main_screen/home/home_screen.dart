@@ -1,8 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cusipco/model/general_information_model.dart';
+import 'package:cusipco/screens/main_screen/PregnancyTest/pregnancy_test_category_screen.dart';
+import 'package:cusipco/screens/main_screen/home/BloodSugarTest/blood_sugar_test_category_screen.dart';
+import 'package:cusipco/screens/main_screen/home/CovidTest/covid_test_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/Dental_care/dental_care_category_scree.dart';
 import 'package:cusipco/screens/main_screen/home/Diet/diet_grid_screen.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/doctors_category_screen.dart';
+import 'package:cusipco/screens/main_screen/home/WomenHealth/women_health_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/store/store_grid_screen.dart';
 import 'package:cusipco/themedata.dart';
 import 'package:cusipco/widgets/app_bars/appbar_for_home.dart';
@@ -176,17 +180,22 @@ class _HomeScreenState extends State<HomeScreen> {
           goto(CheckupCategoryScreen());
           print("Health Checkup");
         } else if (item["id"] == 2) {
+          goto(WomenHealthCategoryScreen());
           print("Women's Health");
         } else if (item["id"] == 3) {
+          goto(CovidTestCategoryScreen());
           print("Covid Test");
         } else if (item["id"] == 4) {
+          goto(PregnancyTestCategoryScreen());
           print("Pregnancy Test");
         } else if (item["id"] == 5) {
+          goto(BloodSugarTestCategoryScreen());
           print("Blood Sugar Test");
         }
 
         //For Health Benefits
         if (item["id"] == 6) {
+          goto(CheckupCategoryScreen());
           print("Health Checkup");
         } else if (item["id"] == 7) {
           goto(StoreGridScreen());
