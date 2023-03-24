@@ -2,6 +2,7 @@ import 'package:cusipco/service/prowider/blood_sugar_test_service.dart';
 import 'package:cusipco/service/prowider/checkup_category_provider.dart';
 import 'package:cusipco/service/prowider/covid_test_service.dart';
 import 'package:cusipco/service/prowider/pregnancy_test_service.dart';
+import 'package:cusipco/service/prowider/vaccination_category_provider.dart';
 import 'package:cusipco/service/prowider/women_health_category_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -234,6 +235,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<BloodSugarTestService>(
             create: (_) => BloodSugarTestService(),
+          ),
+          ChangeNotifierProvider<VaccinationCategoryService>(
+            create: (_) => VaccinationCategoryService(),
           )
         ],
         child: MaterialApp(

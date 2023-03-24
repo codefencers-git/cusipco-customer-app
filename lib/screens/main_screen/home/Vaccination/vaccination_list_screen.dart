@@ -5,13 +5,18 @@ import 'dart:io';
 import 'package:auto_animated/auto_animated.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cusipco/Global/global_variable_for_show_messge.dart';
+import 'package:cusipco/model/doctor_list_model.dart';
+import 'package:cusipco/screens/main_screen/home/Doctor/about_doctor_screen.dart';
+import 'package:cusipco/screens/main_screen/home/store/store_product_details_screen.dart';
 
-import 'package:cusipco/screens/main_screen/home/skin_and_care/global_product_detail_screen.dart';
-import 'package:cusipco/screens/main_screen/home/therapy/therapy_product_model.dart';
+import 'package:cusipco/screens/main_screen/home/store/store_product_list_model.dart';
+
 import 'package:cusipco/service/animation_service.dart';
 import 'package:cusipco/service/http_service/http_service.dart';
 import 'package:cusipco/service/navigation_service.dart';
+import 'package:cusipco/service/prowider/doctor_list_provider.dart';
 import 'package:cusipco/service/prowider/location_prowider_service.dart';
 import 'package:cusipco/service/shared_pref_service/user_pref_service.dart';
 import 'package:cusipco/themedata.dart';
@@ -22,17 +27,17 @@ import 'package:lottie/lottie.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
-class productListScreen extends StatefulWidget {
-  productListScreen(
-      {Key? key, required this.categoryId, required this.routeName})
+class VaccinationListScreen extends StatefulWidget {
+  VaccinationListScreen({Key? key, required this.categoryId, required this.mode})
       : super(key: key);
   final String categoryId;
-  final String routeName;
+
+  final String mode;
   @override
-  State<productListScreen> createState() => _FitnessShopScreenState();
+  State<VaccinationListScreen> createState() => _VaccinationListScreenState();
 }
 
-class _FitnessShopScreenState extends State<productListScreen>
+class _VaccinationListScreenState extends State<VaccinationListScreen>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
@@ -48,15 +53,15 @@ class _FitnessShopScreenState extends State<productListScreen>
 
   _filterList() {
     setState(() {
-      _isnotMoreData = false;
       _pageNo = 1;
+      _isnotMoreData = false;
       _isFirstCall = true;
       _productData = [];
     });
     getProductData(true);
   }
 
-  List<TherapyProduct>? _productData = [];
+  List<DoctorData>? _productData = [];
 
   int _pageNo = 1;
   int _pageCount = 10;
@@ -81,29 +86,26 @@ class _FitnessShopScreenState extends State<productListScreen>
         "count": _pageCount.toString(),
         "category_id": widget.categoryId.toString(),
         "search": _searchController.text.toString(),
+        'mode_of_booking': widget.mode,
       };
 
-      print(queryParameters);
-      var response = await HttpService.httpPost(
-          widget.routeName, queryParameters,
+      var response = await HttpService.httpPost("doctors", queryParameters,
           context: context);
-
-      print(response.body);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final body = json.decode(response.body);
-        TherapyProductModel data = TherapyProductModel.fromJson(body);
+        DoctorListModel data = DoctorListModel.fromJson(body);
 
         if (data != null && data.status == "200") {
           if (data.data != null) {
             setState(() {
               _isError = false;
               _isFirstCall = false;
-              if (data.data!.isNotEmpty) {
+              if (data.data.isNotEmpty) {
                 if (isInit) {
                   _productData = [];
                 }
-                data.data!.forEach((element) {
+                data.data.forEach((element) {
                   _productData!.add(element);
                 });
               } else {
@@ -297,10 +299,7 @@ class _FitnessShopScreenState extends State<productListScreen>
                             begin: Offset(0, 0),
                             end: Offset.zero,
                           ).animate(animation),
-                          child: _buildRestaurentListTile(
-                            width,
-                            index,
-                          ),
+                          child: _buildCard(_productData, index),
                         ),
                       );
                     },
@@ -311,141 +310,83 @@ class _FitnessShopScreenState extends State<productListScreen>
               );
   }
 
-  Padding _buildRestaurentListTile(double width, int index) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 10, top: index == 0 ? 15 : 0),
-      child: InkWell(
-        onTap: () {
-          print(_productData![index].id.toString());
-          pushNewScreen(
-            context,
-            screen: GlobalProductdetails(
-              id: _productData![index].id.toString(),
-              urlPerameter: widget.routeName,
-              title: _productData![index].title.toString(),
-
-              // fitnessId: _productData![index].id.toString(),
-              // fitnessId: "29",
-            ),
-            withNavBar: true,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
-        },
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  width: width * 0.2,
-                  height: width * 0.2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    image: DecorationImage(
-                      image:
-                          NetworkImage(_productData![index].image.toString()),
-                      fit: BoxFit.fitWidth,
+  Column _buildCard(List<DoctorData>? productData, int index) {
+    return Column(children: [
+      Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: InkWell(
+          onTap: () {
+            pushNewScreen(
+              context,
+              screen: AboutDoctorScreen(
+                id: productData![index].id,
+                mode: widget.mode,
+              ),
+              withNavBar: true,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+            );
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: 5,
+              ),
+              CircleAvatar(
+                backgroundImage:
+                    NetworkImage(productData![index].image.toString()),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                flex: 4,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      productData[index].title,
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  flex: 5,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        _productData![index].title.toString(),
-                        // "asd",
-                        style: TextStyle(
-                            overflow: TextOverflow.ellipsis,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Text(
-                        _productData![index].owner.toString(),
-                        // "asd",
-                        style: TextStyle(
-                            overflow: TextOverflow.ellipsis,
-                            fontSize: 12,
-                            color: ThemeClass.greyColor,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            _productData![index].salePrice.toString() == ""
-                                ? "₹${_productData![index].price.toString()}"
-                                : "₹${_productData![index].salePrice.toString()}",
-                            // "₹ ${_productData![index].price.toString()}",
-                            // "asd",
-                            style: TextStyle(
-                                // overflow: TextOverflow.ellipsis,
-                                fontSize: 12,
-                                color: ThemeClass.blueColor,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                _productData![index].salePrice.toString() != ""
-                                    ? "₹${_productData![index].price.toString()}"
-                                    : "",
-                                style: TextStyle(
-                                    // overflow: TextOverflow.ellipsis,
-                                    fontSize: 12,
-                                    color: ThemeClass.greyColor,
-                                    decoration: TextDecoration.lineThrough,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(
-                          Icons.star,
+                    Text(
+                      productData[index].qualification,
+                      style: TextStyle(
                           color: ThemeClass.blueColor,
-                        ),
-                        Text(
-                          "${_productData![index].rating}",
-                          // "asd",
-                          style: TextStyle(
-                              overflow: TextOverflow.ellipsis,
-                              fontSize: 16,
-                              color: ThemeClass.blueColor,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Divider(
-              height: 1,
-              thickness: 1,
-              color: ThemeClass.greyLightColor1,
-            )
-          ],
+              ),
+              Expanded(
+                flex: 2,
+                child: RatingBar.builder(
+                  ignoreGestures: true,
+                  initialRating: double.parse(productData[index].rating),
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  unratedColor: ThemeClass.greyLightColor,
+                  itemPadding: EdgeInsets.only(right: 1.0),
+                  itemSize: 15,
+                  itemBuilder: (context, count) => Icon(
+                    Icons.star_rate_rounded,
+                    color: ThemeClass.blueColor,
+                  ),
+                  onRatingUpdate: (rating) {},
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    );
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Divider(
+          height: 1,
+          thickness: 1,
+          color: ThemeClass.greyLightColor1,
+        ),
+      )
+    ]);
   }
 }

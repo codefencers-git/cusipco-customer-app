@@ -9,7 +9,6 @@ import 'package:cusipco/screens/splash_screen.dart';
 class Routes {
   static const String mainRoute = "/main";
   static const String mainRouteforLoading = "/";
-
   static const String splashRoute = "/splash";
   static const String onBoardingScreen = "/onBoardingScreen";
   static const String loginScreen = "/loginScreen";

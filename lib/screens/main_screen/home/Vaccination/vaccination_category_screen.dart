@@ -1,4 +1,5 @@
 import 'package:auto_animated/auto_animated.dart';
+import 'package:cusipco/service/prowider/vaccination_category_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/doctor_list_screen.dart';
 import 'package:cusipco/service/animation_service.dart';
@@ -10,26 +11,27 @@ import 'package:cusipco/widgets/slider_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../service/prowider/checkup_category_provider.dart';
 import '../../../../themedata.dart';
 
-class DoctorsCategoryScreen extends StatefulWidget {
-  const DoctorsCategoryScreen({Key? key}) : super(key: key);
+class VaccinationCategoryScreen extends StatefulWidget {
+  const VaccinationCategoryScreen({Key? key}) : super(key: key);
 
   @override
-  State<DoctorsCategoryScreen> createState() => _DoctorsCategoryScreenState();
+  State<VaccinationCategoryScreen> createState() => _VaccinationCategoryScreenState();
 }
 
-class _DoctorsCategoryScreenState extends State<DoctorsCategoryScreen> {
+class _VaccinationCategoryScreenState extends State<VaccinationCategoryScreen> {
   @override
   void initState() {
-    Provider.of<DoctorsCategoryService>(context, listen: false)
-        .getDoctorsCategory(context: context);
+    Provider.of<VaccinationCategoryService>(context, listen: false)
+        .getCategories(context: context);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<DoctorsCategoryService>(context);
+    final model = Provider.of<VaccinationCategoryService>(context);
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Container(
@@ -42,7 +44,7 @@ class _DoctorsCategoryScreenState extends State<DoctorsCategoryScreen> {
               onbackPress: () {
                 Navigator.pop(context);
               },
-              title: "Doctors",
+              title: "Vaccinations",
               isShowCart: true,
             )),
         body: Container(

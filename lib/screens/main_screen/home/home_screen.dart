@@ -6,6 +6,7 @@ import 'package:cusipco/screens/main_screen/home/CovidTest/covid_test_category_s
 import 'package:cusipco/screens/main_screen/home/Dental_care/dental_care_category_scree.dart';
 import 'package:cusipco/screens/main_screen/home/Diet/diet_grid_screen.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/doctors_category_screen.dart';
+import 'package:cusipco/screens/main_screen/home/Vaccination/vaccination_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/WomenHealth/women_health_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/store/store_grid_screen.dart';
 import 'package:cusipco/themedata.dart';
@@ -20,6 +21,7 @@ import '../../../model/user_model.dart';
 import '../../../service/prowider/order_history_provider.dart';
 import '../../../service/shared_pref_service/user_pref_service.dart';
 import 'HealthCheck/checkup_category_screen.dart';
+import 'global_product_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -177,19 +179,19 @@ class _HomeScreenState extends State<HomeScreen> {
           goto(DietGridScreen());
           print("Diet Consultation");
         } else if (item["id"] == 1) {
-          goto(CheckupCategoryScreen());
+          goto(productListScreen(categoryId: "38", routeName: "LabTest",));
           print("Health Checkup");
         } else if (item["id"] == 2) {
-          goto(WomenHealthCategoryScreen());
+          goto(productListScreen(categoryId: "39", routeName: "LabTest",));
           print("Women's Health");
         } else if (item["id"] == 3) {
-          goto(CovidTestCategoryScreen());
+          goto(productListScreen(categoryId: "40", routeName: "LabTest",));
           print("Covid Test");
         } else if (item["id"] == 4) {
-          goto(PregnancyTestCategoryScreen());
+          goto(productListScreen(categoryId: "41", routeName: "LabTest",));
           print("Pregnancy Test");
         } else if (item["id"] == 5) {
-          goto(BloodSugarTestCategoryScreen());
+          goto(productListScreen(categoryId: "42", routeName: "LabTest",));
           print("Blood Sugar Test");
         }
 
@@ -206,6 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if (item["id"] == 9) {
           print("Covid Care Plan");
         } else if (item["id"] == 10) {
+          goto(productListScreen(categoryId: "43", routeName: "Vaccine",));
           print("Vaccinations");
         } else if (item["id"] == 11) {
           goto(DentalCareCategoryScreen());
