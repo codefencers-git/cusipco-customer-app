@@ -16,13 +16,13 @@ class VaccinationCategoryService with ChangeNotifier {
 
   Future<void> getCategories({required BuildContext context}) async {
     Map<String, String> temp = {
-      'category_id': "38",
+      'module': "Vaccine",
     };
     try {
-      var url = "Vaccine";
+      var url = "categories";
 
       loading = true;
-      var response = await HttpService.httpPostWithoutToken(url, {}, context: context);
+      var response = await HttpService.httpPostWithoutToken(url, temp, context: context);
       print(response.body);
       if (response.statusCode == 200) {}
 

@@ -1,4 +1,5 @@
 import 'package:auto_animated/auto_animated.dart';
+import 'package:cusipco/screens/main_screen/home/global_product_list_screen.dart';
 import 'package:cusipco/service/prowider/vaccination_category_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/doctor_list_screen.dart';
@@ -159,9 +160,9 @@ class _VaccinationCategoryScreenState extends State<VaccinationCategoryScreen> {
     print(res);
     if (res != null) {
       pushNewScreen(context,
-          screen: DoctorListScreen(
-            mode: res,
-            categoryId: data.id.toString(),
+          screen: productListScreen(
+
+            categoryId: data.id.toString(), routeName: 'Vaccine',
           ),
           withNavBar: true);
       print(res);

@@ -208,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if (item["id"] == 9) {
           print("Covid Care Plan");
         } else if (item["id"] == 10) {
-          goto(productListScreen(categoryId: "43", routeName: "Vaccine",));
+          goto(VaccinationCategoryScreen());
           print("Vaccinations");
         } else if (item["id"] == 11) {
           goto(DentalCareCategoryScreen());
