@@ -420,7 +420,7 @@ class _VerifyMobileScreenState extends State<VerifyMobileScreen> {
             height: height * 0.4,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/login_top_background.png"),
+                image: AssetImage("assets/images/login_top_bg.png"),
                 fit: BoxFit.contain,
               ),
             ),
@@ -434,7 +434,7 @@ class _VerifyMobileScreenState extends State<VerifyMobileScreen> {
               height: height * 0.15,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/splash_header_icon.png"),
+                  image: AssetImage("assets/images/splash_main_icon.png"),
                   // fit: BoxFit.fill,
                 ),
               ),

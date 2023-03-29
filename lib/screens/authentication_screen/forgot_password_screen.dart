@@ -159,12 +159,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Stack(
       children: [
         Transform.translate(
-          offset: Offset(0.0, -40.0),
+          offset: Offset(0.0, -15.0),
           child: Container(
             height: height * 0.4,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/login_top_background.png"),
+                image: AssetImage("assets/images/login_top_bg.png"),
                 fit: BoxFit.fill,
               ),
             ),
@@ -178,7 +178,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               height: height * 0.15,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/splash_header_icon.png"),
+                  image: AssetImage("assets/images/splash_main_icon.png"),
                   // fit: BoxFit.fill,
                 ),
               ),

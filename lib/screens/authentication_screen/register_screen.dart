@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
@@ -740,7 +739,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             height: height * 0.23,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/login_top_background.png"),
+                  image: AssetImage("assets/images/login_top_bg.png"),
                   fit: BoxFit.cover,
                   alignment: Alignment.bottomCenter),
             ),
@@ -754,7 +753,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: height * 0.12,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/splash_header_icon.png"),
+                  image: AssetImage("assets/images/splash_main_icon.png"),
+
                   // fit: BoxFit.fill,
                 ),
               ),
