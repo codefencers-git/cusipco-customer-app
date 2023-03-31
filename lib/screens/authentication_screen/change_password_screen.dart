@@ -191,7 +191,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             height: height * 0.4,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/login_top_background.png"),
+                image: AssetImage("assets/images/login_top_bg.png"),
                 fit: BoxFit.fill,
               ),
             ),

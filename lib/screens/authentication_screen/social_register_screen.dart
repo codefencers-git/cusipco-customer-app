@@ -500,7 +500,7 @@ class _SocialRegisterScreenState extends State<SocialRegisterScreen> {
             height: height * 0.23,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/login_top_background.png"),
+                  image: AssetImage("assets/images/login_top_bg.png"),
                   fit: BoxFit.cover,
                   alignment: Alignment.bottomCenter),
             ),
