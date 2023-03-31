@@ -514,7 +514,7 @@ class _SocialRegisterScreenState extends State<SocialRegisterScreen> {
               height: height * 0.12,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/splash_header_icon.png"),
+                  image: AssetImage("assets/images/splash_main_icon.png"),
                   // fit: BoxFit.fill,
                 ),
               ),
