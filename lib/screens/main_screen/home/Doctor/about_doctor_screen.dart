@@ -6,12 +6,14 @@ import 'package:cusipco/service/prowider/doctor_details_provider.dart';
 import 'package:cusipco/themedata.dart';
 import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
 import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 class AboutDoctorScreen extends StatefulWidget {
   final String id;
   final String mode;
+
   const AboutDoctorScreen({
     Key? key,
     required this.id,
@@ -112,22 +114,74 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                 SizedBox(
                                   height: 40,
                                 ),
-                                ButtonWidget(
-                                    title: "Book a Schedule",
-                                    color: ThemeClass.blueColor,
-                                    callBack: () {
-                                      pushNewScreen(
-                                        context,
-                                        screen: ScheduleBooking(
-                                            mode: widget.mode,
-                                            id: widget.id,
-                                            doctorDetailsModel:
-                                                model.doctorDetailsModel!),
-                                        withNavBar: false,
-                                        pageTransitionAnimation:
-                                            PageTransitionAnimation.cupertino,
-                                      );
-                                    }),
+                                widget.mode == "Instant-Consultation"
+                                    ? Row(
+                                        children: [
+                                          ButtonWidget(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2.4,
+                                              title: "Chat",
+                                              icon: Icons.chat,
+                                              color: ThemeClass.blueColor,
+                                              callBack: () {
+
+                                                // pushNewScreen(
+                                                //   context,
+                                                //   screen: ScheduleBooking(
+                                                //       mode: widget.mode,
+                                                //       id: widget.id,
+                                                //       doctorDetailsModel: model
+                                                //           .doctorDetailsModel!),
+                                                //   withNavBar: false,
+                                                //   pageTransitionAnimation:
+                                                //       PageTransitionAnimation
+                                                //           .cupertino,
+                                                // );
+                                              }),
+                                          Spacer(),
+                                          ButtonWidget(
+                                            icon: Icons.face,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2.4,
+                                              title: "Video Call",
+                                              color: ThemeClass.blueColor,
+                                              callBack: () {
+                                                // pushNewScreen(
+                                                //   context,
+                                                //   screen: ScheduleBooking(
+                                                //       mode: widget.mode,
+                                                //       id: widget.id,
+                                                //       doctorDetailsModel: model
+                                                //           .doctorDetailsModel!),
+                                                //   withNavBar: false,
+                                                //   pageTransitionAnimation:
+                                                //       PageTransitionAnimation
+                                                //           .cupertino,
+                                                // );
+                                              }),
+                                        ],
+                                      )
+                                    : ButtonWidget(
+                                        title: "Book a Schedule",
+                                        color: ThemeClass.blueColor,
+                                        callBack: () {
+                                          pushNewScreen(
+                                            context,
+                                            screen: ScheduleBooking(
+                                                mode: widget.mode,
+                                                id: widget.id,
+                                                doctorDetailsModel:
+                                                    model.doctorDetailsModel!),
+                                            withNavBar: false,
+                                            pageTransitionAnimation:
+                                                PageTransitionAnimation
+                                                    .cupertino,
+                                          );
+                                        }),
                                 SizedBox(
                                   height: 40,
                                 ),

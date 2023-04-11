@@ -17,7 +17,7 @@ class BottomSheetForOnlineOffLineDoctore extends StatefulWidget {
 
 class _BottomSheetForOnlineOffLineDoctoreState
     extends State<BottomSheetForOnlineOffLineDoctore> {
-  List listData = ["Online", "Offline"];
+  List listData = ["Online", "Face to face"];
 
   var groupVal = "Online";
   @override
@@ -79,18 +79,18 @@ class _BottomSheetForOnlineOffLineDoctoreState
               Expanded(
                 flex: 1,
                 child: SizedBox(
-                  height: 30,
-                  width: 30,
+                  height: 35,
+                  width: 35,
                   child: Container(
-                    height: 30,
-                    width: 30,
+                    height: 35,
+                    width: 35,
                     margin: EdgeInsets.only(right: 25),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       image: DecorationImage(
                         image: AssetImage(e == "Online"
-                            ? "assets/images/online.png"
-                            : "assets/images/offline.png"),
+                            ? "assets/icons/online_icon.png"
+                            : "assets/icons/ftf.png"),
                         fit: BoxFit.contain,
                       ),
                     ),

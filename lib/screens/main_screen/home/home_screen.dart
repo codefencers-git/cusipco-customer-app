@@ -9,6 +9,7 @@ import 'package:cusipco/screens/main_screen/home/Doctor/doctors_category_screen.
 import 'package:cusipco/screens/main_screen/home/Vaccination/vaccination_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/WomenHealth/women_health_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/store/store_grid_screen.dart';
+import 'package:cusipco/screens/main_screen/view_all_category/view_all_screen.dart';
 import 'package:cusipco/themedata.dart';
 import 'package:cusipco/widgets/app_bars/appbar_for_home.dart';
 import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
@@ -66,6 +67,50 @@ class _HomeScreenState extends State<HomeScreen> {
       "id": 5,
       "image": "assets/images/dashboard/thermometer_icon.png",
       "text": "Blood Sugar Test"
+    },
+  ];
+
+  List allHelthBenifit = [
+
+    {
+      "id": 6,
+      "image": "assets/images/dashboard/heart1_icon.png",
+      "text": "Health Checkup"
+    },
+    {
+      "id": 7,
+      "image": "assets/images/dashboard/hospital_icon.png",
+      "text": "Order Pharmacy"
+    },
+    {
+      "id": 8,
+      "image": "assets/images/dashboard/doctor_icon.png",
+      "text": "Doctor Consultation"
+    },
+    {
+      "id": 9,
+      "image": "assets/images/dashboard/covid_icon.png",
+      "text": "Covid Care Plan"
+    },
+    {
+      "id": 10,
+      "image": "assets/images/dashboard/injection_icon.png",
+      "text": "Vaccinations"
+    },
+    {
+      "id": 11,
+      "image": "assets/images/dashboard/teeth_icon.png",
+      "text": "Dental Care"
+    },
+    {
+      "id": 12,
+      "image": "assets/images/dashboard/eye_icon.png",
+      "text": "Eye Care"
+    },
+    {
+      "id": 0,
+      "image": "assets/images/dashboard/nutrition_icon.png",
+      "text": "Diet Consultation"
     },
   ];
 
@@ -179,19 +224,34 @@ class _HomeScreenState extends State<HomeScreen> {
           goto(DietGridScreen());
           print("Diet Consultation");
         } else if (item["id"] == 1) {
-          goto(productListScreen(categoryId: "38", routeName: "LabTest",));
+          goto(productListScreen(
+            categoryId: "38",
+            routeName: "LabTest",
+          ));
           print("Health Checkup");
         } else if (item["id"] == 2) {
-          goto(productListScreen(categoryId: "39", routeName: "LabTest",));
+          goto(productListScreen(
+            categoryId: "39",
+            routeName: "LabTest",
+          ));
           print("Women's Health");
         } else if (item["id"] == 3) {
-          goto(productListScreen(categoryId: "40", routeName: "LabTest",));
+          goto(productListScreen(
+            categoryId: "40",
+            routeName: "LabTest",
+          ));
           print("Covid Test");
         } else if (item["id"] == 4) {
-          goto(productListScreen(categoryId: "41", routeName: "LabTest",));
+          goto(productListScreen(
+            categoryId: "41",
+            routeName: "LabTest",
+          ));
           print("Pregnancy Test");
         } else if (item["id"] == 5) {
-          goto(productListScreen(categoryId: "42", routeName: "LabTest",));
+          goto(productListScreen(
+            categoryId: "42",
+            routeName: "LabTest",
+          ));
           print("Blood Sugar Test");
         }
 
@@ -216,7 +276,7 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if (item["id"] == 12) {
           print("Eye Care");
         } else if (item["id"] == 13) {
-          print("More");
+          goto(ViewAllCategoriesScreen(categoriesList: allHelthBenifit));
         }
       },
       child: Column(
@@ -463,7 +523,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: "Book Now",
                     fontsize: 12,
                     color: ThemeClass.blueColor,
-                    callBack: () {}),
+                    callBack: () {
+                      goto(DoctorsCategoryScreen());
+                    }),
               ),
             ),
           ],
@@ -559,12 +621,19 @@ class _HomeScreenState extends State<HomeScreen> {
               isShowICon
                   ? Row(
                       children: [
-                        Text(
-                          "View All",
-                          style: TextStyle(
-                            color: ThemeClass.blueColor22,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    ViewAllCategoriesScreen(categoriesList: allHelthBenifit)));
+                          },
+                          child: Text(
+                            "View All",
+                            style: TextStyle(
+                              color: ThemeClass.blueColor22,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                            ),
                           ),
                         ),
                         SizedBox(

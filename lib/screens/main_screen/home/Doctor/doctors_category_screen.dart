@@ -147,22 +147,88 @@ class _DoctorsCategoryScreenState extends State<DoctorsCategoryScreen> {
         builder: (context) {
           return BottomSheetForOnlineOffLineDoctore();
         });
-    // pushNewScreen(context,
-    //     screen: DoctorListScreen(
-    //       mode: "",
-    //       categoryId: data.id.toString(),
-    //     ),
-    //     withNavBar: true);
-
-    print(res);
-    if (res != null) {
+    int clicked = 0;
+    if (res == "Online") {
+      res = null;
+      var mode = await showDialog(
+          context: context,
+          builder: (builder) {
+            return Center(
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.white,
+                  ),
+                  height: 150,
+                  width: 300,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                            onTap: () {
+                              clicked = 1;
+                              Navigator.pop(context);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 30.0, vertical: 10),
+                              child: Text(
+                                "Book-Appointment",
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            )),
+                      ),
+                      Divider(),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                            onTap: () {
+                              clicked = 2;
+                              Navigator.pop(context);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 30.0, vertical: 10),
+                              child: Text(
+                                "Instant Consultation",
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            )),
+                      ),
+                    ],
+                  )),
+            );
+          });
+    }
+    // For Instant Consultation & Book Appointment Button
+    if (clicked == 1) {
+      print("Book Appointment");
       pushNewScreen(context,
           screen: DoctorListScreen(
-            mode: res,
+            mode: "Book-Appointment",
             categoryId: data.id.toString(),
           ),
           withNavBar: true);
-      print(res);
+    } else if (clicked == 2) {
+      print("Instant Consultation");
+      pushNewScreen(context,
+          screen: DoctorListScreen(
+            mode: "Instant-Consultation",
+            categoryId: data.id.toString(),
+          ),
+          withNavBar: true);
+    }
+
+    //For Bottom Sheet Online, Offline And Face To Face Buttons
+    if (res != null) {
+      if (res == "Offline") {
+        print("Offline");
+      } else if (res == "Face to face") {
+        print("Face To Face");
+      }
     }
   }
 }

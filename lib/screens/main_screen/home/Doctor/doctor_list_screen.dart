@@ -33,6 +33,7 @@ class DoctorListScreen extends StatefulWidget {
   final String categoryId;
 
   final String mode;
+
   @override
   State<DoctorListScreen> createState() => _FitnessShopScreenState();
 }
@@ -72,6 +73,7 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
   bool _isError = false;
   String _errorMessage = "";
   bool _isnotMoreData = false;
+
   Future<void> getProductData(bool isInit) async {
     setState(() {
       if (_isFirstCall) {
