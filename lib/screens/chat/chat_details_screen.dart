@@ -16,9 +16,7 @@ import '../../widgets/app_bars/appbar_with_text.dart';
 class ChatDetailsScreen extends StatefulWidget {
   final Data? doctorDetails;
 
-  ChatDetailsScreen(
-      {Key? key,  this.doctorDetails})
-      : super(key: key);
+  ChatDetailsScreen({Key? key, this.doctorDetails}) : super(key: key);
 
   @override
   State<ChatDetailsScreen> createState() => _ChatDetailsScreenState();
@@ -32,12 +30,11 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     var messageInputController = TextEditingController();
     final db = FirebaseFirestore.instance;
-    var temp =  UserPrefService.preferences!.getString("userModelCustomer");
+    var temp = UserPrefService.preferences!.getString("userModelCustomer");
     var myDetails = UserModel.fromJson(jsonDecode(temp.toString()));
-
+    var myUserId = myDetails.data!.id.toString();
     return Container(
       color: ThemeClass.safeareBackGround,
       child: SafeArea(
@@ -57,8 +54,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                   child: StreamBuilder<QuerySnapshot>(
                     stream: db
                         .collection('bucket_${widget.doctorDetails!.id}')
-                    .orderBy('sent_time', descending: true)
-
+                        .orderBy('sent_time', descending: true)
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
@@ -73,15 +69,14 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                                   padding: EdgeInsets.only(
                                       left: 14, right: 14, top: 10, bottom: 10),
                                   child: Align(
-                                    alignment: (doc["type"] ==
-                                            "receiver"
+                                    alignment: (doc["receiver"] == myDetails.data!.id.toString()
                                         ? Alignment.topLeft
                                         : Alignment.topRight),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
-                                        color: (doc["type"] ==
-                                                "receiver"
+                                        color: (doc["sender"] ==
+                                            myUserId
                                             ? Colors.grey.shade200
                                             : Colors.blue[200]),
                                       ),
@@ -113,8 +108,10 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                         ),
                         InkWell(
                             onTap: () {
-                              sendMessage(messageInputController.text,
-                                  widget.doctorDetails!.id.toString(), myDetails.data!.id.toString());
+                              sendMessage(
+                                  messageInputController.text,
+                                  widget.doctorDetails!.id.toString(),
+                                  myDetails.data!.id.toString());
                               messageInputController.clear();
                             },
                             child: Icon(
@@ -128,7 +125,8 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       ),
     );
   }
-  void sendMessage(String message, String receiverId,String senderId) {
+
+  void sendMessage(String message, String receiverId, String senderId) {
     String currentTimestamp = DateTime.now().toString();
     Map<String, dynamic> messageRow = {
       "sender": senderId,
@@ -142,6 +140,4 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
         .doc(currentTimestamp)
         .set(messageRow);
   }
-
 }
-
