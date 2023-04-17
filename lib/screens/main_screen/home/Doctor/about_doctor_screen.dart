@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cusipco/screens/chat/chat_details_screen.dart';
+import 'package:cusipco/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/schedule_booking_screen.dart';
@@ -126,19 +128,18 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                               icon: Icons.chat,
                                               color: ThemeClass.blueColor,
                                               callBack: () {
-
-                                                // pushNewScreen(
-                                                //   context,
-                                                //   screen: ScheduleBooking(
-                                                //       mode: widget.mode,
-                                                //       id: widget.id,
-                                                //       doctorDetailsModel: model
-                                                //           .doctorDetailsModel!),
-                                                //   withNavBar: false,
-                                                //   pageTransitionAnimation:
-                                                //       PageTransitionAnimation
-                                                //           .cupertino,
-                                                // );
+                                                if(model.doctorDetailsModel != null){
+                                                  if(model.doctorDetailsModel?.data != null){
+                                                    pushNewScreen(
+                                                      context,
+                                                      screen: ChatDetailsScreen(doctorDetails:  model.doctorDetailsModel!.data),
+                                                      withNavBar: false,
+                                                      pageTransitionAnimation:
+                                                      PageTransitionAnimation
+                                                          .cupertino,
+                                                    );
+                                                  }
+                                                }
                                               }),
                                           Spacer(),
                                           ButtonWidget(

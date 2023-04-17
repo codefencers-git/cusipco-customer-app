@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -445,6 +447,21 @@ class _LoginScreenState extends State<LoginScreen> {
             await initdataService.loadInitData(context);
 
             showToast(res['message']);
+
+            //storeData in firebase firestore when user login
+
+            var temp =  UserPrefService.preferences!.getString("userModelCustomer");
+            var myDetails = UserModel.fromJson(jsonDecode(temp.toString()));
+            Map<String, dynamic> myDetailRow = {
+              "id": myDetails.data!.id.toString(),
+              "name": myDetails.data!.name.toString(),
+              "profileImage": myDetails.data!.profileImage.toString(),
+            };
+            FirebaseFirestore.instance
+                .collection("users")
+                .doc(myDetails.data!.id.toString()).set(myDetailRow);
+
+
             Navigator.pushAndRemoveUntil<void>(
               context,
               MaterialPageRoute<void>(
