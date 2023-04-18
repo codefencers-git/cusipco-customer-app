@@ -12,6 +12,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
+import '../../../video/video_screen.dart';
+
 class AboutDoctorScreen extends StatefulWidget {
   final String id;
   final String mode;
@@ -151,18 +153,10 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                               title: "Video Call",
                                               color: ThemeClass.blueColor,
                                               callBack: () {
-                                                // pushNewScreen(
-                                                //   context,
-                                                //   screen: ScheduleBooking(
-                                                //       mode: widget.mode,
-                                                //       id: widget.id,
-                                                //       doctorDetailsModel: model
-                                                //           .doctorDetailsModel!),
-                                                //   withNavBar: false,
-                                                //   pageTransitionAnimation:
-                                                //       PageTransitionAnimation
-                                                //           .cupertino,
-                                                // );
+                                                pushNewScreen(
+                                                  context,
+                                                  screen: VideoScreen()
+                                                );
                                               }),
                                         ],
                                       )
