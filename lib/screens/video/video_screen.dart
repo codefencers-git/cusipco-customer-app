@@ -12,7 +12,7 @@ class VideoScreen extends StatefulWidget {
 class _VideoScreenState extends State<VideoScreen> {
   AgoraClient client = AgoraClient(
       agoraConnectionData: AgoraConnectionData(
-          appId: "8af20c120eca4ce18a3e0aac2ee847fa", channelName: "cusipco", tempToken: "123"),
+          appId: "8af20c120eca4ce18a3e0aac2ee847fa", channelName: "cusipco", tempToken: "007eJxTYHj0pphrXn7gK+9thxbFT5eKzJNwfsH55rjusprw+LOO7wsUGCwS04wMkg2NDFKTE02SUw0tEo1TDRITk41SUy1MzNMSJRbbpTQEMjIcUpFgZmSAQBCfnSG5tDizIDmfgQEA86YhHQ=="),
       enabledPermission: [Permission.camera, Permission.microphone]);
 
   @override
