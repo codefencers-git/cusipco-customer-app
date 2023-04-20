@@ -403,49 +403,51 @@ class _BottomSheetVendorsState extends State<BottomSheetVendors> with SingleTick
 
   _vendorListItem(
       {String? id, String? name, String? address, String? profileImage}) {
-    return Row(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              image: DecorationImage(
-                  image: NetworkImage(profileImage!), fit: BoxFit.cover)),
-          height: 40,
-          width: 40,
-        ),
-        Container(
-          width: 10,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-                width: 200,
-                child: Expanded(
-                    child: Text(
-                  name!,
-                  maxLines: 1,
-                ))),
-            Text(
-              address!,
-              style: TextStyle(color: Colors.grey, fontSize: 12),
-              maxLines: 1,
-            )
-          ],
-        ),
-        Spacer(),
-        Radio(
-          value: int.parse(id!),
-          groupValue: vendorSelection,
-          activeColor: Colors.blue,
-          onChanged: (val) {
-            setState(() {
-              vendorSelection = val!;
-            });
-          },
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3.0),
+      child: Row(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                image: DecorationImage(
+                    image: NetworkImage(profileImage!), fit: BoxFit.cover)),
+            height: 40,
+            width: 40,
+          ),
+          Container(
+            width: 10,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                  width: 200,
+                  child: Text(
+                    name!,
+                    maxLines: 2,
+                  )),
+              Text(
+                address!,
+                style: TextStyle(color: Colors.grey, fontSize: 12),
+                maxLines: 1,
+              )
+            ],
+          ),
+          Spacer(),
+          Radio(
+            value: int.parse(id!),
+            groupValue: vendorSelection,
+            activeColor: Colors.blue,
+            onChanged: (val) {
+              setState(() {
+                vendorSelection = val!;
+              });
+            },
+          ),
+        ],
+      ),
     );
   }
 

@@ -8,7 +8,9 @@ import 'package:cusipco/screens/main_screen/home/Diet/diet_grid_screen.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/doctors_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/Vaccination/vaccination_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/WomenHealth/women_health_category_screen.dart';
+import 'package:cusipco/screens/main_screen/home/emergency_services/emergency_services_screen.dart';
 import 'package:cusipco/screens/main_screen/home/store/store_grid_screen.dart';
+import 'package:cusipco/screens/main_screen/support/support_screen.dart';
 import 'package:cusipco/screens/main_screen/view_all_category/view_all_screen.dart';
 import 'package:cusipco/themedata.dart';
 import 'package:cusipco/widgets/app_bars/appbar_for_home.dart';
@@ -157,6 +159,30 @@ class _HomeScreenState extends State<HomeScreen> {
     },
   ];
 
+  List emergencyServices = [
+    {
+      "id": 33,
+      "image": "assets/images/dashboard/blood_requirement.png",
+      "text": "Blood Requirement"
+    },
+    {
+      "id": 44,
+      "image": "assets/images/dashboard/ambulance.png",
+      "text": "Ambulance Services"
+    },
+    {
+      "id": 55,
+      "image": "assets/images/dashboard/connect_with_support_team.png",
+      "text": "Connect with \nsupport \nteam"
+    },
+    {
+      "id": 66,
+      "image": "assets/images/dashboard/blood_donation.png",
+      "text": "Blood \nDonation"
+    },
+
+  ];
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -182,11 +208,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     _buildTitle("Corporate Benefits", false),
                     _buildGridList(corporateBenifit),
+
                     _buildOrderCart(),
+
+
                     _buildTitle("Health Benefits", true),
                     _buildGridList(helthBenifit),
+                    Container(
+                      color: ThemeClass.whiteColorgrey,
+                      height: 20,),
+                    _buildTitle("Emergency Services", true),
+                    _buildGridList(emergencyServices),
+
                     _buildConsultentCart(),
                     SliderWidget(
                       type: "home",
@@ -277,6 +313,21 @@ class _HomeScreenState extends State<HomeScreen> {
           print("Eye Care");
         } else if (item["id"] == 13) {
           goto(ViewAllCategoriesScreen(categoriesList: allHelthBenifit));
+        }
+
+        //for emergency services
+        if (item["id"] == 33) {
+          goto(EmergencyServicesScreen());
+          print("Blood Requirement");
+        } else if (item["id"] == 44) {
+          goto(EmergencyServicesScreen());
+          print("Ambulance Services");
+        } else if (item["id"] == 55) {
+          goto(SupportScreen());
+          print("Connect with support team");
+        } else if (item["id"] == 66) {
+          goto(EmergencyServicesScreen());
+          print("Blood Donation");
         }
       },
       child: Column(
