@@ -132,7 +132,7 @@ class _StanderdDietPlanScreenState extends State<StanderdDietPlanScreen> {
     try {
       Map<String, String> queryParameters = {"search": ""};
 
-      var response = await HttpService.httpPost("diet_plans", queryParameters,
+      var response = await HttpService.httpPost("diet_plans", queryParameters, click_from: "corporate_benefits",
           context: context);
 
       if (response.statusCode == 200 || response.statusCode == 201) {

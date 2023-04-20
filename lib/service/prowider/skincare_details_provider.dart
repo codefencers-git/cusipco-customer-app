@@ -17,7 +17,7 @@ class SkincareDetailsService with ChangeNotifier {
       // var url = "SkinCare/$id";
       var loading = true;
       print(url);
-      var response = await HttpService.httpGet(url);
+      var response = await HttpService.httpGet(url, click_from: "corporate_benefits",);
 
       if (response.statusCode == 200) {
         isError = false;

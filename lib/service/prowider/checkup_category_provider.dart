@@ -21,7 +21,7 @@ class CheckupCategoryService with ChangeNotifier {
       var url = "LabTest";
 
       loading = true;
-      var response = await HttpService.httpPostWithoutHeaders(url, temp, context: context);
+      var response = await HttpService.httpPostWithoutHeaders(url, temp, context: context );
       print(response.body);
       if (response.statusCode == 200) {}
 

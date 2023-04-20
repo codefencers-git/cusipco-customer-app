@@ -51,7 +51,8 @@ class Data {
         this.payableAmount,
         this.rating,
         this.description,
-        this.timing});
+        this.timing
+      });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -86,9 +87,9 @@ class Data {
     data['payable_amount'] = this.payableAmount;
     data['rating'] = this.rating;
     data['description'] = this.description;
-    if (this.timing != null) {
-      data['timing'] = this.timing!.map((v) => v.toJson()).toList();
-    }
+    // if (this.timing != null) {
+    //   data['timing'] = this.timing!.map((v) => v.toJson()).toList();
+    // }
     return data;
   }
 }

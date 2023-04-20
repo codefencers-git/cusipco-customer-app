@@ -8,6 +8,7 @@ import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 import 'package:cusipco/widgets/slider_for_product_details_widget.dart';
 import 'package:provider/provider.dart';
 import '../../../../themedata.dart';
+import '../../../../widgets/bottom_sheets/bottom_sheet_for_vendors.dart';
 
 class GlobalProductdetails extends StatefulWidget {
   final String id;
@@ -215,7 +216,7 @@ class _GlobalProductdetailsState extends State<GlobalProductdetails> {
         useRootNavigator: true,
         context: context,
         builder: (context) {
-          return BottomSheetBookApointment(
+          return BottomSheetVendors(
             model: model.skincareDetailsModel,
             urlPerameter: widget.urlPerameter,
           );

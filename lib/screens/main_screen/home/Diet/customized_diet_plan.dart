@@ -424,7 +424,7 @@ class _CustomizedDietPlanScreenState extends State<CustomizedDietPlanScreen> {
       queryParameters.addAll(tempdata1);
 
       var response = await HttpService.httpPost(
-          "purchase_diet_plan", queryParameters,
+          "purchase_diet_plan", queryParameters,click_from: "corporate_benefits",
           context: context);
 
       if (response.statusCode == 201 || response.statusCode == 200) {

@@ -86,6 +86,7 @@ class _FitnessShopScreenState extends State<productListScreen>
       print(queryParameters);
       var response = await HttpService.httpPost(
           widget.routeName, queryParameters,
+          click_from: "corporate_benefits",
           context: context);
 
       print(response.body);

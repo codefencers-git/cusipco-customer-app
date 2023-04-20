@@ -60,6 +60,7 @@ class _BottomSheetBookApointmentState extends State<BottomSheetBookApointment> {
   Widget build(BuildContext context) {
     return StatefulBuilder(builder: (context, setState) {
       return Container(
+        height: MediaQuery.of(context).size.height/1.4,
         color: ThemeClass.whiteColor,
         child: Form(
           key: _formKey,
@@ -356,14 +357,14 @@ class _BottomSheetBookApointmentState extends State<BottomSheetBookApointment> {
 
   InkWell _buildSlotTime(
       Skin.Data model, int index, void Function(void Function()) seState) {
-    final data = model.timing[index];
+    final data = 0;
     return InkWell(
       onTap: () {
-        print(data.slug);
-        print(data.title);
+        // print(data.slug);
+        // print(data.title);
         seState(() {
           select = index;
-          time = data.slug;
+          // time = data.slug;
         });
       },
       child: Container(
@@ -379,7 +380,7 @@ class _BottomSheetBookApointmentState extends State<BottomSheetBookApointment> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              data.title,
+              "data.title",
               textAlign: TextAlign.center,
               style: TextStyle(
                   overflow: TextOverflow.ellipsis,

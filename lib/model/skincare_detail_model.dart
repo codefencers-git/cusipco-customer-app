@@ -50,7 +50,8 @@ class Data {
     required this.description,
     required this.ownerId,
     this.salePrice,
-    required this.timing,
+    // required this.timing,
+    required this.vendors,
     this.tax,
     required this.payableAmount,
   });
@@ -66,7 +67,8 @@ class Data {
   String? tax;
   String payableAmount;
   String description;
-  List<Timing> timing;
+  // List<Timing> timing;
+  List<Vendors> vendors;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["id"],
@@ -80,8 +82,10 @@ class Data {
         salePrice: json["sale_price"] == null ? null : json["sale_price"],
         rating: json["rating"],
         description: json["description"],
-        timing:
-            List<Timing>.from(json["timing"].map((x) => Timing.fromJson(x))),
+        // timing:
+        //     List<Timing>.from(json["timing"].map((x) => Timing.fromJson(x))),
+    vendors:
+        List<Vendors>.from(json["vendors"].map((x) => Vendors.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -96,8 +100,34 @@ class Data {
         "rating": rating,
         "sale_price": salePrice == null ? null : salePrice,
         "description": description,
-        "timing": List<dynamic>.from(timing.map((x) => x.toJson())),
+    // "timing": List<dynamic>.from(timing.map((x) => x.toJson())),
+    "vendors": List<dynamic>.from(vendors.map((x) => x.toJson())),
       };
+}
+
+class Vendors {
+  String? id;
+  String? name;
+  String? profileImage;
+  String? address;
+
+  Vendors({this.id, this.name, this.profileImage, this.address});
+
+  Vendors.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    profileImage = json['profile_image'];
+    address = json['address'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['profile_image'] = this.profileImage;
+    data['address'] = this.address;
+    return data;
+  }
 }
 
 class Timing {
@@ -110,12 +140,12 @@ class Timing {
   String title;
 
   factory Timing.fromJson(Map<String, dynamic> json) => Timing(
-        slug: json["slug"],
-        title: json["title"],
-      );
+    slug: json["slug"],
+    title: json["title"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "slug": slug,
-        "title": title,
-      };
+    "slug": slug,
+    "title": title,
+  };
 }

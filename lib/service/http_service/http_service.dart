@@ -37,19 +37,20 @@ class HttpService with ChangeNotifier {
     }
   }
 
-  static Future<Response> httpGet(String url) async {
+  static Future<Response> httpGet(String url, {String? click_from}) async {
     var token = await UserPrefService().getToken();
     bool isHasConnection = await InternetConnectionChecker().hasConnection;
 
     if (isHasConnection) {
       print(API_BASE_URL + url);
       print(token);
-
+      print("GET : "+click_from.toString());
       return http.get(
         Uri.parse(API_BASE_URL + url),
         headers: requestHeaders
           ..addAll({
             'Authorization': 'Bearer $token',
+            "click_from": click_from.toString() != "" ? click_from.toString() : "",
           }),
       );
     } else {
@@ -58,7 +59,7 @@ class HttpService with ChangeNotifier {
   }
 
   static Future<Response> httpPost(String url, dynamic data,
-      {required BuildContext context}) async {
+      {required BuildContext context, String? click_from}) async {
     bool isHasConnection = await InternetConnectionChecker().hasConnection;
 
     if (isHasConnection) {
@@ -84,6 +85,7 @@ class HttpService with ChangeNotifier {
       print("----------------------------${data}");
       print("----------------------------${API_BASE_URL + url}");
       print("----------------------------${token}");
+      print("CLICKFROM :"+ click_from.toString());
       return http.post(
         Uri.parse(API_BASE_URL + url),
         body: jsonEncode(data),
@@ -91,6 +93,7 @@ class HttpService with ChangeNotifier {
           ..addAll({
             'Authorization': 'Bearer $token',
             'City': _currentCity != null ? _currentCity.id.toString() : "0",
+            'click_from': click_from.toString()  != "" ? click_from.toString() : ""
           }),
         // headers: requestHeaders,
       );
