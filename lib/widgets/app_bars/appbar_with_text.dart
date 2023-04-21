@@ -29,7 +29,7 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
       toolbarHeight: 70,
       leading: IconButton(
         onPressed: () {
-          onbackPress();
+          Navigator.pop(context);
         },
         icon: Icon(Icons.arrow_back),
       ),

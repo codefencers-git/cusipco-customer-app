@@ -147,6 +147,33 @@ class _DoctorsCategoryScreenState extends State<DoctorsCategoryScreen> {
         builder: (context) {
           return BottomSheetForOnlineOffLineDoctore();
         });
+    print(res);
+
+
+    if (res == "Book Appointment") {
+      pushNewScreen(context,
+          screen: DoctorListScreen(
+            mode: "Book-Appointment",
+            categoryId: data.id.toString(),
+          ),
+          withNavBar: true);
+    } else if (res == "Immediate Consultation") {
+      pushNewScreen(context,
+          screen: DoctorListScreen(
+            mode: "Instant-Consultation",
+            categoryId: data.id.toString(),
+          ),
+          withNavBar: true);
+    } else if(res == "Face to Face Consultation"){
+      pushNewScreen(context,
+          screen: DoctorListScreen(
+            mode: "Offline",
+            categoryId: data.id.toString(),
+          ),
+          withNavBar: true);
+    }
+
+
     int clicked = 0;
     if (res == "Online") {
       res = null;

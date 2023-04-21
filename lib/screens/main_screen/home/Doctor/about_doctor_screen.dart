@@ -120,12 +120,13 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                 ),
                                 widget.mode == "Instant-Consultation"
                                     ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           ButtonWidget(
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width /
-                                                  2.4,
+                                                  3.2,
                                               title: "Chat",
                                               icon: Icons.chat,
                                               color: ThemeClass.blueColor,
@@ -143,13 +144,23 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                                   }
                                                 }
                                               }),
-                                          Spacer(),
+                                          FloatingActionButton(
+                                            child: Icon(Icons.call),
+                                              onPressed: (){
+                                              
+                                              // pushNewScreen(
+                                              //     context,
+                                              //     screen: VideoScreen()
+                                              // );
+                                              Fluttertoast.showToast(msg: "Under maintenance!");
+                                              },
+                                              ),
                                           ButtonWidget(
                                             icon: Icons.face,
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width /
-                                                  2.4,
+                                                  3.2,
                                               title: "Video Call",
                                               color: ThemeClass.blueColor,
                                               callBack: () {
@@ -158,6 +169,7 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                                   screen: VideoScreen()
                                                 );
                                               }),
+
                                         ],
                                       )
                                     : ButtonWidget(

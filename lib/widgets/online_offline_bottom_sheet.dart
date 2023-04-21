@@ -17,9 +17,9 @@ class BottomSheetForOnlineOffLineDoctore extends StatefulWidget {
 
 class _BottomSheetForOnlineOffLineDoctoreState
     extends State<BottomSheetForOnlineOffLineDoctore> {
-  List listData = ["Online", "Face to face"];
+  List listData = ["Book Appointment","Immediate Consultation", "Face to Face Consultation"];
 
-  var groupVal = "Online";
+  var groupVal = "Book Appointment";
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -88,9 +88,9 @@ class _BottomSheetForOnlineOffLineDoctoreState
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       image: DecorationImage(
-                        image: AssetImage(e == "Online"
-                            ? "assets/icons/online_icon.png"
-                            : "assets/icons/ftf.png"),
+                        image: AssetImage(e == "Book Appointment"
+                            ? "assets/images/appointment_book.jpg"
+                            : e == "Face to Face Consultation" ? "assets/icons/ftf.png" : "assets/icons/online_icon.png"),
                         fit: BoxFit.contain,
                       ),
                     ),

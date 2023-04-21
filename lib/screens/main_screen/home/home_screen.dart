@@ -23,6 +23,7 @@ import 'package:provider/provider.dart';
 import '../../../model/user_model.dart';
 import '../../../service/prowider/order_history_provider.dart';
 import '../../../service/shared_pref_service/user_pref_service.dart';
+import 'EyeCare/eye_care_category_scree.dart';
 import 'HealthCheck/checkup_category_screen.dart';
 import 'global_product_list_screen.dart';
 
@@ -310,6 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
           goto(DentalCareCategoryScreen());
           print("Dental Care");
         } else if (item["id"] == 12) {
+          goto(EyeCareCategoryScreen());
           print("Eye Care");
         } else if (item["id"] == 13) {
           goto(ViewAllCategoriesScreen(categoriesList: allHelthBenifit));
