@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -43,6 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
   bool isFirstSubmit = true;
   bool _isObcs = true;
+
   _togglePassword() {
     setState(() {
       _isObcs = !_isObcs;
@@ -51,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final _googleSignIn = GoogleSignIn();
   GoogleSignInAccount? googleSignInAccount;
+
   _googleLogin() async {
     try {
       EasyLoading.show();
@@ -73,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   var facebookLogin = FacebookLogin();
+
   void initiateFacebookLogin() async {
     var facebookLoginResult =
         await facebookLogin.logIn(permissions: [FacebookPermission.email]);
@@ -420,10 +424,14 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = true;
       });
 
+      final fcmToken = await FirebaseMessaging.instance.getToken();
+
+      print("FB Token : $fcmToken");
+
       var mapData = Map<String, dynamic>();
       mapData['username'] = _emailController.text;
       mapData['password'] = _passwordController.text;
-      mapData['device_token'] = "0";
+      mapData['device_token'] = fcmToken;
       mapData['device_type'] = Platform.isAndroid ? "android" : "ios";
 
       try {
@@ -450,7 +458,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
             //storeData in firebase firestore when user login
 
-            var temp =  UserPrefService.preferences!.getString("userModelCustomer");
+            var temp =
+                UserPrefService.preferences!.getString("userModelCustomer");
             var myDetails = UserModel.fromJson(jsonDecode(temp.toString()));
             Map<String, dynamic> myDetailRow = {
               "id": myDetails.data!.id.toString(),
@@ -459,8 +468,8 @@ class _LoginScreenState extends State<LoginScreen> {
             };
             FirebaseFirestore.instance
                 .collection("users")
-                .doc(myDetails.data!.id.toString()).set(myDetailRow);
-
+                .doc(myDetails.data!.id.toString())
+                .set(myDetailRow);
 
             Navigator.pushAndRemoveUntil<void>(
               context,

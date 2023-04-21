@@ -4,11 +4,13 @@ import 'package:cusipco/service/prowider/covid_test_service.dart';
 import 'package:cusipco/service/prowider/pregnancy_test_service.dart';
 import 'package:cusipco/service/prowider/vaccination_category_provider.dart';
 import 'package:cusipco/service/prowider/women_health_category_provider.dart';
+import 'package:cusipco/service/video_services/video_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+
 // my
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:cusipco/routes.dart';
@@ -59,8 +61,10 @@ void main() async {
     FlutterRingtonePlayer.play(
       android: AndroidSounds.notification,
       ios: IosSounds.glass,
-      looping: false, // Android only - API >= 28
-      volume: 0.1, // Android only - API >= 28
+      looping: false,
+      // Android only - API >= 28
+      volume: 0.1,
+      // Android only - API >= 28
       asAlarm: false, // Android only - all APIs
     );
     showSimpleNotification(
@@ -238,6 +242,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<VaccinationCategoryService>(
             create: (_) => VaccinationCategoryService(),
+          ),
+          ChangeNotifierProvider<VideoService>(
+            create: (_) => VideoService(),
           )
         ],
         child: MaterialApp(

@@ -88,12 +88,12 @@ class _ChatScreenState extends State<ChatScreen> {
                           ),
                           Spacer(),
                           Stack(
-                              children: <Widget>[
-                                new Icon(Icons.message),
-                                new Positioned(  // draw a red marble
+                              children: const <Widget>[
+                                Icon(Icons.message),
+                                Positioned(  // draw a red marble
                                   top: 0.0,
                                   right: 0.0,
-                                  child: new Icon(Icons.brightness_1, size: 8.0,
+                                  child: Icon(Icons.brightness_1, size: 8.0,
                                       color: Colors.redAccent),
                                 )
                               ]

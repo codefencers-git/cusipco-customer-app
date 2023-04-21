@@ -78,6 +78,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072762575271:android:b8e0a4b18addfadd353e82",
+        "android_client_info": {
+          "package_name": "com.cusipco.services"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072762575271-0glos74ueg6in4grlb9en46jj9lju2gl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cusipco.services",
+            "certificate_hash": "9dd20fd14d7ed11a54ac001f133922d1fb747a74"
+          }
+        },
+        {
+          "client_id": "1072762575271-bivsb57ik5f0bpfve2o5qhej0rl0k07k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEkSPfIlPUl0rS2uTOi0uievFF5hwqzJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072762575271-bivsb57ik5f0bpfve2o5qhej0rl0k07k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
