@@ -212,4 +212,36 @@ class HttpService with ChangeNotifier {
       throw GlobalVariableForShowMessage.internetNotConneted;
     }
   }
+
+  static Future<Response> httpPostForCallToken(String url, dynamic data,
+      {required BuildContext context,}) async {
+    bool isHasConnection = await InternetConnectionChecker().hasConnection;
+
+    if (isHasConnection) {
+      var token = await UserPrefService().getToken();
+
+      CityList? _currentCity;
+      var locationService =
+
+      Provider.of<LocationProwiderService>(context, listen: false);
+      _currentCity = locationService.currentLocationCity;
+
+      print("----------------------------${data}");
+      print("----------------------------${API_BASE_URL_BASE + url}");
+      print("----------------------------${token}");
+
+      return http.post(
+        Uri.parse(API_BASE_URL_BASE + url),
+        body: jsonEncode(data),
+        headers: requestHeaders
+          ..addAll({
+            'Authorization': 'Bearer $token',
+            'City': _currentCity != null ? _currentCity.id.toString() : "0",
+          }),
+        // headers: requestHeaders,
+      );
+    } else {
+      throw GlobalVariableForShowMessage.internetNotConneted;
+    }
+  }
 }

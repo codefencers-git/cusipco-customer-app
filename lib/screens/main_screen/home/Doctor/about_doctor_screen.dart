@@ -164,6 +164,7 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                           ),
                                           ButtonWidget(
                                               icon: Icons.face,
+                                              isLoading: model.buttonLoading,
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width /
@@ -171,8 +172,32 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                               title: "Video Call",
                                               color: ThemeClass.blueColor,
                                               callBack: () {
-                                                pushNewScreen(context,
-                                                    screen: VideoScreen());
+                                                Provider.of<DoctorsDetailsServices>(
+                                                        context,
+                                                        listen: false)
+                                                    .getAgoraToken(
+                                                        model
+                                                            .doctorDetailsModel!
+                                                            .data!
+                                                            .id,
+                                                        "Video",
+                                                        context: context)
+                                                    .then((value) => {
+                                                          pushNewScreen(context,
+                                                              screen:
+                                                                  VideoScreen(
+                                                                doctorId: model
+                                                                    .doctorDetailsModel!
+                                                                    .data!
+                                                                    .id,
+                                                                channelName: value!
+                                                                    .data!
+                                                                    .call_room,
+                                                                token: value!
+                                                                    .data!
+                                                                    .call_token,
+                                                              )),
+                                                        });
                                               }),
                                         ],
                                       )

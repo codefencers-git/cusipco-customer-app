@@ -55,7 +55,7 @@ void main() async {
 
   FirebaseMessaging.onMessage.listen((RemoteMessage event) async {
     print("message recieved----------- for ground");
-    print(event.notification!.body);
+   // print(event.notification!.body);
     print(event);
 
     FlutterRingtonePlayer.play(
