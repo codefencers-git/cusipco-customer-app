@@ -486,14 +486,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(
               height: 40,
             ),
-            _buildSocialLoginTitle(),
-            SizedBox(
-              height: 20,
-            ),
-            _buildSocialIcon(),
-            SizedBox(
-              height: 20,
-            ),
+            // _buildSocialLoginTitle(),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // _buildSocialIcon(),
+            // SizedBox(
+            //   height: 20,
+            // ),
             _buildBottomTitle(),
             SizedBox(
               height: 20,
@@ -614,68 +614,68 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Row _buildSocialIcon() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        TextButtonWidget(
-          onPressed: () {
-            initiateFacebookLogin();
-          },
-          child: Container(
-            height: 55,
-            width: 55,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/facebook_icon.png'),
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 20,
-        ),
-        TextButtonWidget(
-          onPressed: () {
-            _googleLogin();
-          },
-          child: Container(
-            height: 55,
-            width: 55,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/google_icon.png'),
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-        ),
-        Platform.isIOS
-            ? SizedBox(
-                width: 20,
-              )
-            : SizedBox(),
-        Platform.isIOS
-            ? TextButtonWidget(
-                onPressed: () {
-                  _appleSignIn();
-                },
-                child: Container(
-                  height: 55,
-                  width: 55,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/apple_icon.png'),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              )
-            : SizedBox(),
-      ],
-    );
-  }
+  // Row _buildSocialIcon() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: [
+  //       TextButtonWidget(
+  //         onPressed: () {
+  //           initiateFacebookLogin();
+  //         },
+  //         child: Container(
+  //           height: 55,
+  //           width: 55,
+  //           decoration: BoxDecoration(
+  //             image: DecorationImage(
+  //               image: AssetImage('assets/images/facebook_icon.png'),
+  //               fit: BoxFit.contain,
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //       SizedBox(
+  //         width: 20,
+  //       ),
+  //       TextButtonWidget(
+  //         onPressed: () {
+  //           _googleLogin();
+  //         },
+  //         child: Container(
+  //           height: 55,
+  //           width: 55,
+  //           decoration: BoxDecoration(
+  //             image: DecorationImage(
+  //               image: AssetImage('assets/images/google_icon.png'),
+  //               fit: BoxFit.contain,
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //       Platform.isIOS
+  //           ? SizedBox(
+  //               width: 20,
+  //             )
+  //           : SizedBox(),
+  //       Platform.isIOS
+  //           ? TextButtonWidget(
+  //               onPressed: () {
+  //                 _appleSignIn();
+  //               },
+  //               child: Container(
+  //                 height: 55,
+  //                 width: 55,
+  //                 decoration: BoxDecoration(
+  //                   image: DecorationImage(
+  //                     image: AssetImage('assets/images/apple_icon.png'),
+  //                     fit: BoxFit.contain,
+  //                   ),
+  //                 ),
+  //               ),
+  //             )
+  //           : SizedBox(),
+  //     ],
+  //   );
+  // }
 
   _appleSignIn() async {
     try {
@@ -700,35 +700,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
-  Row _buildSocialLoginTitle() {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            height: 1,
-            color: Colors.black,
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Center(
-            child: SizedBox(
-              child: Text(
-                "Register with Social",
-                style: TextStyle(color: ThemeClass.greyDarkColor),
-              ),
-            ),
-          ),
-        ),
-        Expanded(
-          child: Container(
-            height: 1,
-            color: Colors.black,
-          ),
-        ),
-      ],
-    );
-  }
+  // Row _buildSocialLoginTitle() {
+  //   return Row(
+  //     children: [
+  //       Expanded(
+  //         child: Container(
+  //           height: 1,
+  //           color: Colors.black,
+  //         ),
+  //       ),
+  //       Expanded(
+  //         flex: 2,
+  //         child: Center(
+  //           child: SizedBox(
+  //             child: Text(
+  //               "Register with Social",
+  //               style: TextStyle(color: ThemeClass.greyDarkColor),
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //       Expanded(
+  //         child: Container(
+  //           height: 1,
+  //           color: Colors.black,
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Stack _buildHeaderImage(double height) {
     return Stack(
