@@ -19,10 +19,9 @@ class VideoScreen extends StatefulWidget {
   State<VideoScreen> createState() => _VideoScreenState();
 }
 
-int uid = 0; // uid of the local user
-
 class _VideoScreenState extends State<VideoScreen> {
   late final AgoraClient client;
+  int uid = 0; // uid of the local user
 
   @override
   void initState() {
@@ -46,36 +45,37 @@ class _VideoScreenState extends State<VideoScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(65.0),
-            child: AppBarWithTextAndBackWidget(
-              onbackPress: () {
-                Navigator.pop(context);
-                client.release();
-              },
-              isShowCart: false,
-              title: widget.doctorId,
-            )),
-        body: SafeArea(
-          child: Stack(
-            children: [
-              AgoraVideoViewer(
-                client: client,
-                layoutType: Layout.floating,
-                enableHostControls: true, // Add this to enable host controls
-              ),
-              AgoraVideoButtons(
-                client: client,
-                onDisconnect: () {
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: PreferredSize(
+              preferredSize: Size.fromHeight(65.0),
+              child: AppBarWithTextAndBackWidget(
+                onbackPress: () {
                   Navigator.pop(context);
+                  client.release();
                 },
-              ),
-            ],
+                isShowCart: false,
+                title: widget.doctorId,
+              )),
+          body: SafeArea(
+            child: Stack(
+              children: [
+                AgoraVideoViewer(
+                  client: client,
+                  layoutType: Layout.floating,
+                  floatingLayoutContainerHeight: 10,
+                  showNumberOfUsers: true,
+                  enableHostControls: true, // Add this to enable host controls
+                ),
+                AgoraVideoButtons(
+                  client: client,
+                  onDisconnect: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
