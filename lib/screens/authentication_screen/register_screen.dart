@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cusipco/Global/global_enum_class.dart';
 import 'package:cusipco/Global/global_variable_for_show_messge.dart';
@@ -166,25 +165,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
       EasyLoading.dismiss();
     }
   }
-
-  var facebookLogin = FacebookLogin();
-  void initiateFacebookLogin() async {
-    EasyLoading.show();
-    var facebookLoginResult =
-        await facebookLogin.logIn(permissions: [FacebookPermission.email]);
-    if (facebookLoginResult.status == FacebookLoginStatus.success) {
-      final email = await facebookLogin.getUserEmail();
-
-      if (email != null) {
-        _socialLogin("Facebook", email, null);
-      } else {
-        EasyLoading.dismiss();
-        showToast("Please authorize email");
-      }
-    } else {
-      EasyLoading.dismiss();
-    }
-  }
+  //
+  // var facebookLogin = FacebookLogin();
+  // void initiateFacebookLogin() async {
+  //   EasyLoading.show();
+  //   var facebookLoginResult =
+  //       await facebookLogin.logIn(permissions: [FacebookPermission.email]);
+  //   if (facebookLoginResult.status == FacebookLoginStatus.success) {
+  //     final email = await facebookLogin.getUserEmail();
+  //
+  //     if (email != null) {
+  //       _socialLogin("Facebook", email, null);
+  //     } else {
+  //       EasyLoading.dismiss();
+  //       showToast("Please authorize email");
+  //     }
+  //   } else {
+  //     EasyLoading.dismiss();
+  //   }
+  // }
 
   _showSettingDialog() {
     var alertDialog = AlertDialog(
@@ -229,7 +228,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (platform != "Facebook") {
         await _googleSignIn.signOut();
       } else {
-        await facebookLogin.logOut();
+        // await facebookLogin.logOut();
       }
 
       if (response.statusCode == 201 || response.statusCode == 200) {

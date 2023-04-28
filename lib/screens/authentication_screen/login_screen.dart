@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cusipco/Global/global_variable_for_show_messge.dart';
 import 'package:cusipco/model/user_model.dart';
@@ -75,21 +74,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  var facebookLogin = FacebookLogin();
-
-  void initiateFacebookLogin() async {
-    var facebookLoginResult =
-        await facebookLogin.logIn(permissions: [FacebookPermission.email]);
-    if (facebookLoginResult.status == FacebookLoginStatus.success) {
-      final email = await facebookLogin.getUserEmail();
-
-      if (email != null) {
-        _socialLogin("Facebook", email, null);
-      } else {
-        showToast("Please authorize email");
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -296,7 +280,7 @@ class _LoginScreenState extends State<LoginScreen> {
         TextButtonWidget(
           onPressed: () {
             // _signInWithFacebook();
-            initiateFacebookLogin();
+
           },
           child: Container(
             height: 55,
@@ -582,7 +566,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (platform != "Facebook") {
         await _googleSignIn.signOut();
       } else {
-        await facebookLogin.logOut();
+        // await facebookLogin.logOut();
       }
 
       if (response.statusCode == 201 || response.statusCode == 200) {
