@@ -8,10 +8,13 @@ import '../../../widgets/button_widget/rounded_button_widget.dart';
 import '../home/Dental_care/dental_care_category_scree.dart';
 import '../home/Diet/diet_grid_screen.dart';
 import '../home/Doctor/doctors_category_screen.dart';
+import '../home/EyeCare/eye_care_category_scree.dart';
 import '../home/HealthCheck/checkup_category_screen.dart';
 import '../home/Vaccination/vaccination_category_screen.dart';
+import '../home/emergency_services/emergency_services_screen.dart';
 import '../home/global_product_list_screen.dart';
 import '../home/store/store_grid_screen.dart';
+import '../support/support_screen.dart';
 
 class ViewAllCategoriesScreen extends StatefulWidget {
   final List categoriesList;
@@ -116,7 +119,6 @@ class _ViewAllCategoriesScreenState extends State<ViewAllCategoriesScreen> {
   _buildGridListTile(item) {
     return InkWell(
       onTap: () {
-
         //For Health Benefits
         if (item["id"] == 0) {
           goto(DietGridScreen());
@@ -131,6 +133,10 @@ class _ViewAllCategoriesScreenState extends State<ViewAllCategoriesScreen> {
           goto(DoctorsCategoryScreen());
           print("Doctor Consultation");
         } else if (item["id"] == 9) {
+          goto(productListScreen(
+            categoryId: "40",
+            routeName: "LabTest",
+          ));
           print("Covid Care Plan");
         } else if (item["id"] == 10) {
           goto(VaccinationCategoryScreen());
@@ -139,9 +145,25 @@ class _ViewAllCategoriesScreenState extends State<ViewAllCategoriesScreen> {
           goto(DentalCareCategoryScreen());
           print("Dental Care");
         } else if (item["id"] == 12) {
+          goto(EyeCareCategoryScreen());
           print("Eye Care");
         } else if (item["id"] == 13) {
           print("More");
+        }
+
+        //for emergency services
+        if (item["id"] == 33) {
+          goto(EmergencyServicesScreen());
+          print("Blood Requirement");
+        } else if (item["id"] == 44) {
+          goto(EmergencyServicesScreen());
+          print("Ambulance Services");
+        } else if (item["id"] == 55) {
+          goto(SupportScreen());
+          print("Connect with support team");
+        } else if (item["id"] == 66) {
+          goto(EmergencyServicesScreen());
+          print("Blood Donation");
         }
       },
       child: Column(

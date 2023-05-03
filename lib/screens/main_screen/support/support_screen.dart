@@ -90,7 +90,7 @@ class _SupportScreenState extends State<SupportScreen> {
   }
 
   Padding _buildBox(BuildContext context, GeneralInformation? data) {
-    return Padding(
+    return  Padding(
       padding: const EdgeInsets.all(15),
       child: Container(
         padding: EdgeInsets.all(10),

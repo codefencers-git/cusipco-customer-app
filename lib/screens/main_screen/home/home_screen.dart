@@ -303,6 +303,10 @@ class _HomeScreenState extends State<HomeScreen> {
           goto(DoctorsCategoryScreen());
           print("Doctor Consultation");
         } else if (item["id"] == 9) {
+          goto(productListScreen(
+            categoryId: "40",
+            routeName: "LabTest",
+          ));
           print("Covid Care Plan");
         } else if (item["id"] == 10) {
           goto(VaccinationCategoryScreen());
@@ -678,7 +682,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
-                                    ViewAllCategoriesScreen(categoriesList: allHelthBenifit)));
+                                    ViewAllCategoriesScreen(categoriesList: emergencyServices)));
                           },
                           child: Text(
                             "View All",
