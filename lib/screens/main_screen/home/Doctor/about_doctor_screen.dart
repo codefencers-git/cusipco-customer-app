@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cusipco/screens/chat/chat_details_screen.dart';
-import 'package:cusipco/screens/chat/chat_screen.dart';
+import 'package:cusipco/screens/chat/chat_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/schedule_booking_screen.dart';

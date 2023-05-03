@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cusipco/model/general_information_model.dart';
+import 'package:cusipco/screens/chat/chat_list_screen.dart';
 import 'package:cusipco/screens/main_screen/PregnancyTest/pregnancy_test_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/BloodSugarTest/blood_sugar_test_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/CovidTest/covid_test_category_screen.dart';
@@ -216,12 +217,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     _buildOrderCart(),
 
 
-                    _buildTitle("Health Benefits", true),
+                    _buildTitle("Health Benefits", true, list: allHelthBenifit),
                     _buildGridList(helthBenifit),
                     Container(
                       color: ThemeClass.whiteColorgrey,
                       height: 20,),
-                    _buildTitle("Emergency Services", true),
+                    _buildTitle("Emergency Services", true, list: emergencyServices),
                     _buildGridList(emergencyServices),
 
                     _buildConsultentCart(),
@@ -656,7 +657,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  _buildTitle(String title, bool isShowICon) {
+  _buildTitle(String title, bool isShowICon, {List<dynamic>? list}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -682,7 +683,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
-                                    ViewAllCategoriesScreen(categoriesList: emergencyServices)));
+                                    ViewAllCategoriesScreen(categoriesList: list!)));
                           },
                           child: Text(
                             "View All",

@@ -30,11 +30,12 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("doctorId: " +'bucket_${widget.doctorDetails!.id}');
     var messageInputController = TextEditingController();
     final db = FirebaseFirestore.instance;
     var temp = UserPrefService.preferences!.getString("userModelCustomer");
     var myDetails = UserModel.fromJson(jsonDecode(temp.toString()));
-    var myUserId = myDetails.data!.id.toString();
+    var myUserId = myDetails.data!.id.toString(); // your user id
     return Container(
       color: ThemeClass.safeareBackGround,
       child: SafeArea(
@@ -42,6 +43,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
             appBar: PreferredSize(
                 preferredSize: Size.fromHeight(65.0),
                 child: AppBarWithTextAndBackWidget(
+                  audiovideo: true,
                   onbackPress: () {
                     Provider.of<MainNavigationProwider>(context, listen: false)
                         .chaneIndexOfNavbar(0);
@@ -56,6 +58,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                         .collection('bucket_${widget.doctorDetails!.id}')
                         .orderBy('sent_time', descending: true)
                         .snapshots(),
+
+                    // stream: db.collection('chatList').doc("bucket_${widget.doctorDetails!.id+ myDetails.data!.id.toString()}").collection("chat").orderBy('sent_time', descending: true).snapshots(),
+
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         return Center(
@@ -63,22 +68,22 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                         );
                       } else {
                         return ListView(
-                            reverse: true,
+                            reverse: true ,
                             children: snapshot.data!.docs.map((doc) {
                               return Container(
                                   padding: EdgeInsets.only(
                                       left: 14, right: 14, top: 10, bottom: 10),
                                   child: Align(
-                                    alignment: (doc["receiver"] == myDetails.data!.id.toString()
-                                        ? Alignment.topLeft
-                                        : Alignment.topRight),
+                                    alignment: (doc["sender"] == myDetails.data!.id.toString()
+                                        ? Alignment.topRight
+                                        : Alignment.topLeft),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
                                         color: (doc["sender"] ==
                                             myUserId
-                                            ? Colors.grey.shade200
-                                            : Colors.blue[200]),
+                                            ? Colors.blue[200]
+                                            : Colors.grey.shade200),
                                       ),
                                       padding: EdgeInsets.all(16),
                                       child: Text(
@@ -95,7 +100,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                 Container(
                     margin: EdgeInsets.all(10),
                     padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
+                    decoration: BoxDecoration(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
                         border: Border.all(color: Colors.black),
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     height: 50,
@@ -111,7 +116,10 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                               sendMessage(
                                   messageInputController.text,
                                   widget.doctorDetails!.id.toString(),
-                                  myDetails.data!.id.toString());
+                                  myDetails.data!.id.toString(),
+                                  // myDetails.data!.name.toString()
+                                  // myDetails.data!.profileImage.toString()
+                              );
                               messageInputController.clear();
                             },
                             child: Icon(
@@ -127,7 +135,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   }
 
   void sendMessage(String message, String receiverId, String senderId) {
+
     String currentTimestamp = DateTime.now().toString();
+
     Map<String, dynamic> messageRow = {
       "sender": senderId,
       "sent_time": currentTimestamp,
@@ -135,9 +145,22 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       "type": "sender",
       "message": message
     };
+
     FirebaseFirestore.instance
         .collection("bucket_${widget.doctorDetails!.id}")
         .doc(currentTimestamp)
         .set(messageRow);
+
+    FirebaseFirestore.instance.collection('chatList').doc("bucket_${receiverId+senderId}").collection('chat')
+        .doc(currentTimestamp).set(messageRow);
+
+    FirebaseFirestore.instance.collection('chatList').doc("bucket_${receiverId+senderId}").set({
+      "client_profileImage" : "",
+      "client_name":"",
+      "sender1" : senderId,
+      "receiver1" : receiverId,
+    });
+
+    print("bucket_${senderId+receiverId}");
   }
 }

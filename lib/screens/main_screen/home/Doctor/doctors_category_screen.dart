@@ -1,4 +1,5 @@
 import 'package:auto_animated/auto_animated.dart';
+import 'package:cusipco/screens/chat/chat_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/doctor_list_screen.dart';
 import 'package:cusipco/service/animation_service.dart';
@@ -39,6 +40,10 @@ class _DoctorsCategoryScreenState extends State<DoctorsCategoryScreen> {
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(65.0),
             child: AppBarWithTextAndBackWidget(
+              extraIcon: true,
+              onTap: (context){
+                goto(ChatScreen());
+              },
               onbackPress: () {
                 Navigator.pop(context);
               },
@@ -257,5 +262,14 @@ class _DoctorsCategoryScreenState extends State<DoctorsCategoryScreen> {
         print("Face To Face");
       }
     }
+  }
+
+  goto(Widget _screen) {
+    pushNewScreen(
+      context,
+      screen: _screen,
+      withNavBar: false,
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
   }
 }
