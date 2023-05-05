@@ -1,6 +1,5 @@
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/app_bars/appbar_with_text.dart';
 
 const String appId = "8ca89082cb3f4b1ba9342d0d9e1389de";
@@ -52,7 +51,7 @@ class _VideoScreenState extends State<VideoScreen> {
               child: AppBarWithTextAndBackWidget(
                 onbackPress: () {
                   Navigator.pop(context);
-                  client.release();
+                  // client.release();
                 },
                 isShowCart: false,
                 title: widget.doctorId,
@@ -60,6 +59,7 @@ class _VideoScreenState extends State<VideoScreen> {
           body: SafeArea(
             child: Stack(
               children: [
+
                 AgoraVideoViewer(
                   client: client,
                   layoutType: Layout.floating,
@@ -76,6 +76,7 @@ class _VideoScreenState extends State<VideoScreen> {
               ],
             ),
           ),
-        ));
+        )
+    );
   }
 }

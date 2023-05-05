@@ -10,6 +10,7 @@ import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
+import '../../../video/audio_screen.dart';
 import '../../../video/video_screen.dart';
 
 class AboutDoctorScreen extends StatefulWidget {
@@ -150,12 +151,36 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                           FloatingActionButton(
                                             child: Icon(Icons.call),
                                             onPressed: () {
-                                              // pushNewScreen(
-                                              //     context,
-                                              //     screen: VideoScreen()
-                                              // );
-                                              Fluttertoast.showToast(
-                                                  msg: "Under maintenance!");
+
+                                                //
+                                                // Provider.of<DoctorsDetailsServices>(
+                                                //     context,
+                                                //     listen: false)
+                                                //     .getAgoraToken(
+                                                //     model
+                                                //         .doctorDetailsModel!
+                                                //         .data!
+                                                //         .id,
+                                                //     "Audio",
+                                                //     context: context)
+                                                //     .then((value) => {
+                                                //   pushNewScreen(context,
+                                                //       screen:
+                                                //       CallingScreen(
+                                                //         isCaller: true,
+                                                //         channelName: value!
+                                                //             .data!
+                                                //             .call_room,
+                                                //         token: value!
+                                                //             .data!
+                                                //             .call_token,
+                                                //         drname: model.doctorDetailsModel!.data.title,
+                                                //       )
+                                                //   ),
+                                                // });
+
+                                              // Fluttertoast.showToast(
+                                              //     msg: "Under maintenance!");
                                             },
                                           ),
                                           ButtonWidget(
@@ -192,7 +217,8 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                                                 token: value!
                                                                     .data!
                                                                     .call_token,
-                                                              )),
+                                                              )
+                                                          ),
                                                         });
                                               }),
                                         ],
