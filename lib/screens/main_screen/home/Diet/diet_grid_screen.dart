@@ -22,6 +22,7 @@ class _DietGridScreenState extends State<DietGridScreen> {
   @override
   void initState() {
     super.initState();
+
     GridItems = [
       HomeGridModel(
         image: "assets/images/template1.png",

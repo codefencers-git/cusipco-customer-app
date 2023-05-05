@@ -58,9 +58,9 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
               padding: const EdgeInsets.only(right: 20),
               child: InkWell(
                   onTap: (){
-                    // onTap!(context);
-                      Fluttertoast.showToast(
-                          msg: "Working on it");
+                    onTap!(context);
+                    //   Fluttertoast.showToast(
+                    //       msg: "Working on it");
 
                   },
                   child: Icon(Icons.chat))

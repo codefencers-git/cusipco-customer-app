@@ -258,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return InkWell(
       onTap: () {
         //For Corporate Benefits
-        if (item["id"] == 0) {
+        if (item['id'] == 0) {
           goto(DietGridScreen());
           print("Diet Consultation");
         } else if (item["id"] == 1) {

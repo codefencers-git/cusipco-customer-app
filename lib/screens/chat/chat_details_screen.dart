@@ -1,12 +1,8 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cusipco/model/doctors_detail_model.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import '../../model/user_model.dart';
 import '../../service/prowider/main_navigaton_prowider_service.dart';
 import '../../service/shared_pref_service/user_pref_service.dart';
@@ -15,8 +11,11 @@ import '../../widgets/app_bars/appbar_with_text.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
   final Data? doctorDetails;
+  String? drid;
+  String? drname;
+  String? drprofileimage;
 
-  ChatDetailsScreen({Key? key, this.doctorDetails}) : super(key: key);
+  ChatDetailsScreen({Key? key, this.doctorDetails, this.drid, this.drname, this.drprofileimage}) : super(key: key);
 
   @override
   State<ChatDetailsScreen> createState() => _ChatDetailsScreenState();
@@ -28,9 +27,10 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
-    print("doctorId: " +'bucket_${widget.doctorDetails!.id}');
+    // print("doctorId: " +'bucket_${widget.doctorDetails!.id}');
     var messageInputController = TextEditingController();
     final db = FirebaseFirestore.instance;
     var temp = UserPrefService.preferences!.getString("userModelCustomer");
@@ -48,18 +48,22 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                     Provider.of<MainNavigationProwider>(context, listen: false)
                         .chaneIndexOfNavbar(0);
                   },
-                  title: "${widget.doctorDetails!.title}",
+                  title:
+                      widget.drname!=null || widget.drname.toString() != "null" ?
+                      "${widget.drname}":
+                  "${widget.doctorDetails!.title}",
                 )),
             body: Column(
               children: [
                 Expanded(
                   child: StreamBuilder<QuerySnapshot>(
-                    stream: db
+                    /*stream: db
                         .collection('bucket_${widget.doctorDetails!.id}')
                         .orderBy('sent_time', descending: true)
-                        .snapshots(),
+                        .snapshots(),*/
 
-                    // stream: db.collection('chatList').doc("bucket_${widget.doctorDetails!.id+ myDetails.data!.id.toString()}").collection("chat").orderBy('sent_time', descending: true).snapshots(),
+                    stream: widget.drid != null ? db.collection('chatList').doc("bucket_${widget.drid!.toString() + myDetails.data!.id.toString()}").collection("chat").orderBy('sent_time', descending: true).snapshots():
+                    db.collection('chatList').doc("bucket_${widget.doctorDetails!.id + myDetails.data!.id.toString()}").collection("chat").orderBy('sent_time', descending: true).snapshots(),
 
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
@@ -68,8 +72,10 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                         );
                       } else {
                         return ListView(
+                          physics: BouncingScrollPhysics(),
                             reverse: true ,
                             children: snapshot.data!.docs.map((doc) {
+
                               return Container(
                                   padding: EdgeInsets.only(
                                       left: 14, right: 14, top: 10, bottom: 10),
@@ -113,12 +119,23 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                         ),
                         InkWell(
                             onTap: () {
+
+                              // print("HERE IS ALL DATA${widget.drid.toString()!="null" ?
+                              // widget.drid.toString():
+                              // widget.doctorDetails!.id.toString()+widget.drprofileimage.toString()}");
+
                               sendMessage(
                                   messageInputController.text,
+                                  widget.drid!=null ?
+                                      widget.drid.toString():
                                   widget.doctorDetails!.id.toString(),
                                   myDetails.data!.id.toString(),
-                                  // myDetails.data!.name.toString()
-                                  // myDetails.data!.profileImage.toString()
+                                  myDetails.data!.profileImage.toString(),
+                                  myDetails.data!.name.toString(),
+                                  widget.drname.toString()!="null"?
+                                  widget.drname.toString() :
+                                  widget.doctorDetails!.title.toString(),
+                                  widget.drprofileimage.toString()
                               );
                               messageInputController.clear();
                             },
@@ -134,7 +151,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     );
   }
 
-  void sendMessage(String message, String receiverId, String senderId) {
+  void sendMessage(String message, String receiverId, String senderId, client_profile, client_name, dr_name, dr_profileimage) {
 
     String currentTimestamp = DateTime.now().toString();
 
@@ -146,21 +163,30 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       "message": message
     };
 
-    FirebaseFirestore.instance
-        .collection("bucket_${widget.doctorDetails!.id}")
-        .doc(currentTimestamp)
-        .set(messageRow);
+    // FirebaseFirestore.instance
+    //     .collection("bucket_${widget.doctorDetails!.id}")
+    //     .doc(currentTimestamp)
+    //     .set(messageRow);
+
+    FirebaseFirestore.instance.collection('chatList').doc("bucket_${receiverId+senderId}").set({
+      "client_name": client_name,
+    }).then((value) {
+
+      FirebaseFirestore.instance.collection('chatList').doc("bucket_${receiverId+senderId}").update({
+        "client_profile" : client_profile,
+        "client_name": client_name,
+        "client_senderid" : senderId,
+        "client_receiverid" : receiverId,
+        "dr_senderid" : receiverId,
+        "dr_receiverid" : senderId,
+        "dr_name" : dr_name,
+        "dr_profileimage" : dr_profileimage,
+      });
+    });
 
     FirebaseFirestore.instance.collection('chatList').doc("bucket_${receiverId+senderId}").collection('chat')
         .doc(currentTimestamp).set(messageRow);
 
-    FirebaseFirestore.instance.collection('chatList').doc("bucket_${receiverId+senderId}").set({
-      "client_profileImage" : "",
-      "client_name":"",
-      "sender1" : senderId,
-      "receiver1" : receiverId,
-    });
-
-    print("bucket_${senderId+receiverId}");
+    // print("bucket_${senderId+receiverId}");
   }
 }

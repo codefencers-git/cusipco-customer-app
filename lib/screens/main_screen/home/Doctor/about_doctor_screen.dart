@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cusipco/screens/chat/chat_details_screen.dart';
-import 'package:cusipco/screens/chat/chat_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/schedule_booking_screen.dart';
@@ -11,7 +10,6 @@ import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
-
 import '../../../video/video_screen.dart';
 
 class AboutDoctorScreen extends StatefulWidget {
@@ -140,9 +138,7 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                                     pushNewScreen(
                                                       context,
                                                       screen: ChatDetailsScreen(
-                                                          doctorDetails: model
-                                                              .doctorDetailsModel!
-                                                              .data),
+                                                          doctorDetails: model.doctorDetailsModel!.data, drprofileimage: model.doctorDetailsModel!.data.image.toString(),),
                                                       withNavBar: false,
                                                       pageTransitionAnimation:
                                                           PageTransitionAnimation
