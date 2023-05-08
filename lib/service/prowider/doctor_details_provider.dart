@@ -77,7 +77,6 @@ class DoctorsDetailsServices with ChangeNotifier {
       if (response.statusCode == 200) {
         AgoraTokenModel agoraTokenModel =
         AgoraTokenModel.fromJson(jsonDecode(response.body));
-        print("AGORA TOKEN : ${agoraTokenModel.data.call_token}");
         print("AGORA ROOM : ${agoraTokenModel.data.call_room}");
         return agoraTokenModel;
       }

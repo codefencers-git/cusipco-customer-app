@@ -10,8 +10,8 @@ import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
-import '../../../video/audio_screen.dart';
-import '../../../video/video_screen.dart';
+import '../../../video_audio/audio_screen.dart';
+import '../../../video_audio/video_screen.dart';
 
 class AboutDoctorScreen extends StatefulWidget {
   final String id;
@@ -139,7 +139,15 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                                     pushNewScreen(
                                                       context,
                                                       screen: ChatDetailsScreen(
-                                                          doctorDetails: model.doctorDetailsModel!.data, drprofileimage: model.doctorDetailsModel!.data.image.toString(),),
+                                                        doctorDetails: model
+                                                            .doctorDetailsModel!
+                                                            .data,
+                                                        drprofileimage: model
+                                                            .doctorDetailsModel!
+                                                            .data
+                                                            .image
+                                                            .toString(),
+                                                      ),
                                                       withNavBar: false,
                                                       pageTransitionAnimation:
                                                           PageTransitionAnimation
@@ -151,33 +159,31 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                           FloatingActionButton(
                                             child: Icon(Icons.call),
                                             onPressed: () {
-
-                                                //
-                                                // Provider.of<DoctorsDetailsServices>(
-                                                //     context,
-                                                //     listen: false)
-                                                //     .getAgoraToken(
-                                                //     model
-                                                //         .doctorDetailsModel!
-                                                //         .data!
-                                                //         .id,
-                                                //     "Audio",
-                                                //     context: context)
-                                                //     .then((value) => {
-                                                //   pushNewScreen(context,
-                                                //       screen:
-                                                //       CallingScreen(
-                                                //         isCaller: true,
-                                                //         channelName: value!
-                                                //             .data!
-                                                //             .call_room,
-                                                //         token: value!
-                                                //             .data!
-                                                //             .call_token,
-                                                //         drname: model.doctorDetailsModel!.data.title,
-                                                //       )
-                                                //   ),
-                                                // });
+                                              Provider.of<DoctorsDetailsServices>(
+                                                      context,
+                                                      listen: false)
+                                                  .getAgoraToken(
+                                                      widget.id, "Audio",
+                                                      context: context)
+                                                  .then((value) => {
+                                                        if (value!.success ==
+                                                            "1")
+                                                          {
+                                                            pushNewScreen(
+                                                                context,
+                                                                screen: VideoScreen(
+                                                                    roomId: value
+                                                                        .data
+                                                                        .call_room))
+                                                          }
+                                                        else
+                                                          {
+                                                            Fluttertoast.showToast(
+                                                                msg: value
+                                                                    .message
+                                                                    .toString())
+                                                          }
+                                                      });
 
                                               // Fluttertoast.showToast(
                                               //     msg: "Under maintenance!");
@@ -204,21 +210,34 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                                         "Video",
                                                         context: context)
                                                     .then((value) => {
-                                                          pushNewScreen(context,
-                                                              screen:
-                                                                  VideoScreen(
-                                                                doctorId: model
-                                                                    .doctorDetailsModel!
-                                                                    .data!
-                                                                    .id,
-                                                                channelName: value!
-                                                                    .data!
-                                                                    .call_room,
-                                                                token: value!
-                                                                    .data!
-                                                                    .call_token,
-                                                              )
-                                                          ),
+                                                          Provider.of<DoctorsDetailsServices>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .getAgoraToken(
+                                                                  model
+                                                                      .doctorDetailsModel!
+                                                                      .data
+                                                                      .id,
+                                                                  "Video",
+                                                                  context:
+                                                                      context)
+                                                              .then((value) => {
+                                                                    if (value!
+                                                                            .success ==
+                                                                        "1")
+                                                                      {
+                                                                        pushNewScreen(
+                                                                            context,
+                                                                            screen:
+                                                                                VideoScreen(roomId: value.data.call_room))
+                                                                      }
+                                                                    else
+                                                                      {
+                                                                        Fluttertoast.showToast(
+                                                                            msg:
+                                                                                value.message.toString())
+                                                                      }
+                                                                  })
                                                         });
                                               }),
                                         ],

@@ -9,7 +9,10 @@ import 'package:cusipco/service/http_service/http_service.dart';
 import '../../model/agora_token_model.dart';
 
 class VideoService with ChangeNotifier {
-  Future<AgoraTokenModel?> getAgoraToken(
+
+  AgoraTokenModel? agoraTokenModel;
+
+  Future<AgoraTokenModel?> takeACall(
       String callToId, String type,
       {required BuildContext context}) async {
     try {
@@ -30,5 +33,6 @@ class VideoService with ChangeNotifier {
     } catch (e) {
       debugPrint(e.toString());
     }
+    return null;
   }
 }

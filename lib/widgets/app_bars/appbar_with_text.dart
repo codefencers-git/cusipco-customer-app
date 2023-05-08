@@ -6,15 +6,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
-import '../../screens/video/video_screen.dart';
+import '../../screens/video_audio/video_screen.dart';
 import '../../service/prowider/doctor_details_provider.dart';
 
 class AppBarWithTextAndBackWidget extends StatelessWidget {
   const AppBarWithTextAndBackWidget(
       {Key? key,
         this.extraIcon,
-        this.onTap,
-        this.audiovideo,
+        this.userId,
+      this.onTap,
+      this.audiovideo,
       required this.title,
       this.isShowCart = false,
       this.isClickOnCart = true,
@@ -23,20 +24,18 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
       : super(key: key);
 
   final String title;
+  final String? userId;
   final Function onbackPress;
   final bool isShowCart;
   final bool? extraIcon;
   final bool? audiovideo;
   final Function(BuildContext context)? onTap;
   final bool isClickOnCart;
-
   final Function? onCartPress;
 
   @override
   Widget build(BuildContext context) {
-
     final model = Provider.of<DoctorsDetailsServices>(context);
-
 
     return AppBar(
       backgroundColor: ThemeClass.blackColor,
@@ -52,20 +51,19 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
       ),
       actions: [
-
-        extraIcon == true ?  Align(
-          child: Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: InkWell(
-                  onTap: (){
-                    onTap!(context);
-                    //   Fluttertoast.showToast(
-                    //       msg: "Working on it");
-
-                  },
-                  child: Icon(Icons.chat))
-          ),
-        ): SizedBox(),
+        extraIcon == true
+            ? Align(
+                child: Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: InkWell(
+                        onTap: () {
+                          onTap!(context);
+                          //   Fluttertoast.showToast(
+                          //       msg: "Working on it");
+                        },
+                        child: Icon(Icons.chat))),
+              )
+            : SizedBox(),
         isShowCart
             ? InkWell(
                 splashFactory: NoSplash.splashFactory,
@@ -129,54 +127,45 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
                 ),
               )
             : SizedBox(),
-
-              audiovideo == true ? Row(
+        audiovideo == true
+            ? Row(
                 children: [
-                  Padding(
-                  padding: EdgeInsets.only(right: 20),
-                  child: GestureDetector(
-                    onTap: (){
-                      Fluttertoast.showToast(
-                          msg: "Under maintenance!");
-                    },
-                    child: Icon(Icons.call, color: Colors.white,))
-                   ),
                   Padding(
                       padding: EdgeInsets.only(right: 20),
                       child: GestureDetector(
-                          onTap: (){
-                            Provider.of<DoctorsDetailsServices>(
-                                context,
-                                listen: false)
-                                .getAgoraToken(
-                                model
-                                    .doctorDetailsModel!
-                                    .data!
-                                    .id,
-                                "Video",
-                                context: context)
-                                .then((value) => {
-                              pushNewScreen(context,
-                                  screen:
-                                  VideoScreen(
-                                    doctorId: model
-                                        .doctorDetailsModel!
-                                        .data!
-                                        .id,
-                                    channelName: value!
-                                        .data!
-                                        .call_room,
-                                    token: value!
-                                        .data!
-                                        .call_token,
-                                  )),
-                            });
+                          onTap: () {
+                            Fluttertoast.showToast(msg: "Under maintenance!");
                           },
-                          child: Icon(Icons.video_call, color: Colors.white,))
-                  ),
+                          child: Icon(
+                            Icons.call,
+                            color: Colors.white,
+                          ))),
+                  Padding(
+                      padding: EdgeInsets.only(right: 20),
+                      child: GestureDetector(
+                          onTap: () {
+                            Provider.of<DoctorsDetailsServices>(context,
+                                    listen: false)
+                                .getAgoraToken(model.doctorDetailsModel!
+                                .data.id, "Video", context: context)
+                                .then((value) => {
+                                      if(value!.success == "1"){
+                                        pushNewScreen(context,
+                                            screen: VideoScreen(
+                                                roomId: value.data.call_room))
+                                      } else {
+                                        Fluttertoast.showToast(msg: value.message.toString())
+                                      }
+                                    }
+                                    );
+                          },
+                          child: Icon(
+                            Icons.video_call,
+                            color: Colors.white,
+                          ))),
                 ],
-              ):SizedBox()
-
+              )
+            : SizedBox()
       ],
     );
   }
