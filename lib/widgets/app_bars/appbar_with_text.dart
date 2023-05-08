@@ -146,8 +146,7 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
                           onTap: () {
                             Provider.of<DoctorsDetailsServices>(context,
                                     listen: false)
-                                .getAgoraToken(model.doctorDetailsModel!
-                                .data.id, "Video", context: context)
+                                .getAgoraToken(userId.toString(), "Video", context: context)
                                 .then((value) => {
                                       if(value!.success == "1"){
                                         pushNewScreen(context,

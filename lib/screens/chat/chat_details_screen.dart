@@ -43,6 +43,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
             appBar: PreferredSize(
                 preferredSize: Size.fromHeight(65.0),
                 child: AppBarWithTextAndBackWidget(
+                  userId: widget.drid,
                   audiovideo: true,
                   onbackPress: () {
                     Provider.of<MainNavigationProwider>(context, listen: false)
