@@ -172,6 +172,7 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                                             pushNewScreen(
                                                                 context,
                                                                 screen: VideoScreen(
+                                                                  type: "Audio",
                                                                     roomId: value
                                                                         .data
                                                                         .call_room))
@@ -191,7 +192,6 @@ class _AboutDoctorScreenState extends State<AboutDoctorScreen> {
                                           ),
                                           ButtonWidget(
                                               icon: Icons.face,
-                                              isLoading: model.buttonLoading,
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width /
