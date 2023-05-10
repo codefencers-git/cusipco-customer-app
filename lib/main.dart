@@ -45,6 +45,8 @@ import 'package:cusipco/themedata.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 
+import 'notification_backGround/notification_service.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
@@ -95,7 +97,7 @@ void main() async {
     print('Message clicked!');
     _NavigateToPage(message);
   });
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 }
 
 _NavigateToPage(RemoteMessage message) {
@@ -126,10 +128,39 @@ _NavigateToPage(RemoteMessage message) {
   }
 }
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
+
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+
   await Firebase.initializeApp();
-  print('Handling a background message: ${message.messageId}');
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true, // Required to display a heads up notification
+    badge: true,
+    sound: true,
+  );
+
+  print('----------andling a background message: ${message.messageId}');
+
+  if (message.data != null) {
+    if (message.data['alert_type'] != null &&
+        message.data['alert_type'] == "Call") {
+      if (message.data['call_token'] != null) {
+        createVideoCallNotification(
+          isSound: "true",
+          callRoom: message.data['call_room'],
+          callToken: message.data['call_token'],
+          message: message.data['message'],
+          title: message.data['title'],
+          id: message.data['user_id'],
+        );
+      } else {
+        createSimpleNotification(
+            id: message.data['type_id'],
+            title: message.data['title'],
+            message: message.data['message']);
+      }
+    }
+  }
 }
 
 void configLoading() {

@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 class VideoScreen extends StatefulWidget {
-  const VideoScreen({Key? key,  this.roomId}) : super(key: key);
+  const VideoScreen({Key? key,  this.roomId, this.type}) : super(key: key);
   final String? roomId;
+  final String? type;
 
   @override
   State<VideoScreen> createState() => _VideoScreenState();
