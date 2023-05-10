@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
-
 class VideoScreen extends StatefulWidget {
   const VideoScreen({Key? key,  this.roomId}) : super(key: key);
   final String? roomId;
@@ -22,7 +21,7 @@ class _VideoScreenState extends State<VideoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CallPage(callID: widget.roomId.toString())
+        body: CallPage(callID: widget.roomId.toString())
     );
   }
 }

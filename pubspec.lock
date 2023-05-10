@@ -113,14 +113,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
-  awesome_notifications:
-    dependency: transitive
-    description:
-      name: awesome_notifications
-      sha256: "2b430c75cc879d6cfd52bb6eb2b5c1591ed425347816408cdcbd3f6916bba14c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.4+1"
   boolean_selector:
     dependency: transitive
     description:
@@ -133,26 +125,26 @@ packages:
     dependency: "direct main"
     description:
       name: cached_network_image
-      sha256: "91b01b2f54922423fa06dce455e0cd8fa46c551d01503162e067f84bab505e32"
+      sha256: fd3d0dc1d451f9a252b32d95d3f0c3c487bc41a75eba2e6097cb0b9c71491b15
       url: "https://pub.dev"
     source: hosted
-    version: "3.2.0"
+    version: "3.2.3"
   cached_network_image_platform_interface:
     dependency: transitive
     description:
       name: cached_network_image_platform_interface
-      sha256: "8e2b5befefec5063bee8f209fda21751f6328d405d4237c70f21104568b2fee7"
+      sha256: bb2b8403b4ccdc60ef5f25c70dead1f3d32d24b9d6117cfc087f496b178594a7
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "2.0.0"
   cached_network_image_web:
     dependency: transitive
     description:
       name: cached_network_image_web
-      sha256: d4351c7eb16767df129b0474a5ebc4e028870379c063e8ba265a56aa00831e70
+      sha256: b8eb814ebfcb4dea049680f8c1ffb2df399e4d03bf7a352c775e26fa06e02fa0
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -462,6 +454,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
+  flutter_callkit_incoming:
+    dependency: transitive
+    description:
+      name: flutter_callkit_incoming
+      sha256: "8e76be35d86bce00c358fc083c6f6232a7630958616d3e49cbc89ef661a4a464"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3+3"
   flutter_downloader:
     dependency: "direct main"
     description:
@@ -526,11 +526,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
-  flutter_screenutil:
+  flutter_screenutil_zego:
     dependency: transitive
     description:
-      name: flutter_screenutil
-      sha256: "154a1abec9f047d9cdaf71856163315d9d7def5167409361a7f13a5bcd650017"
+      name: flutter_screenutil_zego
+      sha256: cfb0985e95b3f0f1590b955d83b8a981592eaf09bb5c7bec081f5e802fbdb380
       url: "https://pub.dev"
     source: hosted
     version: "5.6.0"
@@ -808,6 +808,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.8.1"
   lint:
     dependency: transitive
     description:
@@ -1537,18 +1545,18 @@ packages:
     dependency: transitive
     description:
       name: zego_uikit
-      sha256: b8b03f071caaf14fcfe94ca4028c47adea382d605e48a6454e434b07f8d42bb3
+      sha256: "7bda44ca16d484366631849769c23082d8ec6f868b3d21c7c35074e3332d3327"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.5.3"
   zego_uikit_prebuilt_call:
     dependency: "direct main"
     description:
       name: zego_uikit_prebuilt_call
-      sha256: "8f74ff722c3fdf1ce018f2657072503c71945f92f43d7b72451b7891727b136c"
+      sha256: "8621893574f683c43a5bd561435339eab3cb8e6e68a0771b3ff50084c705a566"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.0"
+    version: "3.3.10"
   zego_zpns:
     dependency: transitive
     description:
@@ -1558,5 +1566,5 @@ packages:
     source: hosted
     version: "2.3.2"
 sdks:
-  dart: ">=2.18.0 <3.0.0"
-  flutter: ">=2.10.0"
+  dart: ">=2.19.0 <3.0.0"
+  flutter: ">=3.3.0"

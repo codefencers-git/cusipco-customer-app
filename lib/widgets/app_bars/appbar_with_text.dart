@@ -134,7 +134,15 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
                       padding: EdgeInsets.only(right: 20),
                       child: GestureDetector(
                           onTap: () {
-                            Fluttertoast.showToast(msg: "Under maintenance!");
+                            Provider.of<DoctorsDetailsServices>(context,
+                                listen: false)
+                                .getAgoraToken(userId.toString(), "Video", context: context)
+                                .then((value) => {
+                                pushNewScreen(context,
+                                    screen: VideoScreen(
+                                        roomId: value!.data.call_room))
+                            }
+                            );
                           },
                           child: Icon(
                             Icons.call,

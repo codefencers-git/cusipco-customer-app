@@ -57,7 +57,8 @@ void main() async {
     print("message recieved----------- for ground");
    // print(event.notification!.body);
     print(event);
-
+    await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
+    await Firebase.initializeApp();
     FlutterRingtonePlayer.play(
       android: AndroidSounds.notification,
       ios: IosSounds.glass,
@@ -126,6 +127,8 @@ _NavigateToPage(RemoteMessage message) {
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
+  await Firebase.initializeApp();
   print('Handling a background message: ${message.messageId}');
 }
 

@@ -4,9 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:cusipco/Global/global_variable_for_show_messge.dart';
 import 'package:cusipco/model/doctors_detail_model.dart';
-
 import 'package:cusipco/service/http_service/http_service.dart';
-
 import '../../model/agora_token_model.dart';
 
 class DoctorsDetailsServices with ChangeNotifier {
