@@ -2,7 +2,6 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cusipco/notification_backGround/video_call_notification_widget.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../screens/video_audio/video_screen.dart';
 import '../service/navigation_service.dart';
 import 'notification_alert_widget.dart';
@@ -67,10 +66,10 @@ class NotificationListner {
             AwesomeNotifications().cancel(1);
             // Navigator.push(
             //   navigationService.navigationKey.currentContext!,
-            //   // MaterialPageRoute(
-            //   //     builder: (context) => AppointmentDetailsScreen(
-            //   //           appoingmentID: receivedAction.payload!['id'].toString(),
-            //   //         )),
+            //   MaterialPageRoute(
+            //       builder: (context) => AppointmentDetailsScreen(
+            //         appoingmentID: receivedAction.payload!['id'].toString(),
+            //       )),
             // );
             break;
 
@@ -106,10 +105,10 @@ class NotificationListner {
                 navigationService.navigationKey.currentContext!,
                 MaterialPageRoute(
                     builder: (context) => VideoScreen(
-                          roomId:
-                              receivedAction.payload!['callRoom'].toString(),
-                      type:  receivedAction.payload!['callType'].toString(),
-                        )));
+                      roomId:
+                      receivedAction.payload!['callRoom'].toString(),
+                      type:  "Audio",
+                    )));
             AwesomeNotifications().cancel(1);
             break;
 
@@ -169,6 +168,7 @@ makeListnerNotification() {
           message.data['alert_type'] == "Call") {
         if (message.data['call_token'] != null) {
           _showVideoAlert(
+              callType: message.data['call_type'] ?? "Audio",
               isSound: "true",
               callRoom: message.data['call_room'],
               message: message.data['message'],
@@ -187,6 +187,7 @@ makeListnerNotification() {
 _showVideoAlert({
   required String isSound,
   required String callRoom,
+  required String callType,
   required String message,
   required String title,
 }) {
@@ -194,6 +195,7 @@ _showVideoAlert({
     context: navigationService.navigationKey.currentContext!,
     builder: (BuildContext context) {
       return VideoCallNotificationAlertWidget(
+        callType: callType,
         isSound: isSound,
         callRoom: callRoom,
         message: message,
