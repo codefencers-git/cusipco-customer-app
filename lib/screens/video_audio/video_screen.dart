@@ -15,23 +15,12 @@ class VideoScreen extends StatefulWidget {
 }
 
 class _VideoScreenState extends State<VideoScreen> {
+  final String localUserID = Random().nextInt(10000).toString();
+
   @override
   void initState(){
     super.initState();
   }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: CallPage(callID: widget.roomId.toString())
-    );
-  }
-}
-
-final String localUserID = Random().nextInt(10000).toString();
-
-class CallPage extends StatelessWidget {
-  const CallPage({  key, required this.callID});
-  final String callID;
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +32,8 @@ class CallPage extends StatelessWidget {
         appSign: appSign,
         userID: localUserID,
         userName: "user_$localUserID",
-        callID: callID,
-        config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
+        callID: widget.roomId.toString(),
+        config: widget.type == "Audio" ? ZegoUIKitPrebuiltCallConfig.oneOnOneVoiceCall() : ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
           ..onOnlySelfInRoom = (context) {
             Navigator.of(context).pop();
           },
@@ -52,3 +41,4 @@ class CallPage extends StatelessWidget {
     );
   }
 }
+

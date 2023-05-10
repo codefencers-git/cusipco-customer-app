@@ -136,10 +136,11 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
                           onTap: () {
                             Provider.of<DoctorsDetailsServices>(context,
                                 listen: false)
-                                .getAgoraToken(userId.toString(), "Video", context: context)
+                                .getAgoraToken(userId.toString(), "Audio", context: context)
                                 .then((value) => {
                                 pushNewScreen(context,
                                     screen: VideoScreen(
+                                      type: "Audio",
                                         roomId: value!.data.call_room))
                             }
                             );
@@ -159,6 +160,7 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
                                       if(value!.success == "1"){
                                         pushNewScreen(context,
                                             screen: VideoScreen(
+                                              type: "Video",
                                                 roomId: value.data.call_room))
                                       } else {
                                         Fluttertoast.showToast(msg: value.message.toString())
