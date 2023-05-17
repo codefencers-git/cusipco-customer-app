@@ -73,7 +73,7 @@ class _VideoCallNotificationAlertWidgetState
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
                 height: 100,
                 child: Lottie.asset('assets/animation/alert_animation.json')),
             Container(

@@ -54,7 +54,15 @@ class _BottomSheetVendorsState extends State<BottomSheetVendors> with SingleTick
   setInitalDate() {
     _dateController.text = DateFormat('yyyy-MM-dd').format(currentDate);
     Provider.of<TimeSlotService>(context, listen: false).getTimeSlot(
-        id: widget.model!.data.ownerId,
+        id: vendorSelection.toString(),
+        date: _dateController.text,
+        mode: "",
+        context: context);
+  }
+
+  loadSlots(){
+    Provider.of<TimeSlotService>(context, listen: false).getTimeSlot(
+        id: vendorSelection.toString(),
         date: _dateController.text,
         mode: "",
         context: context);
@@ -443,6 +451,8 @@ class _BottomSheetVendorsState extends State<BottomSheetVendors> with SingleTick
             onChanged: (val) {
               setState(() {
                 vendorSelection = val!;
+                loadSlots();
+                print("Selected Vendor ${name} with Id: $vendorSelection ");
               });
             },
           ),

@@ -30,6 +30,8 @@ class TimeSlotService with ChangeNotifier {
         "mode_of_booking": mode
       };
 
+      print("queryParameters : "+ queryParameters.toString());
+
       var response = await HttpService.httpPost(
           "get-availability", queryParameters,
           context: context);

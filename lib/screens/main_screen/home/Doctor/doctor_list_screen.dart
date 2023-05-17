@@ -191,6 +191,7 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
 
     var data = Provider.of<LocationProwiderService>(context);
     data.addListener(() {
+      print("CITYCITY : "+data.currentLocationCity!.name.toString());
       if (data.currentLocationCity != "") {
         if (data.ischangeLocation == true) {
           if (mounted) {
