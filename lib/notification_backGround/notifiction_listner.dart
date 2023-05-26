@@ -33,6 +33,17 @@ class NotificationListner {
               channelShowBadge: true,
               locked: true,
               defaultRingtoneType: DefaultRingtoneType.Ringtone),
+          NotificationChannel(
+              channelGroupKey: 'basic',
+              channelKey: 'basic',
+              channelName: 'Basic Notification Channel ',
+              channelDescription: 'Notification Simple',
+              defaultColor: Color(0xFF9D50DD),
+              importance: NotificationImportance.Max,
+              ledColor: Colors.white,
+              channelShowBadge: true,
+              locked: true,
+              defaultRingtoneType: DefaultRingtoneType.Ringtone),
         ],
         debug: true);
   }

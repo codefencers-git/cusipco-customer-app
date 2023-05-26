@@ -3,15 +3,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:auto_animated/auto_animated.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:cusipco/notification_backGround/notification_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cusipco/Global/global_variable_for_show_messge.dart';
 import 'package:cusipco/model/doctor_list_model.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/about_doctor_screen.dart';
-import 'package:cusipco/screens/main_screen/home/store/store_product_details_screen.dart';
-
-import 'package:cusipco/screens/main_screen/home/store/store_product_list_model.dart';
 
 import 'package:cusipco/service/animation_service.dart';
 import 'package:cusipco/service/http_service/http_service.dart';
@@ -23,15 +22,21 @@ import 'package:cusipco/themedata.dart';
 import 'package:cusipco/widgets/app_bars/appbar_with_location.dart';
 import 'package:cusipco/widgets/general_widget.dart';
 import 'package:cusipco/widgets/text_boxes/text_box_with_sufix.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../model/city_list_model.dart';
+
 class DoctorListScreen extends StatefulWidget {
-  DoctorListScreen({Key? key, required this.categoryId, required this.mode})
+  DoctorListScreen({Key? key, required this.categoryId, required this.mode, this.msgback})
       : super(key: key);
   final String categoryId;
-
+  final Function(String msg)? msgback;
   final String mode;
 
   @override
@@ -42,9 +47,28 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
+    _getCurrentLocation();
     super.initState();
     _scrollcontroller.addListener(_loadMore);
     getProductData(true);
+  }
+
+  createNotification({required String title, required String message}) async {
+    bool isallowed = await AwesomeNotifications().isNotificationAllowed();
+    if (!isallowed) {
+      //no permission of local notification
+      AwesomeNotifications().requestPermissionToSendNotifications();
+      print("notimessage: request not allowed");
+    }else{
+      await AwesomeNotifications().createNotification(
+          content: NotificationContent( //simgple notification
+            id: 12341,
+            channelKey: 'basic', //set configuration wuth key "basic"
+            title: title,
+            body: message,
+          )
+      );
+    }
   }
 
   var _scrollcontroller = ScrollController();
@@ -73,6 +97,36 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
   bool _isError = false;
   String _errorMessage = "";
   bool _isnotMoreData = false;
+
+  Future<void> _getCurrentLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    double lat = position.latitude;
+    double long = position.longitude;
+    List<Placemark> placemarks = await placemarkFromCoordinates(lat, long);
+
+    List<CityList> displayCityList = [];
+    List<CityList> globleCityList = [];
+    var pro = Provider.of<LocationProwiderService>(context, listen: false);
+
+    globleCityList = pro.globleCityList;
+    displayCityList = pro.globleCityList;
+
+    print("Latitude: ${placemarks[0].locality} and Longitude: $long");
+    print("CityLenght:  " + globleCityList.length.toString());
+    for(int i = 0; i < globleCityList.length; i++){
+      if (globleCityList[i].name!.contains(placemarks[0].locality.toString())) {
+       setState(() {
+         pro.setCurrentCity(globleCityList[i]);
+         print("selected city : "+globleCityList[i].name.toString());
+       });
+      } else {
+        setState(() {
+          createNotification(title: "Cusipco Support", message: "Someone from Cusipco team will get in touch with you");
+        });
+      }
+    }
+  }
 
   Future<void> getProductData(bool isInit) async {
     setState(() {
@@ -129,7 +183,7 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
           });
         }
       } else if (response.statusCode == 401) {
-        showToast(GlobalVariableForShowMessage.unauthorizedUser);
+        Fluttertoast.showToast (msg:GlobalVariableForShowMessage.unauthorizedUser);
         await UserPrefService().removeUserData();
         NavigationService().navigatWhenUnautorized();
       } else {
@@ -191,7 +245,7 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
 
     var data = Provider.of<LocationProwiderService>(context);
     data.addListener(() {
-      print("CITYCITY : "+data.currentLocationCity!.name.toString());
+      print("CITYCITY : " + data.currentLocationCity!.name.toString());
       if (data.currentLocationCity != "") {
         if (data.ischangeLocation == true) {
           if (mounted) {

@@ -42,7 +42,7 @@ class _HealthRecordScreenState extends State<HealthRecordScreen> {
                 onbackPress: () {
                   Navigator.pop(context);
                 },
-                title: "Health Records",
+                title: "Digital Locker",
                 isShowCart: true,
               )),
           body: Container(

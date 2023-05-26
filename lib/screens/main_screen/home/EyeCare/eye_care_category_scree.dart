@@ -147,7 +147,7 @@ class _EyeCareCategoryScreenState extends State<EyeCareCategoryScreen> {
                       height: 20,
                     ),
                     Image.asset(
-                      "assets/images/dental_care_bg.png",
+                      "assets/images/eye_care.png",
                       width: width * 0.9,
                     ),
                   ],

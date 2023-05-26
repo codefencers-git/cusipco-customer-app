@@ -64,14 +64,19 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     {
       "id": 4,
-      "image": "assets/images/dashboard/tablet_icon.png",
-      "text": "Pregnancy Test"
+      "image": "assets/images/dashboard/doctor_icon.png",
+      "text": "Doctor Consultation"
     },
-    {
-      "id": 5,
-      "image": "assets/images/dashboard/thermometer_icon.png",
-      "text": "Blood Sugar Test"
-    },
+    // {
+    //   "id": 4,
+    //   "image": "assets/images/dashboard/tablet_icon.png",
+    //   "text": "Pregnancy Test"
+    // },
+    // {
+    //   "id": 5,
+    //   "image": "assets/images/dashboard/thermometer_icon.png",
+    //   "text": "Blood Sugar Test"
+    // },
   ];
 
   List allHelthBenifit = [
@@ -280,10 +285,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ));
           print("Covid Test");
         } else if (item["id"] == 4) {
-          goto(productListScreen(
-            categoryId: "41",
-            routeName: "LabTest",
-          ));
+          goto(DoctorsCategoryScreen());
+          print("Doctor Consultation");
+          // goto(productListScreen(
+          //   categoryId: "41",
+          //   routeName: "LabTest",
+          // ));
           print("Pregnancy Test");
         } else if (item["id"] == 5) {
           goto(productListScreen(
@@ -337,7 +344,7 @@ class _HomeScreenState extends State<HomeScreen> {
           print("Blood Donation");
         }
       },
-      child: Column(
+      child:  Column(
         children: [
           Container(
             height: 32,

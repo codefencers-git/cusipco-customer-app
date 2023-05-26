@@ -12,6 +12,8 @@ import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../service/prowider/main_navigaton_prowider_service.dart';
+
 class AppointmentsScreen extends StatefulWidget {
   const AppointmentsScreen({
     Key? key,
@@ -42,7 +44,8 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
               child: AppBarWithTextAndBackWidget(
                 isShowCart: true,
                 onbackPress: () {
-                  Navigator.pop(context);
+                  Provider.of<MainNavigationProwider>(context, listen: false)
+                      .chaneIndexOfNavbar(0);
                 },
                 title: "Appointments",
               )),

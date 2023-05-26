@@ -195,7 +195,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
           isShowItrailing: false),
       MyaccountListModel(
           icon: "assets/images/records.png",
-          title: "Health Records",
+          title: "Digital Locker",
           trailing: "",
           onPress: (context) {
             pushNewScreen(

@@ -10,6 +10,8 @@ import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
+import '../../../service/prowider/main_navigaton_prowider_service.dart';
+
 class MyOrderScreen extends StatefulWidget {
   MyOrderScreen({
     Key? key,
@@ -40,7 +42,8 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
               preferredSize: Size.fromHeight(65.0),
               child: AppBarWithTextAndBackWidget(
                 onbackPress: () {
-                  Navigator.pop(context);
+                  Provider.of<MainNavigationProwider>(context, listen: false)
+                      .chaneIndexOfNavbar(0);
                 },
                 isShowCart: true,
                 onCartPress: () {},

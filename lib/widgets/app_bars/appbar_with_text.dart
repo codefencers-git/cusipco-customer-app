@@ -35,6 +35,7 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final model = Provider.of<DoctorsDetailsServices>(context);
 
     return AppBar(
@@ -42,7 +43,8 @@ class AppBarWithTextAndBackWidget extends StatelessWidget {
       toolbarHeight: 70,
       leading: IconButton(
         onPressed: () {
-          Navigator.pop(context);
+          onbackPress();
+          //Navigator.pop(context);
         },
         icon: Icon(Icons.arrow_back),
       ),

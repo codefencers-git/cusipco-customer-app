@@ -98,9 +98,11 @@
         </provider>
 
 
+       <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+           android:exported="true">
+       </receiver>
 
-
-        <meta-data
+       <meta-data
               android:name="com.facebook.sdk.ClientToken"
               android:value="@string/facebook_client_token"/>
 

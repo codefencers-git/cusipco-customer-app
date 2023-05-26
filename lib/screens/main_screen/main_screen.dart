@@ -22,6 +22,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
   GlobalKey<ScaffoldState> _globalscafoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     switch (state) {
@@ -71,7 +72,9 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
                 extendBodyBehindAppBar: true,
                 body: PersistentTabView(
                   context, controller: navProwider.navController,
-                  onItemSelected: (item) {},
+                  onItemSelected: (item) {
+                    // print("selectedItem:"+item.toString());
+                  },
                   navBarHeight: 70,
                   screens: _buildScreens(),
                   items: _navBarsItems(),
