@@ -22,6 +22,8 @@ class _SupportScreenState extends State<SupportScreen> {
 
   @override
   void initState() {
+    Provider.of<GeneralInfoService>(context, listen: false)
+        .getGeneralData();
     super.initState();
   }
 

@@ -285,8 +285,8 @@ class _CheckoutForOtherScreenState extends State<CheckoutForOtherScreen> {
       alignment: Alignment.bottomCenter,
       child: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        height: 80,
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+        height: 60,
         child: ButtonWidget(
           title: "Confirm & Pay",
           color: ThemeClass.blueColor,

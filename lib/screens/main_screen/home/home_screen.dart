@@ -180,12 +180,18 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       "id": 55,
       "image": "assets/images/dashboard/connect_with_support_team.png",
-      "text": "Connect with \nsupport \nteam"
+      "text": " Emergency Help Line"
     },
     {
       "id": 66,
       "image": "assets/images/dashboard/blood_donation.png",
       "text": "Blood \nDonation"
+    },
+
+    {
+      "id": 77,
+      "image": "assets/images/dashboard/medical_report.png",
+      "text": "Book ECG"
     },
 
   ];
@@ -340,6 +346,9 @@ class _HomeScreenState extends State<HomeScreen> {
           goto(SupportScreen());
           print("Connect with support team");
         } else if (item["id"] == 66) {
+          goto(EmergencyServicesScreen());
+          print("Blood Donation");
+        } else if (item["id"] == 77) {
           goto(EmergencyServicesScreen());
           print("Blood Donation");
         }

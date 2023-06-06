@@ -46,8 +46,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                   userId: widget.drid,
                   audiovideo: true,
                   onbackPress: () {
-                    Provider.of<MainNavigationProwider>(context, listen: false)
-                        .chaneIndexOfNavbar(0);
+                    Navigator.pop(context);
                   },
                   title:
                       widget.drname!=null || widget.drname.toString() != "null" ?

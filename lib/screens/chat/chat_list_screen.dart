@@ -46,8 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
               preferredSize: Size.fromHeight(65.0),
               child: AppBarWithTextAndBackWidget(
                 onbackPress: () {
-                  Provider.of<MainNavigationProwider>(context, listen: false)
-                      .chaneIndexOfNavbar(0);
+                  Navigator.pop(context);
                 },
                 title: "Chat with doctors",
               )),

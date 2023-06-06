@@ -12,6 +12,8 @@ import 'package:provider/provider.dart';
 
 import '../../../../service/prowider/checkup_category_provider.dart';
 import '../../../../themedata.dart';
+import '../global_product_list_screen.dart';
+import '../skin_and_care/global_product_detail_screen.dart';
 
 class CheckupCategoryScreen extends StatefulWidget {
   const CheckupCategoryScreen({Key? key}) : super(key: key);
@@ -141,29 +143,52 @@ class _CheckupCategoryScreenState extends State<CheckupCategoryScreen> {
     );
   }
 
+  goto(Widget _screen) {
+    pushNewScreen(
+      context,
+      screen: _screen,
+      withNavBar: false,
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
+  }
   _checkNavigation(data) async {
-    var res = await showModalBottomSheet(
-        context: context,
-        useRootNavigator: true,
-        builder: (context) {
-          return BottomSheetForOnlineOffLineDoctore();
-        });
-    // pushNewScreen(context,
-    //     screen: DoctorListScreen(
-    //       mode: "",
-    //       categoryId: data.id.toString(),
-    //     ),
-    //     withNavBar: true);
 
-    print(res);
-    if (res != null) {
-      pushNewScreen(context,
-          screen: DoctorListScreen(
-            mode: res,
-            categoryId: data.id.toString(),
-          ),
-          withNavBar: true);
-      print(res);
-    }
+    pushNewScreen(
+      context,
+      screen: GlobalProductdetails(
+        id: data! .id.toString(),
+        urlPerameter: "LabTest",
+        title: data!.title.toString(),
+
+        // fitnessId: _productData![index].id.toString(),
+        // fitnessId: "29",
+      ),
+      withNavBar: true,
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
+
+    // var res = await showModalBottomSheet(
+    //     context: context,
+    //     useRootNavigator: true,
+    //     builder: (context) {
+    //       return BottomSheetForOnlineOffLineDoctore();
+    //     });
+    // // pushNewScreen(context,
+    // //     screen: DoctorListScreen(
+    // //       mode: "",
+    // //       categoryId: data.id.toString(),
+    // //     ),
+    // //     withNavBar: true);
+    //
+    // print(res);
+    // if (res != null) {
+    //   pushNewScreen(context,
+    //       screen: DoctorListScreen(
+    //         mode: res,
+    //         categoryId: data.id.toString(),
+    //       ),
+    //       withNavBar: true);
+    //   print(res);
+    // }
   }
 }

@@ -112,7 +112,7 @@ class _EmergencyServicesScreenState extends State<EmergencyServicesScreen> {
                   ),
                   TextBoxSimpleWidget(
                     radius: 10,
-                    hinttext: "Select Date",
+                    hinttext: "Current Address",
                     controllers: _dateController,
                     validator: (value) {
                       if (value!.isEmpty) {
