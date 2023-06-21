@@ -19,7 +19,8 @@ class VaccinationCategoryScreen extends StatefulWidget {
   const VaccinationCategoryScreen({Key? key}) : super(key: key);
 
   @override
-  State<VaccinationCategoryScreen> createState() => _VaccinationCategoryScreenState();
+  State<VaccinationCategoryScreen> createState() =>
+      _VaccinationCategoryScreenState();
 }
 
 class _VaccinationCategoryScreenState extends State<VaccinationCategoryScreen> {
@@ -106,7 +107,13 @@ class _VaccinationCategoryScreenState extends State<VaccinationCategoryScreen> {
                                             : SizedBox(),
                                         ListTile(
                                           onTap: () {
-                                            _checkNavigation(data);
+                                            pushNewScreen(context,
+                                                screen: productListScreen(
+                                                  categoryId: data.id.toString(),
+                                                  routeName: 'Vaccine',
+                                                ),
+                                                withNavBar: true);
+                                            // _checkNavigation(data);
                                           },
                                           leading: Container(
                                             height: 50,
@@ -161,8 +168,8 @@ class _VaccinationCategoryScreenState extends State<VaccinationCategoryScreen> {
     if (res != null) {
       pushNewScreen(context,
           screen: productListScreen(
-
-            categoryId: data.id.toString(), routeName: 'Vaccine',
+            categoryId: data.id.toString(),
+            routeName: 'Vaccine',
           ),
           withNavBar: true);
       print(res);

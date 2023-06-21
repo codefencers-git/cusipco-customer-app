@@ -39,8 +39,9 @@ class _SupportScreenState extends State<SupportScreen> {
               preferredSize: Size.fromHeight(65.0),
               child: AppBarWithTextAndBackWidget(
                 onbackPress: () {
-                  Provider.of<MainNavigationProwider>(context, listen: false)
-                      .chaneIndexOfNavbar(0);
+                  // Provider.of<MainNavigationProwider>(context, listen: false)
+                  //     .chaneIndexOfNavbar(0);
+                  Navigator.pop(context);
                 },
                 title: "Support",
                 isShowCart: true,

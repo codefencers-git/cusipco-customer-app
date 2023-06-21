@@ -113,8 +113,9 @@ class _FamilyMemberListScreenState extends State<FamilyMemberListScreen> {
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     color: Colors.white,
+                    margin: EdgeInsets.symmetric(vertical: 10),
                     padding: EdgeInsets.symmetric(horizontal: 15),
-                    height: 80,
+                    height: 50,
                     child: ButtonWidget(
                         title: "Add New Member",
                         color: ThemeClass.blueColor,
@@ -128,7 +129,7 @@ class _FamilyMemberListScreenState extends State<FamilyMemberListScreen> {
                           );
                         }),
                   ),
-                )
+                ),
               ],
             ),
           ),

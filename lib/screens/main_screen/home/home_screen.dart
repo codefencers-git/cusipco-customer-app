@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cusipco/model/general_information_model.dart';
 import 'package:cusipco/screens/chat/chat_list_screen.dart';
 import 'package:cusipco/screens/main_screen/PregnancyTest/pregnancy_test_category_screen.dart';
+import 'package:cusipco/screens/main_screen/common_screens/common_grid_screen.dart';
+import 'package:cusipco/screens/main_screen/common_screens/forms/book_service_form.dart';
 import 'package:cusipco/screens/main_screen/home/BloodSugarTest/blood_sugar_test_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/CovidTest/covid_test_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/Dental_care/dental_care_category_scree.dart';
@@ -9,7 +11,6 @@ import 'package:cusipco/screens/main_screen/home/Diet/diet_grid_screen.dart';
 import 'package:cusipco/screens/main_screen/home/Doctor/doctors_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/Vaccination/vaccination_category_screen.dart';
 import 'package:cusipco/screens/main_screen/home/WomenHealth/women_health_category_screen.dart';
-import 'package:cusipco/screens/main_screen/home/emergency_services/emergency_services_screen.dart';
 import 'package:cusipco/screens/main_screen/home/store/store_grid_screen.dart';
 import 'package:cusipco/screens/main_screen/support/support_screen.dart';
 import 'package:cusipco/screens/main_screen/view_all_category/view_all_screen.dart';
@@ -24,6 +25,8 @@ import 'package:provider/provider.dart';
 import '../../../model/user_model.dart';
 import '../../../service/prowider/order_history_provider.dart';
 import '../../../service/shared_pref_service/user_pref_service.dart';
+import '../common_screens/common_categories_screen.dart';
+import '../common_screens/single_category_detail_screen.dart';
 import 'EyeCare/eye_care_category_scree.dart';
 import 'HealthCheck/checkup_category_screen.dart';
 import 'global_product_list_screen.dart';
@@ -79,8 +82,40 @@ class _HomeScreenState extends State<HomeScreen> {
     // },
   ];
 
-  List allHelthBenifit = [
+  List covidCarePlan = [
+    {
+      "id": 1,
+      "image": "assets/images/dashboard/rapid_antigen_test.jpg",
+      "text": "Rapid Antigen Test",
+      "for": "Rapid-Antigen-Test"
+    },
+    {
+      "id": 2,
+      "image": "assets/images/dashboard/antibody_test.jpg",
+      "text": "Rapid Antibody Test",
+      "for": "Rapid-Antibody-Test"
+    },
+    {
+      "id": 3,
+      "image": "assets/images/dashboard/rtpcr_test.jpg",
+      "text": "RTPCR Test",
+      "for": "RTPCR-Test"
+    },
+    {
+      "id": 4,
+      "image": "assets/images/dashboard/covid_vaccination.jpg",
+      "text": "COVID Vaccination",
+      "for": ""
+    },
+    {
+      "id": 5,
+      "image": "assets/images/dashboard/doctor_consultation.jpg",
+      "text": "Doctor Consultation",
+      "for": "RTPCR-Test"
+    },
+  ];
 
+  List allHelthBenifit = [
     {
       "id": 6,
       "image": "assets/images/dashboard/heart1_icon.png",
@@ -165,12 +200,23 @@ class _HomeScreenState extends State<HomeScreen> {
       "text": "More"
     },
   ];
-
+  List vaccineModes = [
+    {
+      "id": 1,
+      "image": "assets/images/dashboard/by_agegroup.jpg",
+      "text": "Vaccine By Age",
+    },
+    {
+      "id": 2,
+      "image": "assets/images/dashboard/disease_vaccination.jpg",
+      "text": "Vaccine By Disease"
+    }
+  ];
   List emergencyServices = [
     {
       "id": 33,
       "image": "assets/images/dashboard/blood_requirement.png",
-      "text": "Blood Requirement"
+      "text": "Blood Requirement",
     },
     {
       "id": 44,
@@ -187,13 +233,11 @@ class _HomeScreenState extends State<HomeScreen> {
       "image": "assets/images/dashboard/blood_donation.png",
       "text": "Blood \nDonation"
     },
-
     {
       "id": 77,
       "image": "assets/images/dashboard/medical_report.png",
       "text": "Book ECG"
     },
-
   ];
 
   @override
@@ -221,21 +265,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     _buildTitle("Corporate Benefits", false),
                     _buildGridList(corporateBenifit),
-
                     _buildOrderCart(),
-
-
                     _buildTitle("Health Benefits", true, list: allHelthBenifit),
                     _buildGridList(helthBenifit),
                     Container(
                       color: ThemeClass.whiteColorgrey,
-                      height: 20,),
-                    _buildTitle("Emergency Services", true, list: emergencyServices),
+                      height: 20,
+                    ),
+                    _buildTitle("Emergency Services", true,
+                        list: emergencyServices),
                     _buildGridList(emergencyServices),
-
                     _buildConsultentCart(),
                     SliderWidget(
                       type: "home",
@@ -305,7 +346,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ));
           print("Blood Sugar Test");
         }
-
         //For Health Benefits
         if (item["id"] == 6) {
           goto(CheckupCategoryScreen());
@@ -317,13 +357,49 @@ class _HomeScreenState extends State<HomeScreen> {
           goto(DoctorsCategoryScreen());
           print("Doctor Consultation");
         } else if (item["id"] == 9) {
-          goto(productListScreen(
-            categoryId: "40",
-            routeName: "LabTest",
+          goto(CommonGridScreen(
+            title: "Covid Care Plan",
+            itemList: covidCarePlan,
+            onClickModule: (  Map<String, Object> data, context) {
+              print("IDIDIDIDI"+ data["id"].toString() );
+              pushNewScreen(
+                context,
+                screen: data["id"] == 1 || data["id"] == 2 || data["id"] == 3
+                    ? BookServiceFormScreen(route: "submit-covid-form", for_service: data["for"].toString() )
+                    : data["id"] == 4
+                        ? SingleCategoryScreen(
+                            categoryId: '20',
+                            mode: '',
+                          )
+                        : DoctorsCategoryScreen(),
+                withNavBar: true,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
+            },
           ));
           print("Covid Care Plan");
         } else if (item["id"] == 10) {
-          goto(VaccinationCategoryScreen());
+          goto(CommonGridScreen(
+              slider: SliderWidget(
+                type: "store",
+              ),
+              title: "Vaccinations",
+              itemList: vaccineModes,
+              onClickModule: (data, context) {
+                if (data["id"] == 1) {
+                  goto(CommonCategoriesScreen(
+                    module: "AgeGroup",
+                    route: 'Vaccine',
+                    title: 'Vaccination By AgeGroup',
+                  ));
+                } else if (data["id"] == 2) {
+                  goto(CommonCategoriesScreen(
+                    module: "Vaccine",
+                    route: 'Vaccine',
+                    title: 'Vaccination By Disease',
+                  ));
+                }
+              }));
           print("Vaccinations");
         } else if (item["id"] == 11) {
           goto(DentalCareCategoryScreen());
@@ -332,28 +408,28 @@ class _HomeScreenState extends State<HomeScreen> {
           goto(EyeCareCategoryScreen());
           print("Eye Care");
         } else if (item["id"] == 13) {
-          goto(ViewAllCategoriesScreen(categoriesList: allHelthBenifit));
+          goto(ViewAllCategoriesScreen(categoriesList: allHelthBenifit,title: "Health benefits"));
         }
 
         //for emergency services
         if (item["id"] == 33) {
-          goto(EmergencyServicesScreen());
+          goto(BookServiceFormScreen(route: "submit-emergency-form", for_service: "Blood-Requirement"));
           print("Blood Requirement");
         } else if (item["id"] == 44) {
-          goto(EmergencyServicesScreen());
+          goto(BookServiceFormScreen(route: "submit-emergency-form", for_service: "Ambulance"));
           print("Ambulance Services");
         } else if (item["id"] == 55) {
           goto(SupportScreen());
           print("Connect with support team");
         } else if (item["id"] == 66) {
-          goto(EmergencyServicesScreen());
+          goto(BookServiceFormScreen(route: "submit-emergency-form", for_service: "Blood-Donation"));
           print("Blood Donation");
         } else if (item["id"] == 77) {
-          goto(EmergencyServicesScreen());
+          goto(BookServiceFormScreen(route: "submit-emergency-form", for_service: "ECG"));
           print("Blood Donation");
         }
       },
-      child:  Column(
+      child: Column(
         children: [
           Container(
             height: 32,
@@ -698,8 +774,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    ViewAllCategoriesScreen(categoriesList: list!)));
+                                builder: (context) => ViewAllCategoriesScreen(title: title ,
+                                    categoriesList: list!)));
                           },
                           child: Text(
                             "View All",

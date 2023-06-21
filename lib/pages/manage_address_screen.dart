@@ -254,10 +254,9 @@ class _ManageAddressScreenState extends State<ManageAddressScreen> {
       alignment: Alignment.bottomCenter,
       child: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(
-          horizontal: 15,
-        ),
-        height: 110,
+        margin: EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        height: 50,
         child: ButtonWidget(
           title: "Add New Address",
           color: ThemeClass.blueColor,

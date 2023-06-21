@@ -1,3 +1,4 @@
+import 'package:cusipco/screens/main_screen/common_screens/common_service.dart';
 import 'package:cusipco/service/prowider/blood_sugar_test_service.dart';
 import 'package:cusipco/service/prowider/checkup_category_provider.dart';
 import 'package:cusipco/service/prowider/covid_test_service.dart';
@@ -279,6 +280,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<VideoService>(
             create: (_) => VideoService(),
+          ),
+          ChangeNotifierProvider<CommonServiceProwider>(
+            create: (_) => CommonServiceProwider(),
           )
         ],
         child: MaterialApp(

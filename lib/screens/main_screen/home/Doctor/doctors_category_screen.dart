@@ -153,8 +153,6 @@ class _DoctorsCategoryScreenState extends State<DoctorsCategoryScreen> {
           return BottomSheetForOnlineOffLineDoctore();
         });
     print(res);
-
-
     if (res == "Book Appointment") {
       pushNewScreen(context,
           screen: DoctorListScreen(

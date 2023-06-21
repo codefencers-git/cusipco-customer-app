@@ -25,8 +25,8 @@ class _DietGridScreenState extends State<DietGridScreen> {
 
     GridItems = [
       HomeGridModel(
-        image: "assets/images/template1.png",
-        title: "Standard Diet Plan",
+        image: "assets/images/basic_diet_plan.jpg",
+        title: "Basic Diet Plan",
         color: ThemeClass.pinkColor,
         id: "1",
         onPress: () {
@@ -34,7 +34,7 @@ class _DietGridScreenState extends State<DietGridScreen> {
             context,
             screen: StanderdDietPlanScreen(
               type: "Standard",
-              title: "Standard Diet Plan",
+              title: "Basic Diet Plan",
             ),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
@@ -42,8 +42,8 @@ class _DietGridScreenState extends State<DietGridScreen> {
         },
       ),
       HomeGridModel(
-        image: "assets/images/template2.png",
-        title: "Customized Diet Plan",
+        image: "assets/images/adv_diet.jpg",
+        title: "Advanced Diet Plan",
         color: ThemeClass.skyblueColor2,
         id: "2",
         onPress: () {
@@ -51,7 +51,7 @@ class _DietGridScreenState extends State<DietGridScreen> {
             context,
             screen: CustomizedDietPlanScreen(
               type: "Customized",
-              title: "Customized Diet Plan",
+              title: "Advanced Diet Plan",
             ),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
@@ -59,15 +59,15 @@ class _DietGridScreenState extends State<DietGridScreen> {
         },
       ),
       HomeGridModel(
-        image: "assets/images/user_icon1.png",
-        title: "Ask to Nutritionist",
+        image: "assets/images/ask_nut.jpg",
+        title: "Online Consultation \nwith Nutritionist",
         color: ThemeClass.pinkColor1,
         id: "3",
         onPress: () {
           pushNewScreen(
             context,
             screen: CustomizedDietPlanScreen(
-              title: "Ask to Nutritionist",
+              title: "Online Consultation \nwith Nutritionist",
               type: "Unconfirmed",
             ),
             withNavBar: true,

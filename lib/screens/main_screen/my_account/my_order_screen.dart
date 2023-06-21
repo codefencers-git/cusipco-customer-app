@@ -42,8 +42,9 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
               preferredSize: Size.fromHeight(65.0),
               child: AppBarWithTextAndBackWidget(
                 onbackPress: () {
-                  Provider.of<MainNavigationProwider>(context, listen: false)
-                      .chaneIndexOfNavbar(0);
+                  // Provider.of<MainNavigationProwider>(context, listen: false)
+                  //     .chaneIndexOfNavbar(0);
+                  Navigator.pop(context);
                 },
                 isShowCart: true,
                 onCartPress: () {},
@@ -73,7 +74,7 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
                           child: Container(
                             padding:
                                 EdgeInsets.only(top: 20, left: 20, right: 20),
-                            child: Column(
+                            child:  getdata.orderHistoryModel!.data.isNotEmpty ?  Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -95,7 +96,9 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
                                       return _buildCart(getdata, index);
                                     })
                               ],
-                            ),
+                            ) : Container(
+                                height: height / 1.5,
+                                child: Center(child: Text("No Orders Found !"))),
                           ),
                         );
             }),
