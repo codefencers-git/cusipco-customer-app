@@ -112,13 +112,6 @@ class _StoreGridScreenState extends State<CommonGridScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/images/store__back_image.png",
-                        width: width * 0.75,
-                      ),
-                    ),
                   ],
                 ),
               )),
@@ -135,7 +128,7 @@ class _StoreGridScreenState extends State<CommonGridScreen> {
           padding: EdgeInsets.only(
               top: MediaQuery.of(context).size.width / 3,
               bottom: MediaQuery.of(context).size.width / 3),
-          child: Center(child: Text("$text")),
+          child: Center(child: Text(text)),
         ));
   }
 
@@ -211,7 +204,7 @@ class _StoreGridScreenState extends State<CommonGridScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
                 child: Text(
-                  "${data.title.toString()}",
+                  data.title.toString(),
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                   maxLines: 2,

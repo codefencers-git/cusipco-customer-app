@@ -27,6 +27,7 @@ import '../../../service/prowider/order_history_provider.dart';
 import '../../../service/shared_pref_service/user_pref_service.dart';
 import '../common_screens/common_categories_screen.dart';
 import '../common_screens/single_category_detail_screen.dart';
+import '../common_screens/static_vertical_categories_list.dart';
 import 'EyeCare/eye_care_category_scree.dart';
 import 'HealthCheck/checkup_category_screen.dart';
 import 'global_product_list_screen.dart';
@@ -82,6 +83,27 @@ class _HomeScreenState extends State<HomeScreen> {
     // },
   ];
 
+  List womenHealthObg = [
+    {
+      "id": 1,
+      "image": "assets/images/dashboard/beauty.jpg",
+      "text": "Wellness and Beauty",
+      "for": "Wellness and Beauty"
+    },
+    {
+      "id": 2,
+      "image": "assets/images/dashboard/gyne.jpg",
+      "text": "Gynecologist",
+      "for": "Gynecologist"
+    },
+    {
+      "id": 3,
+      "image": "assets/images/dashboard/women_lab.jpg",
+      "text": "Test Related to Women",
+      "for": "Test Related to Women"
+    },
+  ];
+
   List covidCarePlan = [
     {
       "id": 1,
@@ -105,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
       "id": 4,
       "image": "assets/images/dashboard/covid_vaccination.jpg",
       "text": "COVID Vaccination",
-      "for": ""
+      "for": "COVID-Vaccination"
     },
     {
       "id": 5,
@@ -240,6 +262,27 @@ class _HomeScreenState extends State<HomeScreen> {
     },
   ];
 
+  List wellnessAndBeautyList = [
+    {
+      "id": 1,
+      "image": "assets/images/dashboard/hair_care.jpg",
+      "text": "Hair Care",
+      "for": "HairCare",
+    },
+    {
+      "id": 2,
+      "image": "assets/images/dashboard/skin_care.jpg",
+      "text": "Skin Care",
+      "for": "SkinCare"
+    },
+    {
+      "id": 3,
+      "image": "assets/images/dashboard/other.jpg",
+      "text": "Other",
+      "for": "Other"
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -320,9 +363,49 @@ class _HomeScreenState extends State<HomeScreen> {
           ));
           print("Health Checkup");
         } else if (item["id"] == 2) {
-          goto(productListScreen(
-            categoryId: "39",
-            routeName: "LabTest",
+          goto(CommonGridScreen(
+            title: "Women's Health (OBG)",
+            itemList: womenHealthObg,
+            onClickModule: (Map<String, Object> data, context) {
+              if(data["id"] == 1){
+                pushNewScreen(
+                  context,
+                  screen: StaticVerticalCategoriesList(
+                      onClickModule: (Map<String, Object> data, context) {
+                        print(data.toString());
+                        if(data["id"] == 1){
+                          goto( BookServiceFormScreen(
+                              route: "submit-women-care-form",
+                              for_service: data["for"].toString()));
+                        } else if(data["id"] == 2){
+                          goto( BookServiceFormScreen(
+                              route: "submit-women-care-form",
+                              for_service: data["for"].toString()));
+                        } else if(data["id"] == 3){
+                          goto( BookServiceFormScreen(
+                              route: "submit-women-care-form",
+                              for_service: data["for"].toString()));
+                        }
+                      },
+                      list: wellnessAndBeautyList,
+                      title: data["text"].toString(),
+                      slider: null
+                  ),
+                  withNavBar: true,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
+              } else if(data["id"] == 2){
+                goto(SingleCategoryScreen(
+                  categoryId: '33',
+                  mode: '',
+                ));
+              } else if(data["id"] == 3){
+                goto(productListScreen(
+                  categoryId: "39",
+                  routeName: "LabTest",
+                ));
+              }
+            },
           ));
           print("Women's Health");
         } else if (item["id"] == 3) {
@@ -334,10 +417,6 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if (item["id"] == 4) {
           goto(DoctorsCategoryScreen());
           print("Doctor Consultation");
-          // goto(productListScreen(
-          //   categoryId: "41",
-          //   routeName: "LabTest",
-          // ));
           print("Pregnancy Test");
         } else if (item["id"] == 5) {
           goto(productListScreen(
@@ -360,18 +439,22 @@ class _HomeScreenState extends State<HomeScreen> {
           goto(CommonGridScreen(
             title: "Covid Care Plan",
             itemList: covidCarePlan,
-            onClickModule: (  Map<String, Object> data, context) {
-              print("IDIDIDIDI"+ data["id"].toString() );
+            onClickModule: (Map<String, Object> data, context) {
+              print("IDIDIDIDI" + data["id"].toString());
               pushNewScreen(
                 context,
                 screen: data["id"] == 1 || data["id"] == 2 || data["id"] == 3
-                    ? BookServiceFormScreen(route: "submit-covid-form", for_service: data["for"].toString() )
+                    ? BookServiceFormScreen(
+                        route: "submit-covid-form",
+                        for_service: data["for"].toString())
                     : data["id"] == 4
-                        ? SingleCategoryScreen(
-                            categoryId: '20',
-                            mode: '',
-                          )
-                        : DoctorsCategoryScreen(),
+                        ? BookServiceFormScreen(
+                    route: "submit-covid-form",
+                    for_service: data["for"].toString())
+                        :  SingleCategoryScreen(
+                  categoryId: '20',
+                  mode: '',
+                ),
                 withNavBar: true,
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );
@@ -408,24 +491,29 @@ class _HomeScreenState extends State<HomeScreen> {
           goto(EyeCareCategoryScreen());
           print("Eye Care");
         } else if (item["id"] == 13) {
-          goto(ViewAllCategoriesScreen(categoriesList: allHelthBenifit,title: "Health benefits"));
+          goto(ViewAllCategoriesScreen(
+              categoriesList: allHelthBenifit, title: "Health benefits"));
         }
-
         //for emergency services
         if (item["id"] == 33) {
-          goto(BookServiceFormScreen(route: "submit-emergency-form", for_service: "Blood-Requirement"));
+          goto(BookServiceFormScreen(
+              route: "submit-emergency-form",
+              for_service: "Blood-Requirement"));
           print("Blood Requirement");
         } else if (item["id"] == 44) {
-          goto(BookServiceFormScreen(route: "submit-emergency-form", for_service: "Ambulance"));
+          goto(BookServiceFormScreen(
+              route: "submit-emergency-form", for_service: "Ambulance"));
           print("Ambulance Services");
         } else if (item["id"] == 55) {
           goto(SupportScreen());
           print("Connect with support team");
         } else if (item["id"] == 66) {
-          goto(BookServiceFormScreen(route: "submit-emergency-form", for_service: "Blood-Donation"));
+          goto(BookServiceFormScreen(
+              route: "submit-emergency-form", for_service: "Blood-Donation"));
           print("Blood Donation");
         } else if (item["id"] == 77) {
-          goto(BookServiceFormScreen(route: "submit-emergency-form", for_service: "ECG"));
+          goto(BookServiceFormScreen(
+              route: "submit-emergency-form", for_service: "ECG"));
           print("Blood Donation");
         }
       },
@@ -774,8 +862,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ViewAllCategoriesScreen(title: title ,
-                                    categoriesList: list!)));
+                                builder: (context) => ViewAllCategoriesScreen(
+                                    title: title, categoriesList: list!)));
                           },
                           child: Text(
                             "View All",
