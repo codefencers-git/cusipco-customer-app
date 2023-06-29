@@ -1,3 +1,4 @@
+import 'package:cusipco/screens/main_screen/blog/blog_prowider_service.dart';
 import 'package:cusipco/screens/main_screen/common_screens/common_service.dart';
 import 'package:cusipco/service/prowider/blood_sugar_test_service.dart';
 import 'package:cusipco/service/prowider/checkup_category_provider.dart';
@@ -283,6 +284,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<CommonServiceProwider>(
             create: (_) => CommonServiceProwider(),
+          ),
+          ChangeNotifierProvider<BlogProviderService>(
+            create: (_) => BlogProviderService(),
           )
         ],
         child: MaterialApp(

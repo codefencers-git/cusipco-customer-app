@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cusipco/model/general_information_model.dart';
 import 'package:cusipco/screens/chat/chat_list_screen.dart';
 import 'package:cusipco/screens/main_screen/PregnancyTest/pregnancy_test_category_screen.dart';
+import 'package:cusipco/screens/main_screen/blog/blog_listing_model.dart';
 import 'package:cusipco/screens/main_screen/common_screens/common_grid_screen.dart';
 import 'package:cusipco/screens/main_screen/common_screens/forms/book_service_form.dart';
 import 'package:cusipco/screens/main_screen/home/BloodSugarTest/blood_sugar_test_category_screen.dart';
@@ -19,12 +20,16 @@ import 'package:cusipco/widgets/app_bars/appbar_for_home.dart';
 import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 import 'package:cusipco/widgets/slider_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 import '../../../model/user_model.dart';
 import '../../../service/prowider/order_history_provider.dart';
 import '../../../service/shared_pref_service/user_pref_service.dart';
+import '../blog/blog_list_screen.dart';
+import '../blog/blog_prowider_service.dart';
+import '../blog/blog_screen.dart';
 import '../common_screens/common_categories_screen.dart';
 import '../common_screens/single_category_detail_screen.dart';
 import '../common_screens/static_vertical_categories_list.dart';
@@ -40,8 +45,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  BlogListingModel blogListModel = BlogListingModel();
   @override
   void initState() {
+
     super.initState();
   }
 
@@ -327,7 +334,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    _buildTitle("Latest Blogs", true),
+                    _buildViewAllTitle("Latest Blogs", true),
                     _buildblogView(),
                     SizedBox(
                       height: 30,
@@ -569,19 +576,23 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildblogView() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          ...[1, 2, 3].map(
-            (e) => _buildBlogListtile(),
-          )
-        ],
-      ),
-    );
+    return Consumer<BlogProviderService>(
+        builder: (context, navProwider, child) {
+          navProwider.getBlog(context);
+            return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                ...navProwider.blogListingData!.data!.map(
+                      (blogItem) => _buildBlogListtile(blogItem),
+                )
+              ],
+            ),
+          );
+        });
   }
 
-  Container _buildBlogListtile() {
+  Container _buildBlogListtile(Data blogItem) {
     return Container(
       width: MediaQuery.of(context).size.width - 40,
       padding: EdgeInsets.only(left: 15),
@@ -591,7 +602,7 @@ class _HomeScreenState extends State<HomeScreen> {
           CachedNetworkImage(
             height: 150,
             imageUrl:
-                "https://images.unsplash.com/photo-1612550761236-e813928f7271?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnVzc2luZXNzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+            blogItem.image.toString(),
             imageBuilder: (context, imageProvider) => Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -662,7 +673,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 5,
           ),
           Text(
-            "Book Your Dr. Consultation",
+            blogItem.title.toString(),
             style: TextStyle(
               color: ThemeClass.blackColor,
               fontWeight: FontWeight.w600,
@@ -672,24 +683,25 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 5,
           ),
-          Text(
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,...",
-            style: TextStyle(
-              color: ThemeClass.greyColor,
-              fontWeight: FontWeight.w400,
-              fontSize: 10,
-            ),
+          HtmlWidget(
+            blogItem.short_description.toString(),
+            textStyle: TextStyle(fontSize: 12),
           ),
           SizedBox(
             height: 5,
           ),
-          Text(
-            "Read More",
-            style: TextStyle(
-              color: ThemeClass.blueColor22,
-              fontWeight: FontWeight.w500,
-              fontFamily: "Gilory",
-              fontSize: 12,
+          InkWell(
+            onTap: (){
+              goto(BlogScreen(blogItem: blogItem));
+            },
+            child: Text(
+              "Read More",
+              style: TextStyle(
+                color: ThemeClass.blueColor22,
+                fontWeight: FontWeight.w500,
+                fontFamily: "Gilory",
+                fontSize: 12,
+              ),
             ),
           ),
         ],
@@ -884,6 +896,63 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     )
+                  : SizedBox()
+            ],
+          ),
+          Divider()
+        ],
+      ),
+    );
+  }
+
+  _buildViewAllTitle(String title, bool isShowICon, {List<dynamic>? list}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  color: ThemeClass.blackColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                ),
+              ),
+              isShowICon
+                  ? Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                     var blogProvider = Provider.of<BlogProviderService>(context, listen: false);
+                      goto(BlogListScreen(list: blogProvider.blogListingData! , title: 'Blog', onClickModule: (data, context) {
+                        goto(BlogScreen(blogItem: data));
+                      },));
+                    },
+                    child: Text(
+                      "View All",
+                      style: TextStyle(
+                        color: ThemeClass.blueColor22,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    Icons.arrow_forward_outlined,
+                    size: 15,
+                    color: ThemeClass.blueColor22,
+                  ),
+                ],
+              )
                   : SizedBox()
             ],
           ),
