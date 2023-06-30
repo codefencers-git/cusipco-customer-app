@@ -10,6 +10,7 @@ import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
 import 'package:cusipco/widgets/online_offline_bottom_sheet.dart';
 
 import 'package:cusipco/widgets/slider_widget.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
@@ -240,11 +241,10 @@ class _BlogListScreenState extends State<BlogListScreen> {
                                                         ),
                                                       ),
                                                     ),
-                                                    Text(
+                                                    HtmlWidget(
                                                       data.short_description
                                                           .toString(),
-                                                      maxLines: 3,
-                                                      style: TextStyle(
+                                                      textStyle: TextStyle(
                                                         color: ThemeClass
                                                             .blackColor,
                                                         fontWeight:

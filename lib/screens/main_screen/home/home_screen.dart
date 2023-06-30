@@ -591,109 +591,116 @@ class _HomeScreenState extends State<HomeScreen> {
         });
   }
 
-  Container _buildBlogListtile(Data blogItem) {
-    return Container(
-      width: MediaQuery.of(context).size.width - 40,
-      padding: EdgeInsets.only(left: 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CachedNetworkImage(
-            height: 150,
-            imageUrl:
-            blogItem.image.toString(),
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
+  InkWell _buildBlogListtile(Data blogItem) {
+    return InkWell(
+      onTap: (){
+        goto(BlogScreen(blogItem: blogItem));
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width - 40,
+        padding: EdgeInsets.only(left: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CachedNetworkImage(
+              height: 150,
+              imageUrl:
+              blogItem.image.toString(),
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
+              placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator(color: ThemeClass.blueColor)),
+              errorWidget: (context, url, error) =>
+                  Center(child: Icon(Icons.error)),
             ),
-            placeholder: (context, url) => Center(
-                child: CircularProgressIndicator(color: ThemeClass.blueColor)),
-            errorWidget: (context, url, error) =>
-                Center(child: Icon(Icons.error)),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Container(
-            child: Row(
-              children: [
-                Container(
-                  height: 24,
-                  width: 24,
-                  child: Image.asset(
-                    "assets/images/dashboard/calender_icon.png",
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  blogItem.date.toString(),
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: ThemeClass.blackColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 10,
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Container(
-                  height: 24,
-                  width: 24,
-                  child: Image.asset(
-                    "assets/images/dashboard/user1_icon.png",
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  blogItem.author.toString(),
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: ThemeClass.blackColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 10,
-                  ),
-                ),
-              ],
+            SizedBox(
+              height: 5,
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Text(
-            blogItem.title.toString(),
-            style: TextStyle(
-              color: ThemeClass.blackColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 14,
+            Container(
+              child: Row(
+                children: [
+                  Container(
+                    height: 24,
+                    width: 24,
+                    child: Image.asset(
+                      "assets/images/dashboard/calender_icon.png",
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    blogItem.date.toString(),
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: ThemeClass.blackColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 24,
+                    width: 24,
+                    child: Image.asset(
+                      "assets/images/dashboard/user1_icon.png",
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    blogItem.author.toString(),
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: ThemeClass.blackColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          HtmlWidget(
-            blogItem.short_description.toString(),
-            textStyle: TextStyle(fontSize: 12),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          InkWell(
-            onTap: (){
-              goto(BlogScreen(blogItem: blogItem));
-            },
-            child: Text(
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              blogItem.title.toString(),
+              style: TextStyle(
+                color: ThemeClass.blackColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            HtmlWidget(
+              blogItem.short_description
+                  .toString(),
+              textStyle: TextStyle(
+                color: ThemeClass
+                    .blackColor,
+                fontWeight:
+                FontWeight.w600,
+                fontSize: 9,
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
               "Read More",
               style: TextStyle(
                 color: ThemeClass.blueColor22,
@@ -702,8 +709,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 12,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
