@@ -45,10 +45,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  BlogListingModel blogListModel = BlogListingModel();
+  var blogModel;
   @override
   void initState() {
-
+  Provider.of<BlogProviderService>(context, listen: false).getBlog(context,
+        {"page" : "1", "count": "4"});
     super.initState();
   }
 
@@ -355,7 +356,6 @@ class _HomeScreenState extends State<HomeScreen> {
       pageTransitionAnimation: PageTransitionAnimation.cupertino,
     );
   }
-
   _buildGridListTile(item) {
     return InkWell(
       onTap: () {
@@ -578,7 +578,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildblogView() {
     return Consumer<BlogProviderService>(
         builder: (context, navProwider, child) {
-          navProwider.getBlog(context);
             return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -635,7 +634,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 5,
                 ),
                 Text(
-                  "25 Feb 2023",
+                  blogItem.date.toString(),
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: ThemeClass.blackColor,
@@ -658,7 +657,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 5,
                 ),
                 Text(
-                  "By Admin",
+                  blogItem.author.toString(),
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: ThemeClass.blackColor,
@@ -930,7 +929,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   InkWell(
                     onTap: () {
                      var blogProvider = Provider.of<BlogProviderService>(context, listen: false);
-                      goto(BlogListScreen(list: blogProvider.blogListingData! , title: 'Blog', onClickModule: (data, context) {
+                      goto(BlogListScreen( title: 'Blog', onClickModule: (data, context) {
                         goto(BlogScreen(blogItem: data));
                       },));
                     },

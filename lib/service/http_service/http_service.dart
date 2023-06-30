@@ -115,7 +115,6 @@ class HttpService with ChangeNotifier {
       return http.post(
         Uri.parse(API_BASE_URL + url),
         body: map,
-
       );
     } else {
       throw GlobalVariableForShowMessage.internetNotConneted;

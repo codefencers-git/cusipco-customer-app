@@ -51,8 +51,8 @@ class _BlogScreenState extends State<BlogScreen> {
                   onbackPress: () {
                     Navigator.pop(context);
                   },
-                  title: "Blog",
-                  isShowCart: true,
+                  title: "",
+                  isShowCart: false,
                 )),
             body: Container(
               color: ThemeClass.whiteColor,
@@ -138,7 +138,7 @@ class _BlogScreenState extends State<BlogScreen> {
                   width: 5,
                 ),
                 Text(
-                  "25 Feb 2023",
+                  blogItem.date.toString(),
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: ThemeClass.blackColor,
@@ -161,7 +161,7 @@ class _BlogScreenState extends State<BlogScreen> {
                   width: 5,
                 ),
                 Text(
-                  "By Admin",
+                  blogItem.author.toString(),
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: ThemeClass.blackColor,
@@ -187,8 +187,7 @@ class _BlogScreenState extends State<BlogScreen> {
             height: 5,
           ),
           HtmlWidget(
-            blogItem.description.toString(), 
-
+            blogItem.description.toString(),
           ),
           SizedBox(
             height: 5,

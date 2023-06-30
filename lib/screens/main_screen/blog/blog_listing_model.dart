@@ -36,12 +36,16 @@ class Data {
   String? title;
   String? description;
   String? short_description;
+  String? author;
+  String? date;
 
-  Data({this.id, this.image, this.title, this.description, this.short_description});
+  Data({this.id, this.image, this.title, this.description, this.short_description, this.author, this.date});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
+    date = json['date'];
+    author = json['author'];
     title = json['title'];
     short_description = json['short_description'];
     description = json['description'];
@@ -51,6 +55,8 @@ class Data {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['image'] = this.image;
+    data['author'] = this.author;
+    data['date'] = this.date;
     data['title'] = this.title;
     data['description'] = this.description;
     data['short_description'] = this.short_description;
