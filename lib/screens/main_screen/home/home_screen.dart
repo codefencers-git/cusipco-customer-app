@@ -46,10 +46,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var blogModel;
+
   @override
   void initState() {
-  Provider.of<BlogProviderService>(context, listen: false).getBlog(context,
-        {"page" : "1", "count": "4"});
+    Provider.of<BlogProviderService>(context, listen: false)
+        .getBlog(context, {"page": "1", "count": "4"});
     super.initState();
   }
 
@@ -336,9 +337,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 10,
                     ),
                     _buildViewAllTitle("Latest Blogs", true),
-                    _buildblogView(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: _buildblogView(),
+                    ),
                     SizedBox(
-                      height: 30,
+                      height: 40,
                     ),
                   ],
                 ),
@@ -356,6 +360,7 @@ class _HomeScreenState extends State<HomeScreen> {
       pageTransitionAnimation: PageTransitionAnimation.cupertino,
     );
   }
+
   _buildGridListTile(item) {
     return InkWell(
       onTap: () {
@@ -374,39 +379,38 @@ class _HomeScreenState extends State<HomeScreen> {
             title: "Women's Health (OBG)",
             itemList: womenHealthObg,
             onClickModule: (Map<String, Object> data, context) {
-              if(data["id"] == 1){
+              if (data["id"] == 1) {
                 pushNewScreen(
                   context,
                   screen: StaticVerticalCategoriesList(
                       onClickModule: (Map<String, Object> data, context) {
                         print(data.toString());
-                        if(data["id"] == 1){
-                          goto( BookServiceFormScreen(
+                        if (data["id"] == 1) {
+                          goto(BookServiceFormScreen(
                               route: "submit-women-care-form",
                               for_service: data["for"].toString()));
-                        } else if(data["id"] == 2){
-                          goto( BookServiceFormScreen(
+                        } else if (data["id"] == 2) {
+                          goto(BookServiceFormScreen(
                               route: "submit-women-care-form",
                               for_service: data["for"].toString()));
-                        } else if(data["id"] == 3){
-                          goto( BookServiceFormScreen(
+                        } else if (data["id"] == 3) {
+                          goto(BookServiceFormScreen(
                               route: "submit-women-care-form",
                               for_service: data["for"].toString()));
                         }
                       },
                       list: wellnessAndBeautyList,
                       title: data["text"].toString(),
-                      slider: null
-                  ),
+                      slider: null),
                   withNavBar: true,
                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                 );
-              } else if(data["id"] == 2){
+              } else if (data["id"] == 2) {
                 goto(SingleCategoryScreen(
                   categoryId: '33',
                   mode: '',
                 ));
-              } else if(data["id"] == 3){
+              } else if (data["id"] == 3) {
                 goto(productListScreen(
                   categoryId: "39",
                   routeName: "LabTest",
@@ -456,12 +460,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         for_service: data["for"].toString())
                     : data["id"] == 4
                         ? BookServiceFormScreen(
-                    route: "submit-covid-form",
-                    for_service: data["for"].toString())
-                        :  SingleCategoryScreen(
-                  categoryId: '20',
-                  mode: '',
-                ),
+                            route: "submit-covid-form",
+                            for_service: data["for"].toString())
+                        : SingleCategoryScreen(
+                            categoryId: '20',
+                            mode: '',
+                          ),
                 withNavBar: true,
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );
@@ -578,34 +582,33 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildblogView() {
     return Consumer<BlogProviderService>(
         builder: (context, navProwider, child) {
-            return SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                ...navProwider.blogListingData!.data!.map(
-                      (blogItem) => _buildBlogListtile(blogItem),
-                )
-              ],
-            ),
-          );
-        });
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            ...navProwider.blogListingData!.data!.map(
+              (blogItem) => _buildBlogListtile(blogItem),
+            )
+          ],
+        ),
+      );
+    });
   }
 
   InkWell _buildBlogListtile(Data blogItem) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         goto(BlogScreen(blogItem: blogItem));
       },
       child: Container(
         width: MediaQuery.of(context).size.width - 40,
-        padding: EdgeInsets.only(left: 15),
+        padding: EdgeInsets.only(left: 8, right: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CachedNetworkImage(
               height: 150,
-              imageUrl:
-              blogItem.image.toString(),
+              imageUrl: blogItem.image.toString(),
               imageBuilder: (context, imageProvider) => Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -616,7 +619,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               placeholder: (context, url) => Center(
-                  child: CircularProgressIndicator(color: ThemeClass.blueColor)),
+                  child:
+                      CircularProgressIndicator(color: ThemeClass.blueColor)),
               errorWidget: (context, url, error) =>
                   Center(child: Icon(Icons.error)),
             ),
@@ -687,13 +691,10 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 5,
             ),
             HtmlWidget(
-              blogItem.short_description
-                  .toString(),
+              blogItem.short_description.toString(),
               textStyle: TextStyle(
-                color: ThemeClass
-                    .blackColor,
-                fontWeight:
-                FontWeight.w600,
+                color: ThemeClass.blackColor,
+                fontWeight: FontWeight.w600,
                 fontSize: 9,
               ),
             ),
@@ -932,33 +933,38 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               isShowICon
                   ? Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                     var blogProvider = Provider.of<BlogProviderService>(context, listen: false);
-                      goto(BlogListScreen( title: 'Blog', onClickModule: (data, context) {
-                        goto(BlogScreen(blogItem: data));
-                      },));
-                    },
-                    child: Text(
-                      "View All",
-                      style: TextStyle(
-                        color: ThemeClass.blueColor22,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.arrow_forward_outlined,
-                    size: 15,
-                    color: ThemeClass.blueColor22,
-                  ),
-                ],
-              )
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            var blogProvider = Provider.of<BlogProviderService>(
+                                context,
+                                listen: false);
+                            goto(BlogListScreen(
+                              title: 'Blog',
+                              onClickModule: (data, context) {
+                                goto(BlogScreen(blogItem: data));
+                              },
+                            ));
+                          },
+                          child: Text(
+                            "View All",
+                            style: TextStyle(
+                              color: ThemeClass.blueColor22,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_outlined,
+                          size: 15,
+                          color: ThemeClass.blueColor22,
+                        ),
+                      ],
+                    )
                   : SizedBox()
             ],
           ),
