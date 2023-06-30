@@ -183,9 +183,8 @@ class _BlogScreenState extends State<BlogScreen> {
               fontSize: 14,
             ),
           ),
-          SizedBox(
-            height: 5,
-          ),
+          Divider( height: 1, ),
+          Container(height: 10,),
           HtmlWidget(
             blogItem.description.toString(),
           ),
