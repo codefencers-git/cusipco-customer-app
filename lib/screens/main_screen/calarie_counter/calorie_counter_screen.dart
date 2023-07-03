@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cusipco/model/get_question_model.dart';
+import 'package:cusipco/screens/mra-que/question.dart';
 import 'package:flutter/material.dart';
 import 'package:cusipco/Global/global_variable_for_show_messge.dart';
 import 'package:cusipco/screens/main_screen/calarie_counter/add_items_calorie_screen.dart';
@@ -32,18 +34,76 @@ class CalorieCounterScreen extends StatefulWidget {
 }
 
 class _CalorieCounterScreenState extends State<CalorieCounterScreen> {
+
   CarouselController buttonCarouselController = CarouselController();
   String _currentDataToDisplay = "";
   String _currentDataToSend = "";
 
   DateTime currentDate = DateTime.now();
   String _currentDateToComapare = "";
+  get_question_model? questionData;
   var _futureCall;
+  var allQuestion = get_question_model();
 
   @override
   void initState() {
     super.initState();
     _setDAta();
+  }
+
+ Future<get_question_model?> _loadQuestion()async{
+
+   try {
+     Map<String, String> queryParameters = {
+       "page": "1",
+       "count": "10",
+       "search": ""
+     };
+
+     print(queryParameters);
+
+     var response = await HttpService.httpPost(
+         "hra-questions", queryParameters,
+         context: context);
+     if (response.statusCode == 200 || response.statusCode == 201) {
+       final body = json.decode(response.body);
+       questionData = get_question_model.fromJson(body);
+       if (questionData != null && questionData?.status == "200") {
+         print("Here all question");
+         print(questionData?.data);
+       } else {
+         throw GlobalVariableForShowMessage.internalservererror;
+       }
+
+
+       if (body['success'].toString() == "1" &&
+           body['status'].toString() == "200") {
+
+         allQuestion = get_question_model(data: body);
+         return get_question_model.fromJson(body);
+       } else {
+         throw body['message'].toString();
+       }
+     } else if (response.statusCode == 401) {
+       showToast(GlobalVariableForShowMessage.unauthorizedUser);
+       await UserPrefService().removeUserData();
+       NavigationService().navigatWhenUnautorized();
+     } else if (response.statusCode == 500) {
+       throw GlobalVariableForShowMessage.internalservererror;
+     } else {
+       throw GlobalVariableForShowMessage.internalservererror;
+     }
+   } catch (e) {
+     // if (e is SocketException) {
+     //   throw GlobalVariableForShowMessage.socketExceptionMessage;
+     // } else if (e is TimeoutException) {
+     //   throw GlobalVariableForShowMessage.timeoutExceptionMessage;
+     // } else {
+     //   throw e.toString();
+     // }
+   }
+   return null;
+
   }
 
   _setDAta() {
@@ -153,54 +213,9 @@ class _CalorieCounterScreenState extends State<CalorieCounterScreen> {
     }
   }
 
-  showAlertDialog(bool isMember, data) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context1) {
-        return AlertDialog(
-          title: Text("Update Your Profile"),
-          content: Text("Height,Weight and Activity require for calory."),
-          actions: [
-            TextButtonWidget(
-              child: Text("Ok"),
-              onPressed: () async {
-                print("called");
 
-                if (isMember) {
-                  await pushNewScreen(
-                    context1,
-                    screen: EditFamilyMemberScreen(
-                      familyData: data,
-                    ),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                } else {
-                  await pushNewScreen(
-                    context,
-                    screen: MyProfileScreen(),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                }
 
-                Navigator.pop(context1);
-              },
-            ),
-            TextButtonWidget(
-              child: Text("Cancel"),
-              onPressed: () {
-                Provider.of<MainNavigationProwider>(context1, listen: false)
-                    .chaneIndexOfNavbar(0);
-                Navigator.pop(context1);
-              },
-            )
-          ],
-        );
-      },
-    );
-  }
+
 
   bool isShowError = false;
   @override
@@ -226,7 +241,9 @@ class _CalorieCounterScreenState extends State<CalorieCounterScreen> {
               setState(() {
                 isShowError = false;
               });
-              showAlertDialog(true, familyprowider.currentFamilyMember);
+              _loadQuestion().then((value) {
+                showAlertDialog(true, familyprowider.currentFamilyMember);
+              });
             } else {
               setState(() {
                 isShowError = true;
@@ -241,7 +258,10 @@ class _CalorieCounterScreenState extends State<CalorieCounterScreen> {
               setState(() {
                 isShowError = false;
               });
-              showAlertDialog(false, user.globleUserModel!.data!);
+              _loadQuestion().then((value) {
+                showAlertDialog(false, user.globleUserModel!.data!);
+              });
+
             } else {
               setState(() {
                 isShowError = true;
@@ -355,6 +375,158 @@ class _CalorieCounterScreenState extends State<CalorieCounterScreen> {
       padding: EdgeInsets.only(top: MediaQuery.of(context).size.width - 150),
       child: Text("$text"),
     ));
+  }
+
+  showAlertDialog(bool isMember, data) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context1) {
+        return AlertDialog(
+          title: Text("Update Your Profile"),
+          content: Text("Height,Weight and Activity require for calory."),
+          actions: [
+            TextButtonWidget(
+              child: Text("Ok"),
+              onPressed: () async {
+                
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>question(data: questionData?.data)));
+
+                // print("called");
+                //
+                // if (isMember) {
+                //   await pushNewScreen(
+                //     context1,
+                //     screen: EditFamilyMemberScreen(
+                //       familyData: data,
+                //     ),
+                //     withNavBar: false,
+                //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                //   );
+                // } else {
+                //   await pushNewScreen(
+                //     context,
+                //     screen: MyProfileScreen(),
+                //     withNavBar: false,
+                //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                //   );
+                // }
+                //
+                Navigator.pop(context1);
+                //
+                // _loadQuestion().then((value) {
+                //   showModalBottomSheet(
+                //     isDismissible: true,
+                //     isScrollControlled: true,
+                //
+                //     context: context,
+                //     builder: (context) {
+                //
+                //       var height = MediaQuery.of(context).size.height;
+                //       var width = MediaQuery.of(context).size.width;
+                //
+                //       return Container(
+                //         height: height,
+                //         width: width,
+                //         child: SingleChildScrollView(
+                //           physics: BouncingScrollPhysics(),
+                //           child: Column(
+                //             children: [
+                //               ListView.separated(
+                //                 padding: EdgeInsets.symmetric(horizontal: 20),
+                //                 shrinkWrap: true,
+                //                 physics: BouncingScrollPhysics(),
+                //                 scrollDirection: Axis.vertical,
+                //                 itemBuilder: (BuildContext context, int index) {
+                //                   return Column(
+                //                     mainAxisAlignment: MainAxisAlignment.start,
+                //                     crossAxisAlignment: CrossAxisAlignment.start,
+                //                     children: [
+                //                       Text(questionData!.data![index].title.toString(),
+                //                         textAlign: TextAlign.justify,
+                //                       ) ,
+                //                       ListView.builder(
+                //                         padding: EdgeInsets.symmetric(vertical: 10),
+                //                         shrinkWrap: true,
+                //                         physics: BouncingScrollPhysics(),
+                //                         // return a custom ItemCard
+                //                         itemBuilder: (context, grindex) {
+                //                           return Row(
+                //                             mainAxisAlignment: MainAxisAlignment.start,
+                //                             children: [
+                //                               Radio(
+                //                                 visualDensity: VisualDensity.compact,
+                //                                 activeColor: Colors.black,
+                //                                 fillColor: MaterialStateColor.resolveWith(
+                //                                         (states) => Colors.black),
+                //                                 value: grindex + 1,
+                //                                 groupValue: 1,
+                //                                 // _get_question.grplist[index + 6],
+                //                                 onChanged: (indexs) {
+                //                                   // _and_question.ans_question_cont(
+                //                                   //   _get_question
+                //                                   //       .response.value.data![index + 6].id,
+                //                                   //   _get_question
+                //                                   //       .response
+                //                                   //       .value
+                //                                   //       .data![index + 6]
+                //                                   //       .options![grindex]
+                //                                   //       .id
+                //                                   //       .toString(),
+                //                                   // );
+                //                                   //
+                //                                   // setState(() {
+                //                                   //   _get_question.grplist[index + 6] =
+                //                                   //       int.parse(indexs.toString());
+                //                                   //   print(
+                //                                   //       "${_get_question.grplist[index + 6]}");
+                //                                   // });
+                //                                 },
+                //                               ),
+                //                               Container(
+                //                                 width: height * 0.7,
+                //                                 child: Text(
+                //                                   questionData!.data![index].options![grindex].title.toString(),
+                //                                 ),
+                //                               ),
+                //                             ],
+                //                           );
+                //                         },
+                //                         itemCount: questionData!.data![index].options!.length,
+                //                       ),
+                //                     ],
+                //                   );
+                //                 },
+                //                 separatorBuilder: (BuildContext conqtext, int index) {
+                //                   return const SizedBox(
+                //                     height: 0,
+                //                   );
+                //                 },
+                //                 itemCount: questionData!.data!.length,
+                //               ),
+                //             ],
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //   );
+                // });
+
+
+              },
+            ),
+            TextButtonWidget(
+              child: Text("Cancel"),
+              onPressed: () {
+                Provider.of<MainNavigationProwider>(context1, listen: false)
+                    .chaneIndexOfNavbar(0);
+                Navigator.pop(context1);
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 
   Column _buildListTile(ListElement data) {

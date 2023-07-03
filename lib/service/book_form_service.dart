@@ -13,17 +13,26 @@ Future<BookServiceFormModel?> bookFormService(
     String mobile_number,
     String address,
     String for_service,
-    BuildContext context ) async {
+    String age,
+    String gender,
+    String dose,
+    BuildContext context) async {
   try {
     var url = route_name;
+
     Map<dynamic, dynamic> data;
+
     data = {
       'name': name,
       'mobile_number': mobile_number,
       'address': address,
-      'for': for_service
+      'for': for_service,
+      'age': age,
+      'gender' : gender,
+      'dose' : dose
     };
 
+    print("URL IS HERE $url");
     var response = await HttpService.httpPost(url, data, context: context);
 
     if (response.statusCode == 200) {
@@ -43,3 +52,4 @@ Future<BookServiceFormModel?> bookFormService(
     // debugPrint(e.toString());
   }
 }
+
