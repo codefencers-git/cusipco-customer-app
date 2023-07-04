@@ -34,8 +34,10 @@ class Data {
   String? id;
   String? title;
   List<Options>? options;
+  String? isAnswered;
+  String? answeredId;
 
-  Data({this.id, this.title, this.options});
+  Data({this.id, this.title, this.options, this.isAnswered, this.answeredId});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -46,6 +48,8 @@ class Data {
         options!.add(new Options.fromJson(v));
       });
     }
+    isAnswered = json['is_answered'];
+    answeredId = json['answered_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +59,8 @@ class Data {
     if (this.options != null) {
       data['options'] = this.options!.map((v) => v.toJson()).toList();
     }
+    data['is_answered'] = this.isAnswered;
+    data['answered_id'] = this.answeredId;
     return data;
   }
 }

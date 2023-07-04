@@ -47,6 +47,7 @@ class _DropDownCustomState extends State<DropDownCustom> {
         padding: EdgeInsets.only(bottom: padding),
         child: DropdownButtonFormField<String>(
           onChanged: (value){
+            widget.onChanged!(value);
             widget.controller?.text = value.toString();
           },
           items: widget.items,

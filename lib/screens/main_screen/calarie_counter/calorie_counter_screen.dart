@@ -47,6 +47,9 @@ class _CalorieCounterScreenState extends State<CalorieCounterScreen> {
 
   @override
   void initState() {
+    _loadQuestion().then((value) {
+      // Navigator.push(context, MaterialPageRoute(builder: (context)=>question(data: questionData?.data)));
+    });
     super.initState();
     _setDAta();
   }
@@ -56,7 +59,7 @@ class _CalorieCounterScreenState extends State<CalorieCounterScreen> {
    try {
      Map<String, String> queryParameters = {
        "page": "1",
-       "count": "10",
+       "count": "100",
        "search": ""
      };
 
@@ -390,7 +393,7 @@ class _CalorieCounterScreenState extends State<CalorieCounterScreen> {
               child: Text("Ok"),
               onPressed: () async {
                 
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>question(data: questionData?.data)));
+                // Navigator.push(context, MaterialPageRoute(builder: (context)=>question(data: questionData?.data)));
 
                 // print("called");
                 //

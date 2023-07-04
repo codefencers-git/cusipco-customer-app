@@ -7,7 +7,7 @@ import 'package:cusipco/model/book_appo_model.dart';
 
 import 'package:cusipco/service/http_service/http_service.dart';
 
-Future<BookServiceFormModel?> bookFormService(
+Future<BookServiceFormModel?> bookCovidFormService(
     String name,
     String route_name,
     String mobile_number,
@@ -38,6 +38,48 @@ Future<BookServiceFormModel?> bookFormService(
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       if (data['status'] == "200" && data['success'] == "1") {
+        Navigator.pop(context);
+        return BookServiceFormModel.fromJson(data);
+      } else {
+        throw data['message'].toString();
+      }
+    } else if (response.statusCode == 500) {
+      throw GlobalVariableForShowMessage.internalservererror;
+    } else {
+      throw GlobalVariableForShowMessage.somethingwentwongMessage;
+    }
+  } catch (e) {
+    rethrow;
+    // debugPrint(e.toString());
+  }
+}
+
+Future<BookServiceFormModel?> bookNormalFormService(
+    String name,
+    String route_name,
+    String mobile_number,
+    String address,
+    String for_service,
+    BuildContext context) async {
+  try {
+    var url = route_name;
+
+    Map<dynamic, dynamic> data;
+
+    data = {
+      'name': name,
+      'mobile_number': mobile_number,
+      'address': address,
+      'for': for_service,
+    };
+
+    print("URL IS HERE $url");
+    var response = await HttpService.httpPost(url, data, context: context);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      if (data['status'] == "200" && data['success'] == "1") {
+        Navigator.pop(context);
         return BookServiceFormModel.fromJson(data);
       } else {
         throw data['message'].toString();

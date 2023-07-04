@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:auto_animated/auto_animated.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cusipco/notification_backGround/notification_service.dart';
+import 'package:cusipco/service/common_api_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -26,6 +27,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +35,8 @@ import 'package:provider/provider.dart';
 import '../../../../model/city_list_model.dart';
 
 class DoctorListScreen extends StatefulWidget {
-  DoctorListScreen({Key? key, required this.categoryId, required this.mode, this.msgback})
+  DoctorListScreen(
+      {Key? key, required this.categoryId, required this.mode, this.msgback})
       : super(key: key);
   final String categoryId;
   final Function(String msg)? msgback;
@@ -59,15 +62,15 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
       //no permission of local notification
       AwesomeNotifications().requestPermissionToSendNotifications();
       print("notimessage: request not allowed");
-    }else{
+    } else {
       await AwesomeNotifications().createNotification(
-          content: NotificationContent( //simgple notification
-            id: 12341,
-            channelKey: 'basic', //set configuration wuth key "basic"
-            title: title,
-            body: message,
-          )
-      );
+          content: NotificationContent(
+        //simgple notification
+        id: 12341,
+        channelKey: 'basic', //set configuration wuth key "basic"
+        title: title,
+        body: message,
+      ));
     }
   }
 
@@ -114,15 +117,17 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
 
     print("Latitude: ${placemarks[0].locality} and Longitude: $long");
     print("CityLenght:  " + globleCityList.length.toString());
-    for(int i = 0; i < globleCityList.length; i++){
+    for (int i = 0; i < globleCityList.length; i++) {
       if (globleCityList[i].name!.contains(placemarks[0].locality.toString())) {
-       setState(() {
-         pro.setCurrentCity(globleCityList[i]);
-         print("selected city : "+globleCityList[i].name.toString());
-       });
+        setState(() {
+          pro.setCurrentCity(globleCityList[i]);
+          print("selected city : " + globleCityList[i].name.toString());
+        });
       } else {
         setState(() {
-          createNotification(title: "Cusipco Support", message: "Someone from Cusipco team will get in touch with you");
+          createNotification(
+              title: "Cusipco Support",
+              message: "Someone from Cusipco team will get in touch with you");
         });
       }
     }
@@ -183,7 +188,8 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
           });
         }
       } else if (response.statusCode == 401) {
-        Fluttertoast.showToast (msg:GlobalVariableForShowMessage.unauthorizedUser);
+        Fluttertoast.showToast(
+            msg: GlobalVariableForShowMessage.unauthorizedUser);
         await UserPrefService().removeUserData();
         NavigationService().navigatWhenUnautorized();
       } else {
@@ -367,21 +373,54 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
               );
   }
 
+  callPaymentGateway({required String doctor_id}) async {
+    var now = DateTime.now();
+    var currentTime = DateFormat('HH:mm').format(now);
+
+    var formatter = new DateFormat('yyyy-MM-dd');
+    String formattedDate = formatter.format(now);
+    dynamic map = {
+      "module": "Doctor",
+      "id": doctor_id,
+      "date": formattedDate.toString(),
+      "time": currentTime.toString(),
+      "payment_method_id": "2",
+      "vendor_id": "",
+    };
+
+    var result =
+        await CommonApiCall().postData('book-appointment', map, context);
+    print("jkjkjkjkjkjk" + result["data"]["payment_url"] .toString());
+  }
+
   Column _buildCard(List<DoctorData>? productData, int index) {
     return Column(children: [
       Padding(
         padding: const EdgeInsets.all(12.0),
         child: InkWell(
           onTap: () {
-            pushNewScreen(
-              context,
-              screen: AboutDoctorScreen(
-                id: productData![index].id,
-                mode: widget.mode,
-              ),
-              withNavBar: true,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            if (widget.mode.toString() == 'Instant-Consultation') {
+              pushNewScreen(
+                context,
+                screen: AboutDoctorScreen(
+                  id: productData![index].id,
+                  mode: widget.mode,
+                ),
+                withNavBar: true,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
+              // callPaymentGateway(doctor_id: productData![index].id);
+            } else {
+              pushNewScreen(
+                context,
+                screen: AboutDoctorScreen(
+                  id: productData![index].id,
+                  mode: widget.mode,
+                ),
+                withNavBar: true,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
+            }
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

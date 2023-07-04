@@ -154,7 +154,7 @@ class _CovidVaccinationFormState extends State<CovidVaccinationForm> {
                           setState(() {
                             _doseController.text = val.toString();
                           });
-                          print(_doseController.text);
+                          print("dosess"+_doseController.text.toString());
                         },
                         radius: 10,
                         items: type_of_vac.map((String items) {
@@ -191,17 +191,15 @@ class _CovidVaccinationFormState extends State<CovidVaccinationForm> {
                           color: ThemeClass.blueColor,
                           isLoading: false,
                           callBack: () {
-                            if (_formKey.currentState!.validate()) {
-                              Navigator.of(context).pop();
                               _confirm(
                                   _nameController.text.toString(),
                                   _addressController.text.toString(),
                                   _mobileController.text.toString(),
                                   widget.for_service.toString(),
                                   _ageController.text.toString(),
-                                  widget.for_service.toString(),
+                                  gender.toString(),
                                   _doseController.text.toString());
-                            }
+
                           }),
                     ],
                   ),
@@ -259,11 +257,12 @@ class _CovidVaccinationFormState extends State<CovidVaccinationForm> {
     print(mobile_number);
     print(age);
     print(dose);
+    print(gender);
     print(address);
     print(for_service);
 
     try {
-      BookServiceFormModel? bookServiceFormModel = await bookFormService(
+      BookServiceFormModel? bookServiceFormModel = await bookCovidFormService(
           name, widget.route, mobile_number, address, for_service,age,gender, dose ,  context);
       if (bookServiceFormModel!.status == "200") {
         EasyLoading.dismiss();

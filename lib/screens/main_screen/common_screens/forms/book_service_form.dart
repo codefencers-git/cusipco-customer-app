@@ -134,38 +134,6 @@ class _BookServiceFormScreenState extends State<BookServiceFormScreen> {
                   SizedBox(
                     height: 15,
                   ),
-                  TextBoxSimpleWidget(
-                    isNumber: true,
-                    radius: 10,
-                    hinttext: "Age",
-                    controllers: _ageController,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return GlobalVariableForShowMessage.EmptyErrorMessage +
-                            "Mobile Number";
-                      }
-                    },
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  DropDownCustom(
-                    controller: _doseController,
-                    onChanged: (val){
-                      setState(() {
-                        _doseController.text = val.toString();
-                      });
-                      print(_doseController.text);
-                    },
-                    radius: 10,
-                    items: type_of_vac.map((String items) {
-                      return DropdownMenuItem(
-                        value: items,
-                        child: Text(items),
-                      );
-                    }).toList(),
-                    hinttext: 'Type Of Vaccination',
-                  ),
                   SizedBox(
                     height: 15,
                   ),
@@ -183,7 +151,6 @@ class _BookServiceFormScreenState extends State<BookServiceFormScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  _buildGenderBox(),
                   SizedBox(
                     height: 40,
                   ),
@@ -203,10 +170,8 @@ class _BookServiceFormScreenState extends State<BookServiceFormScreen> {
                             _nameController.text.toString(),
                             _addressController.text.toString(),
                             _mobileController.text.toString(),
-                             widget.for_service.toString(),
-                             _ageController.text.toString(),
-                             widget.for_service.toString(),
-                            _doseController.text.toString());
+                             widget.for_service.toString()
+                              );
                       }),
                 ],
               ),
@@ -214,33 +179,6 @@ class _BookServiceFormScreenState extends State<BookServiceFormScreen> {
           ),
         ),
       )),
-    );
-  }
-
-
-  _buildGenderBox(){
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildtitle("Select Gender"),
-        Row(
-          children: [
-            RadioMenuButton(value: "Male", groupValue: gender, onChanged: (item){
-              setState(() {
-                gender = "Male";
-              });
-            }, child: Text("Male")),
-            RadioMenuButton(value: "Female", groupValue: gender, onChanged: (item){
-              setState(() {
-                gender = "Female";
-              });
-            }, child: Text("Female")),
-
-
-          ],
-        ),
-      ],
     );
   }
 
@@ -258,11 +196,11 @@ class _BookServiceFormScreenState extends State<BookServiceFormScreen> {
     );
   }
 
-  _confirm(name, address, mobile_number, for_service, age,gender,String dose) async {
+  _confirm(name, address, mobile_number, for_service) async {
     EasyLoading.show();
     try {
-      BookServiceFormModel? bookServiceFormModel = await bookFormService(
-          name, widget.route, mobile_number, address, for_service,age,gender, dose ,  context);
+      BookServiceFormModel? bookServiceFormModel = await bookNormalFormService(
+          name, widget.route, mobile_number, address, for_service,context);
 
       if (bookServiceFormModel!.status == "200") {
         EasyLoading.dismiss();
@@ -277,29 +215,4 @@ class _BookServiceFormScreenState extends State<BookServiceFormScreen> {
     }
   }
 
-  _checkNavigation(data) async {
-    var res = await showModalBottomSheet(
-        context: context,
-        useRootNavigator: true,
-        builder: (context) {
-          return BottomSheetForOnlineOffLineDoctore();
-        });
-    // pushNewScreen(context,
-    //     screen: DoctorListScreen(
-    //       mode: "",
-    //       categoryId: data.id.toString(),
-    //     ),
-    //     withNavBar: true);
-
-    print(res);
-    if (res != null) {
-      pushNewScreen(context,
-          screen: DoctorListScreen(
-            mode: res,
-            categoryId: data.id.toString(),
-          ),
-          withNavBar: true);
-      print(res);
-    }
-  }
 }

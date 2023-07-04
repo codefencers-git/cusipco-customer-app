@@ -1,5 +1,6 @@
 import 'package:cusipco/screens/main_screen/my_account/my_appointment/appointments_screen.dart';
 import 'package:cusipco/screens/main_screen/my_account/my_order_screen.dart';
+import 'package:cusipco/screens/mra-que/question.dart';
 import 'package:flutter/material.dart';
 import 'package:cusipco/Global/globle_methd.dart';
 
@@ -207,7 +208,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
   List<Widget> _buildScreens() {
     return [
       HomeScreen(),
-      CalorieCounterScreen(),
+      question( ),
       AppointmentsScreen(),
       MyOrderScreen(),
       MyAccountMainScreen()

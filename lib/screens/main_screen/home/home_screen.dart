@@ -31,6 +31,7 @@ import '../blog/blog_list_screen.dart';
 import '../blog/blog_prowider_service.dart';
 import '../blog/blog_screen.dart';
 import '../common_screens/common_categories_screen.dart';
+import '../common_screens/forms/covid_vaccination_form.dart';
 import '../common_screens/single_category_detail_screen.dart';
 import '../common_screens/static_vertical_categories_list.dart';
 import 'EyeCare/eye_care_category_scree.dart';
@@ -455,11 +456,11 @@ class _HomeScreenState extends State<HomeScreen> {
               pushNewScreen(
                 context,
                 screen: data["id"] == 1 || data["id"] == 2 || data["id"] == 3
-                    ? BookServiceFormScreen(
+                    ? CovidVaccinationForm(
                         route: "submit-covid-form",
                         for_service: data["for"].toString())
                     : data["id"] == 4
-                        ? BookServiceFormScreen(
+                        ? CovidVaccinationForm(
                             route: "submit-covid-form",
                             for_service: data["for"].toString())
                         : SingleCategoryScreen(
