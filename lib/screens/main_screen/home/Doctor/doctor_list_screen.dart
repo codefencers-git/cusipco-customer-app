@@ -31,8 +31,11 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../Global/web_view_screen.dart';
 import '../../../../model/city_list_model.dart';
+import '../../my_account/booking_result_screen.dart';
 
 class DoctorListScreen extends StatefulWidget {
   DoctorListScreen(
@@ -387,10 +390,47 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
       "payment_method_id": "2",
       "vendor_id": "",
     };
-
+    print(map);
     var result =
         await CommonApiCall().postData('book-appointment', map, context);
-    print("jkjkjkjkjkjk" + result["data"]["payment_url"] .toString());
+    if(result != null){
+     var res2 = await Navigator.of(context, rootNavigator: true).push(
+       MaterialPageRoute<bool>(
+         builder: (BuildContext context) =>
+             WebViewScreen(url: result["data"]["payment_url"].toString()),
+       ),
+     );
+
+     if (res2 == true) {
+       Fluttertoast.showToast(msg: "Payment Successfully Done.");
+      pushNewScreen(
+               context,
+               screen: AboutDoctorScreen(
+                 id: doctor_id,
+                 mode: widget.mode,
+               ),
+               withNavBar: true,
+               pageTransitionAnimation: PageTransitionAnimation.cupertino,
+             );
+       // Navigator.pushReplacement(
+       //     context,
+       //     MaterialPageRoute(
+       //         builder: (context) => BookingResultScreen(
+       //           success: true,
+       //         )));
+     } else {
+       Navigator.pushReplacement(
+           context,
+           MaterialPageRoute(
+               builder: (context) => BookingResultScreen(
+                 success: false,
+               )));
+     }
+      // print("jkjkjkjkjkjk" + result["data"]["payment_url"] .toString());
+    } else {
+      Fluttertoast.showToast(msg: "Something went wrong !");
+    }
+
   }
 
   Column _buildCard(List<DoctorData>? productData, int index) {
@@ -400,16 +440,8 @@ class _FitnessShopScreenState extends State<DoctorListScreen>
         child: InkWell(
           onTap: () {
             if (widget.mode.toString() == 'Instant-Consultation') {
-              pushNewScreen(
-                context,
-                screen: AboutDoctorScreen(
-                  id: productData![index].id,
-                  mode: widget.mode,
-                ),
-                withNavBar: true,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              );
-              // callPaymentGateway(doctor_id: productData![index].id);
+
+              callPaymentGateway(doctor_id: productData![index].id);
             } else {
               pushNewScreen(
                 context,

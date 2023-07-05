@@ -182,10 +182,9 @@ class _questionState extends State<question> {
                                         ),
                                       );
                                     },
-                                    itemCount:
-                                        questionData!.data![index].options!.length,
+                                    itemCount: questionData!
+                                        .data![index].options!.length,
                                   ),
-
                                 ],
                               );
                             },
@@ -209,21 +208,23 @@ class _questionState extends State<question> {
                     //         });
                     //       }),
                     // ),
-                   hrascore == -0 ? SizedBox(
-                        child: ButtonWidget(width: width - 20,
-                          title:"Know Your HRA Score",
-                          callBack: () {
-                            setState(() {
-                              _loadQuestion().then((value) {
+                    hrascore == -0
+                        ? SizedBox(
+                            child: ButtonWidget(
+                            width: width - 20,
+                            title: "Know Your HRA Score",
+                            callBack: () {
+                              setState(() {
+                                _loadQuestion().then((value) {
                                   setState(() {
                                     getHraScore();
                                   });
+                                });
                               });
-                            });
-                          },
-                          color:  ThemeClass.blueColor,
-                        )
-                    ) : Container(),
+                            },
+                            color: ThemeClass.blueColor,
+                          ))
+                        : Container(),
                     Container(
                       height: 30,
                     )
@@ -250,7 +251,10 @@ class _questionState extends State<question> {
                 Container(
                   height: 10,
                 ),
-                Text("YOUR HRA SCORE", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                Text(
+                  "YOUR HRA SCORE",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
                 Container(
                   height: 15,
                 ),
@@ -263,8 +267,18 @@ class _questionState extends State<question> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(hrascore.toString() + "/ 1000", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-                      Text(hrascoreText, style: TextStyle(fontSize: 15, color: _getHraColor().withOpacity(0.7),  fontWeight: FontWeight.bold),),
+                      Text(
+                        hrascore.toString() + "/ 1000",
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        hrascoreText,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: _getHraColor().withOpacity(0.7),
+                            fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                   progressColor: _getHraColor(),
@@ -273,8 +287,8 @@ class _questionState extends State<question> {
                   height: 20,
                 ),
                 SizedBox(
-                    child: ButtonWidget(width: MediaQuery.of(context).size.width - 100,
-
+                    child: ButtonWidget(
+                  width: MediaQuery.of(context).size.width - 100,
                   title: "Recheck Your HRA Score",
                   callBack: () {
                     setState(() {
@@ -291,14 +305,13 @@ class _questionState extends State<question> {
         : Container();
   }
 
- MaterialColor  _getHraColor() {
-
+  MaterialColor _getHraColor() {
     if (hrascore >= 800) {
       setState(() {
         hrascoreText = "Excellent!";
       });
       return Colors.green;
-    } else if (hrascore >= 650 ) {
+    } else if (hrascore >= 650) {
       setState(() {
         hrascoreText = "Good!";
       });
@@ -315,13 +328,13 @@ class _questionState extends State<question> {
       return Colors.grey;
     }
   }
+
   _getHraString() {
     if (hrascore >= 800) {
       setState(() {
         hrascoreText = "Excellent!";
       });
-
-    } else if (hrascore >= 650 ) {
+    } else if (hrascore >= 650) {
       setState(() {
         hrascoreText = "Good!";
       });
@@ -389,6 +402,7 @@ class _questionState extends State<question> {
     }
     return null;
   }
+
 
   getHraScore() async {
     var result = await CommonApiCall().getData("hra-report");
