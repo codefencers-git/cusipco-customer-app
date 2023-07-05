@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/widgets.dart';
 import 'package:cusipco/Global/global_variable_for_show_messge.dart';
 import 'package:cusipco/screens/main_screen/cart/cart_prowider_service.dart';
@@ -9,6 +10,7 @@ import 'package:cusipco/service/http_service/http_service.dart';
 import 'package:cusipco/service/navigation_service.dart';
 import 'package:cusipco/service/shared_pref_service/user_pref_service.dart';
 import 'package:cusipco/widgets/general_widget.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class CheckOutProwider with ChangeNotifier {
@@ -69,18 +71,19 @@ class CheckOutProwider with ChangeNotifier {
     String addressId,
     String paymentId,
     String couponcode,
+    List<XFile>? files,
     context,
   ) async {
     try {
-      Map<String, String> queryParameters = {
+
+
+      Map<String, dynamic> queryParameters = {
         "address_id": addressId.toString(),
         "payment_method_id": paymentId.toString(),
         "coupon_code": couponcode
       };
-
-      print(queryParameters);
-      var response = await HttpService.httpPost("place_order", queryParameters,
-          context: context);
+      print("queryParameters ++"+queryParameters.toString());
+      var response = await HttpService.httpPostWithMultipleImageUpload('place_order', files!, queryParameters, peramterName: 'prescription');
 
       if (response.statusCode == 201 || response.statusCode == 200) {
         var res = jsonDecode(response.body);

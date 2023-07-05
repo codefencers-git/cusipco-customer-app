@@ -70,6 +70,7 @@ dependencies:
   package_info_plus: ^1.4.0
   firebase_auth:
   cloud_firestore:
+  file_picker:
   firebase_storage:
   firebase_core: ^2.0.0
   firebase_messaging: ^14.0.4

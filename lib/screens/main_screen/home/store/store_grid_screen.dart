@@ -147,13 +147,7 @@ class _StoreGridScreenState extends State<StoreGridScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/images/store__back_image.png",
-                        width: width * 0.75,
-                      ),
-                    ),
+
                   ],
                 ),
               )),

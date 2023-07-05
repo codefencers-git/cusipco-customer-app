@@ -1,3 +1,4 @@
+import 'package:file_picker/src/platform_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:cusipco/Global/global_variable_for_show_messge.dart';
@@ -15,12 +16,14 @@ import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
 import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 import 'package:cusipco/widgets/general_button.dart';
 import 'package:cusipco/widgets/general_widget.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 class CheckOutScreen extends StatefulWidget {
+  final List<XFile>? files;
   CheckOutScreen({
-    Key? key,
+    Key? key,   this.files,
   }) : super(key: key);
 
   @override
@@ -76,12 +79,14 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         if (coupon != null) {
           code = coupon!.code.toString();
         }
+
         var res = await pro.createOrder(
             radioAddressGroupValue == "addressRadioGP"
                 ? ""
                 : radioAddressGroupValue,
             radioPaymentGroupValue,
             code,
+            widget.files ?? [],
             context);
 
         if (res != null) {

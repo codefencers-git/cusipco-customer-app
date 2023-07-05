@@ -25,6 +25,7 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 import '../../../model/user_model.dart';
+import '../../../service/common_api_service.dart';
 import '../../../service/prowider/order_history_provider.dart';
 import '../../../service/shared_pref_service/user_pref_service.dart';
 import '../blog/blog_list_screen.dart';
@@ -47,9 +48,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var blogModel;
-
+  String corporate = "Corporate Benefits";
+  bool isDashboardLoading = false;
   @override
   void initState() {
+    setState(() {
+      isDashboardLoading = true;
+    });
+    getCorporateParam().then((value) {
+      setState(() {
+        isDashboardLoading = false;
+      });
+    });
     Provider.of<BlogProviderService>(context, listen: false)
         .getBlog(context, {"page": "1", "count": "4"});
     super.initState();
@@ -318,7 +328,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildTitle("Corporate Benefits", false),
+                    _buildTitle(corporate.toString(), false),
                     _buildGridList(corporateBenifit),
                     _buildOrderCart(),
                     _buildTitle("Health Benefits", true, list: allHelthBenifit),
@@ -849,7 +859,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: "Order Now",
                   fontsize: 12,
                   color: ThemeClass.blueColor,
-                  callBack: () {}),
+                  callBack: () {
+                    goto(StoreGridScreen());
+                  }),
             ),
           ],
         ),
@@ -857,6 +869,22 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future getCorporateParam() async {
+    var result = await CommonApiCall().getData("get_dashboard_data");
+    if(result != null){
+      setState(() {
+       if(result["data"]["corporate"].toString() == ""){
+         corporate = "Corporate Benefits";
+       } else {
+         corporate = result["data"]["corporate"].toString();
+       }
+      });
+    } else {
+      setState(() {
+        corporate = "Corporate Benefits";
+      });
+    }
+  }
   _buildTitle(String title, bool isShowICon, {List<dynamic>? list}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -868,14 +896,15 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              isDashboardLoading ==false ? Text(
                 title,
                 style: TextStyle(
                   color: ThemeClass.blackColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
                 ),
-              ),
+              ) : Container(
+                  height:10,width:10,child: CircularProgressIndicator()),
               isShowICon
                   ? Row(
                       children: [

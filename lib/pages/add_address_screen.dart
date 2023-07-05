@@ -367,8 +367,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
         color: Colors.white,
         padding: EdgeInsets.symmetric(
           horizontal: 15,
+          vertical: 10
         ),
-        height: 110,
+        height: 70,
         child: ButtonWidget(
           title: widget.isEdit ? "Update Address" : "Add New Address",
           color: ThemeClass.blueColor,

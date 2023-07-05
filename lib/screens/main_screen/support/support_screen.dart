@@ -68,7 +68,16 @@ class _SupportScreenState extends State<SupportScreen> {
                         children: [
                           _buildBox(context, generalInfoService.generalData),
                           Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                            child: ButtonWidget(
+                                title: "Chat with Us",
+                                color: ThemeClass.blueColor,
+                                callBack: () {
+                                  launchUrl(Uri.parse("https://tawk.to/chat/64a54b7394cf5d49dc61ab7c/1h4iqtfju"));
+                                }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                             child: ButtonWidget(
                                 title: "Call Us",
                                 color: ThemeClass.blueColor,
@@ -78,6 +87,7 @@ class _SupportScreenState extends State<SupportScreen> {
                                       .toString());
                                 }),
                           ),
+
                         ],
                       );
                     }),

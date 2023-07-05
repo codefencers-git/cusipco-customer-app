@@ -146,10 +146,7 @@ class _EyeCareCategoryScreenState extends State<EyeCareCategoryScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    Image.asset(
-                      "assets/images/eye_care.png",
-                      width: width * 0.9,
-                    ),
+
                   ],
                 ),
               )),

@@ -92,15 +92,15 @@ class _ActivePlansAndSubscritionScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Subscribed by You",
-              style: TextStyle(
-                fontSize: 14,
-                color: ThemeClass.blueColor,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            _buildDivider(),
+            // Text(
+            //   "Subscribed by You",
+            //   style: TextStyle(
+            //     fontSize: 14,
+            //     color: ThemeClass.blueColor,
+            //     fontWeight: FontWeight.w500,
+            //   ),
+            // ),
+            // _buildDivider(),
             ...restaurants!
                 .map((e) => Column(
                       children: [

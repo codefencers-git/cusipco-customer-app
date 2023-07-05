@@ -560,8 +560,8 @@ class _AddFamilyMemberFormScreenState extends State<AddFamilyMemberFormScreen> {
       alignment: Alignment.bottomCenter,
       child: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        height: 80,
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        height: 70,
         child: ButtonWidget(
           title: "Add Member",
           color: ThemeClass.blueColor,

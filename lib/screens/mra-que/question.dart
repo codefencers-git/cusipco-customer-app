@@ -93,7 +93,7 @@ class _questionState extends State<question> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(65.0),
         child: AppBarWithTextAndBackWidget(
-          title: 'Mra-Question',
+          title: 'HRA',
           onbackPress: () {
             Provider.of<MainNavigationProwider>(context, listen: false)
                 .chaneIndexOfNavbar(0);
@@ -109,6 +109,7 @@ class _questionState extends State<question> {
                 physics: BouncingScrollPhysics(),
                 child: Column(
                   children: [
+                    _buildHeader(),
                     hrascore == -0
                         ? ListView.separated(
                             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -171,7 +172,6 @@ class _questionState extends State<question> {
                                               },
                                             ),
                                             Container(
-                                              width: height * 0.12,
                                               child: Text(
                                                 questionData!.data![index]
                                                     .options![grindex].title
@@ -237,6 +237,23 @@ class _questionState extends State<question> {
                 color: Colors.blue,
               ),
             ),
+    );
+  }
+
+  _buildHeader() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      child: Align(
+          alignment: Alignment.topLeft,
+          child: Container(
+            padding: EdgeInsets.all(9),
+              decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2),borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                children: [
+                  Text("Unlock Your Health Potential", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+                  Text("Discover Your HRA Score and Take Charge of Your Well-being!", style: TextStyle(color: Colors.blue,fontSize: 11),textAlign: TextAlign.center,),
+                ],
+              ))),
     );
   }
 
@@ -402,7 +419,6 @@ class _questionState extends State<question> {
     }
     return null;
   }
-
 
   getHraScore() async {
     var result = await CommonApiCall().getData("hra-report");

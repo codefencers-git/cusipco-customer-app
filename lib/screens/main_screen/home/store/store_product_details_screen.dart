@@ -439,14 +439,14 @@ class _StoreProductDetailsScreenState extends State<StoreProductDetailsScreen> {
 
   Positioned _buildBottomButton(String cartData) {
     return Positioned(
-      bottom: 0,
+      bottom: 10,
       child: Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: Colors.white,
         ),
         padding: EdgeInsets.symmetric(horizontal: 15),
-        height: 80,
+        height: 50,
         child: ButtonWidget(
           title: cartData == "0" ? "Add to Cart" : "View Cart",
           isLoading: _isLoading,

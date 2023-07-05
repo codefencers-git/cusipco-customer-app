@@ -9,6 +9,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:cusipco/service/shared_pref_service/user_pref_service.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -174,6 +175,61 @@ class HttpService with ChangeNotifier {
           res3,
         );
 
+        return response;
+      } catch (e) {
+        print(e.toString());
+
+        rethrow;
+
+        // return [];
+      }
+    } else {
+      throw GlobalVariableForShowMessage.internetNotConneted;
+    }
+  }
+
+
+
+  static Future<Response> httpPostWithMultipleImageUpload(
+      String url, List<XFile?> imageFiles, Map<String, dynamic> queryParameters,
+      {required String peramterName}) async {
+    bool isHasConnection = await InternetConnectionChecker().hasConnection;
+
+    if (isHasConnection) {
+      try {
+        var request3 = http.MultipartRequest(
+          'POST',
+          Uri.parse(API_BASE_URL + url),
+        );
+
+        var token = await UserPrefService().getToken();
+        request3.headers.addAll({
+          HttpHeaders.contentTypeHeader: 'application/json',
+          "Request-From": Platform.isAndroid ? "Android" : "Ios",
+          HttpHeaders.acceptLanguageHeader: 'en',
+        });
+        request3.headers.addAll({
+          'Authorization': 'Bearer $token',
+        });
+
+        print("URL:"+API_BASE_URL + url.toString());
+        for (int i = 0; i < imageFiles.length; i++) {
+          request3.files.add(await http.MultipartFile.fromPath(
+            'prescription',
+            imageFiles[i]!.path,
+          ));
+        }
+        queryParameters.forEach((key, value) {
+          request3.fields[key] = value;
+        });
+
+        print("queryParameters__"+queryParameters.toString());
+
+        StreamedResponse res3 = await request3.send();
+        var response = await http.Response.fromStream(
+          res3,
+        );
+        print("response__"+response.body .toString());
         return response;
       } catch (e) {
         print(e.toString());

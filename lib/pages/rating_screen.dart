@@ -209,7 +209,7 @@ class _RatingScreenState extends State<RatingScreen> {
       alignment: Alignment.bottomCenter,
       child: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         height: 80,
         child: ButtonWidget(
           title: "Submit",

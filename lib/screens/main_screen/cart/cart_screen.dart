@@ -1,3 +1,7 @@
+
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:cusipco/Global/globle_methd.dart';
@@ -12,6 +16,7 @@ import 'package:cusipco/themedata.dart';
 import 'package:cusipco/widgets/app_bars/appbar_with_text.dart';
 import 'package:cusipco/widgets/button_widget/rounded_button_widget.dart';
 import 'package:cusipco/widgets/general_widget.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:lottie/lottie.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -25,12 +30,14 @@ class CartScreen extends StatefulWidget {
   @override
   State<CartScreen> createState() => _CartScreenState();
 }
+final ImagePicker _picker = ImagePicker();
 
+List<XFile> multiplePrescription = [];
 bool isEmpty = true;
 
 class _CartScreenState extends State<CartScreen> {
   CouponData? coupon;
-
+  PlatformFile? file;
   @override
   void initState() {
     // TODO: implement initState
@@ -132,6 +139,10 @@ class _CartScreenState extends State<CartScreen> {
               _buildPayableAmount(cartData),
               // _buildDivider(),
               // _buildTotalSaving(cartData),
+              _buildDivider(),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: _priscripion(MediaQuery.of(context).size.width)),
               SizedBox(
                 height: 140,
               )
@@ -197,6 +208,169 @@ class _CartScreenState extends State<CartScreen> {
                 ),
         ],
       ),
+    );
+  }
+
+
+
+  Widget _priscripion(double width) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: ThemeClass.skyblueColor,
+            border: Border.all(width: 1, color: Colors.blue),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          height: 75,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Spacer(),
+              InkWell(
+                onTap: () async {
+                  XFile? pickedImage = await _picker.pickImage(
+                      source: ImageSource.camera, imageQuality: 90);
+                  setState(() {
+                    multiplePrescription.add(XFile(pickedImage!.path));
+                  });
+                },
+                child: SizedBox(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/images/camera_pre.png",
+                          height: 30,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Camera',
+                          style: const TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.w900),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Spacer(),
+              VerticalDivider(
+                thickness: 1,
+                indent: 15,
+                endIndent: 15,
+                color: ThemeClass.blueDarkColor,
+              ),
+              Spacer(),
+              InkWell(
+                onTap: () async {
+                  List<XFile>? picked =
+                  await _picker.pickMultiImage(imageQuality: 90);
+                  setState(() {
+                    var list = picked!.map((e) => XFile(e.path)).toList();
+
+                    multiplePrescription.addAll(list);
+                  });
+                },
+                child: SizedBox(
+
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/images/gallery_pre.png",
+                          height: 30,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Gallery',
+                          style: const TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.w900),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Spacer(),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        multiplePrescription.isEmpty
+            ? const SizedBox()
+            : Text(
+          'Uploaded Prescription',
+          style: TextStyle(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.w400),
+        ),
+        const SizedBox(height: 8),
+        multiplePrescription.isNotEmpty
+            ? Container(
+          height: 100,
+          padding: const EdgeInsets.only(top: 15),
+          child: ListView.builder(
+            itemCount: multiplePrescription.length,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, i) {
+              return Container(
+                padding: const EdgeInsets.only(bottom: 0, left: 10),
+                height: 100.0,
+                child: Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: Colors.grey,
+                          )),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.file(
+                          File(multiplePrescription[i].path),
+                          height: 65,
+                          width: 50.0,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 58,
+                      left: 18.0,
+                      child: InkWell(
+                        onTap: () {
+                          multiplePrescription.removeAt(i);
+
+                          setState(() {});
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(40)),
+                            child: Icon(Icons.close_rounded,color: Colors.white,size: 20,))
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        )
+            : const SizedBox(),
+      ],
     );
   }
 
@@ -620,8 +794,8 @@ class _CartScreenState extends State<CartScreen> {
       alignment: Alignment.bottomCenter,
       child: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        height: 80,
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        height: 70,
         child: ButtonWidget(
           title: "Checkout",
           color: ThemeClass.blueColor,
@@ -640,7 +814,7 @@ class _CartScreenState extends State<CartScreen> {
                 pro1.getCoupons(context);
                 pushNewScreen(
                   context,
-                  screen: CheckOutScreen(),
+                  screen: CheckOutScreen(files: multiplePrescription,),
                   withNavBar: true,
                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                 );

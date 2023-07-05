@@ -70,13 +70,32 @@ class _AppbarForHomeWidgetState extends State<AppbarForHomeWidget> {
                           fontWeight: FontWeight.w400,
                           color: ThemeClass.whiteColor),
                     ),
-                    Text(
-                      "Lorem Ipsum dollar sit",
-                      style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: ThemeClass.whiteColor.withOpacity(0.6)),
-                    ),
+                    Consumer<LocationProwiderService>(
+                        builder: (context, locationService, child) {
+                          return InkWell(
+                            onTap: () {
+                              pushNewScreen(
+                                context,
+                                screen: SelectAddressScreen(),
+                                withNavBar: false,
+                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  locationService.currentLocationCity == null
+                                      ? "Select City"
+                                      : locationService.currentLocationCity!.name.toString(),
+                                  style: TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w400,
+                                      color: ThemeClass.whiteColor.withOpacity(0.6)),
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
                   ],
                 )
                 // Consumer<LocationProwiderService>(

@@ -146,10 +146,7 @@ class _DentalCareCategoryScreenState extends State<DentalCareCategoryScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    Image.asset(
-                      "assets/images/dental_care_bg.png",
-                      width: width * 0.9,
-                    ),
+
                   ],
                 ),
               )),
