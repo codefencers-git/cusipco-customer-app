@@ -94,14 +94,17 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             );
           }
         } else {
-          if (cartService.cartData != null &&
-              cartService.cartData!.items!.isNotEmpty) {
-            return _buildView(cartService.cartData!);
-          } else {
-            return Center(
-              child: Text("No new notifications found!"),
-            );
-          }
+          // if (cartService.cartData != null &&
+          //     cartService.cartData!.items!.isNotEmpty) {
+          //   return _buildView(cartService.cartData!);
+          // } else {
+          //   return Center(
+          //     child: Text("No new notifications found!"),
+          //   );
+          // }
+          return Center(
+            child: Text("No new notifications found!"),
+          );
         }
       }
     });

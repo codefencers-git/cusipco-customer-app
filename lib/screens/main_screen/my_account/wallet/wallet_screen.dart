@@ -44,7 +44,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 onbackPress: () {
                   Navigator.pop(context);
                 },
-                title: "cusipco Wallet",
+                title: "CUSIPCO Wallet",
               )),
           body: Container(
             color: ThemeClass.whiteColor,
