@@ -1,3 +1,4 @@
+import 'package:cusipco/service/common_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:cusipco/Global/globle_methd.dart';
@@ -30,12 +31,21 @@ bool isEmpty = true;
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
   CouponData? coupon;
+  bool stateLoading = false;
+  List? data;
 
   @override
   void initState() {
     // TODO: implement initState
-
+    getData();
     super.initState();
+  }
+
+  getData() async {
+    var result = await CommonApiCall().getData("notifications");
+    setState(() {
+      data = result["data"];
+    });
   }
 
   @override
@@ -59,12 +69,31 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 onCartPress: () {},
                 title: "Notifications",
               )),
-          body: Container(
-            color: ThemeClass.whiteColor,
-            height: height,
-            width: width,
-            child: _buildMainView(),
-          ),
+          body: data != null
+              ? ListView(
+                  children: List.generate(
+                      data!.length,
+                      (index) => Column(
+                        children: [
+                          ListTile(
+                            leading: Icon(Icons.notifications),
+                                subtitle: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(data![index]["message"].toString()),
+                                    Text(data![index]["date_time"].toString(), style: TextStyle(fontSize: 11),),
+                                  ],
+                                ),
+                                title: Text(data![index]["title"].toString()),
+                              ),
+                          Divider()
+                        ],
+                      )),
+                )
+              : Center(
+                  child: CircularProgressIndicator(),
+                ),
         ),
       ),
     );
@@ -597,6 +626,12 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             ),
           ),
         ));
+  }
+
+  setLoading(bool value) {
+    setState(() {
+      stateLoading = value;
+    });
   }
 
   Container _buildCartImage(CartItem cartItem) {
