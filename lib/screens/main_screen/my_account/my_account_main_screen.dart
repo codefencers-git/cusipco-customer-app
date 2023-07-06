@@ -90,7 +90,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
     super.initState();
     manuList = [
       MyaccountListModel(
-          icon: "assets/images/recommandation.png",
+          icon: "assets/icons/recommanded.png",
           title: "My Recommendations",
           trailing: "",
           onPress: (context) {
@@ -103,7 +103,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
           },
           isShowItrailing: false),
       MyaccountListModel(
-          icon: "assets/images/smily.png",
+          icon: "assets/icons/family.png",
           title: "Family Members",
           trailing: "",
           onPress: (context) {
@@ -116,7 +116,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
           },
           isShowItrailing: false),
       MyaccountListModel(
-          icon: "assets/images/location_icon.png",
+          icon: "assets/icons/address.png",
           title: "Manage Address",
           trailing: "",
           onPress: (context) {
@@ -129,7 +129,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
           },
           isShowItrailing: false),
       MyaccountListModel(
-          icon: "assets/images/order_book.png",
+          icon: "assets/icons/order.png",
           title: "Order Book",
           trailing: "",
           onPress: (context) {
@@ -142,7 +142,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
           },
           isShowItrailing: false),
       MyaccountListModel(
-          icon: "assets/images/calender_simple.png",
+          icon: "assets/icons/my_appointments.png",
           title: "My Appointments",
           trailing: "",
           onPress: (context) {
@@ -155,7 +155,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
           },
           isShowItrailing: false),
       MyaccountListModel(
-          icon: "assets/images/user_done.png",
+          icon: "assets/icons/plans_subscription.png",
           title: "Active Plans & Subscriptions",
           trailing: "",
           onPress: (context) {
@@ -168,7 +168,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
           },
           isShowItrailing: false),
       MyaccountListModel(
-          icon: "assets/images/user_plus.png",
+          icon: "assets/icons/refferal.png",
           title: "Referrals",
           trailing: "",
           onPress: (context) {
@@ -181,7 +181,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
           },
           isShowItrailing: false),
       MyaccountListModel(
-          icon: "assets/images/wallet.png",
+          icon: "assets/icons/wallet.png",
           title: "Wallet",
           trailing: "",
           onPress: (context) {
@@ -194,7 +194,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
           },
           isShowItrailing: false),
       MyaccountListModel(
-          icon: "assets/images/records.png",
+          icon: "assets/icons/health_records.png",
           title: "Digital Locker",
           trailing: "",
           onPress: (context) {
@@ -207,7 +207,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
           },
           isShowItrailing: false),
       MyaccountListModel(
-          icon: "assets/images/logout1.png",
+          icon: "assets/icons/logout.png",
           title: "Logout",
           trailing: "",
           onPress: (context) {
@@ -291,8 +291,8 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
               }
             },
             leading: SizedBox(
-              height: 32,
-              child: Image.asset("assets/images/user_icon.png"),
+              height: 28,
+              child: Image.asset("assets/icons/my_account.png"),
             ),
             title: Text(
               familyprowider.isSelectFamilyMember
@@ -330,7 +330,7 @@ class _MyAccountMainScreenState extends State<MyAccountMainScreen> {
         data.onPress(context);
       },
       leading: SizedBox(
-        height: 32,
+        height: 28,
         child: Image.asset(data.icon),
       ),
       title: Text(

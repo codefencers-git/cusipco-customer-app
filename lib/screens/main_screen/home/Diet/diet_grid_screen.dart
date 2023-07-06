@@ -25,9 +25,9 @@ class _DietGridScreenState extends State<DietGridScreen> {
 
     GridItems = [
       HomeGridModel(
-        image: "assets/images/basic_diet_plan.jpg",
+        image: "assets/images/diet_basic.png",
         title: "Basic Diet Plan",
-        color: ThemeClass.pinkColor,
+        color: ThemeClass.whiteColor,
         id: "1",
         onPress: () {
           pushNewScreen(
@@ -42,9 +42,9 @@ class _DietGridScreenState extends State<DietGridScreen> {
         },
       ),
       HomeGridModel(
-        image: "assets/images/adv_diet.jpg",
+        image: "assets/images/diet_advance.png",
         title: "Advanced Diet Plan",
-        color: ThemeClass.skyblueColor2,
+        color: ThemeClass.whiteColor,
         id: "2",
         onPress: () {
           pushNewScreen(
@@ -59,9 +59,9 @@ class _DietGridScreenState extends State<DietGridScreen> {
         },
       ),
       HomeGridModel(
-        image: "assets/images/ask_nut.jpg",
+        image: "assets/images/diet_nutri.png",
         title: "Online Consultation \nwith Nutritionist",
-        color: ThemeClass.pinkColor1,
+        color: ThemeClass.whiteColor,
         id: "3",
         onPress: () {
           pushNewScreen(
@@ -114,8 +114,6 @@ class _DietGridScreenState extends State<DietGridScreen> {
                         physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
-                            // childAspectRatio: (width - 10) /
-                            //     (MediaQuery.of(context).size.height / 2.1),
                             crossAxisSpacing: 0,
                             mainAxisSpacing: 0),
                         itemCount: GridItems.length,
@@ -125,10 +123,10 @@ class _DietGridScreenState extends State<DietGridScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    Image.asset(
-                      "assets/images/diet_bottom.png",
-                      width: width * 0.9,
-                    ),
+                    // Image.asset(
+                    //   "assets/images/diet_bottom.png",
+                    //   width: width * 0.9,
+                    // ),
                   ],
                 ),
               )),
@@ -139,7 +137,7 @@ class _DietGridScreenState extends State<DietGridScreen> {
 
   Container _buildCardItem(HomeGridModel data) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(vertical: 4 ),
       // color: Colors.red,
       width: MediaQuery.of(context).size.height * 0.21,
 
@@ -150,8 +148,8 @@ class _DietGridScreenState extends State<DietGridScreen> {
         child: Column(
           children: [
             Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.15,
+              width: 130,
+              height:130,
               margin: EdgeInsets.symmetric(horizontal: 0),
               decoration: BoxDecoration(
                 color: data.color,
@@ -170,7 +168,7 @@ class _DietGridScreenState extends State<DietGridScreen> {
                 ],
               ),
               child: Padding(
-                padding: EdgeInsets.all(30.0),
+                padding: EdgeInsets.all(20.0),
                 child: Image.asset(
                   data.image,
                 ),

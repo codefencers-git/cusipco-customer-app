@@ -215,7 +215,7 @@ class _WalletScreenState extends State<WalletScreen> {
               width: 65,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/walletIcon.png"),
+                  image: AssetImage("assets/images/rupee_vector.png"),
                   fit: BoxFit.fitHeight,
                 ),
               ),

@@ -223,31 +223,31 @@ class _SliderWidgetState extends State<SliderWidget> {
                       SizedBox(
                         height: 5,
                       ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: FractionalOffset.topCenter,
-                            end: FractionalOffset.bottomCenter,
-                            colors: [
-                              ThemeClass.blueColor,
-                              ThemeClass.blueColor3,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          color: ThemeClass.blueColor,
-                        ),
-                        child: Text(
-                          "Learn More",
-                          style: TextStyle(
-                            color: ThemeClass.whiteColor,
-                            fontSize: 8,
-                          ),
-                        ),
-                      )
+                      // Container(
+                      //   padding:
+                      //       EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      //   decoration: BoxDecoration(
+                      //     gradient: LinearGradient(
+                      //       begin: FractionalOffset.topCenter,
+                      //       end: FractionalOffset.bottomCenter,
+                      //       colors: [
+                      //         ThemeClass.blueColor,
+                      //         ThemeClass.blueColor3,
+                      //       ],
+                      //     ),
+                      //     borderRadius: BorderRadius.all(
+                      //       Radius.circular(10),
+                      //     ),
+                      //     color: ThemeClass.blueColor,
+                      //   ),
+                      //   child: Text(
+                      //     "Learn More",
+                      //     style: TextStyle(
+                      //       color: ThemeClass.whiteColor,
+                      //       fontSize: 8,
+                      //     ),
+                      //   ),
+                      // )
                     ],
                   ),
                 ),
