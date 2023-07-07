@@ -263,7 +263,7 @@ class _MyProfileScreenState extends State<MyProfileScreen>
                               backColor: ThemeClass.whiteDarkColor,
                               hinttext: "Full Name",
                               controllers: _nameController,
-                              icon: "assets/images/user_icon.png",
+                              icon: "assets/icons/my_account.png",
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return GlobalVariableForShowMessage
@@ -278,7 +278,7 @@ class _MyProfileScreenState extends State<MyProfileScreen>
                               backColor: ThemeClass.whiteDarkColor,
                               isReadOnly: true,
                               controllers: _emailController,
-                              icon: "assets/images/email_icon.png",
+                              icon: "assets/icons/mail.png",
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return GlobalVariableForShowMessage
@@ -298,7 +298,7 @@ class _MyProfileScreenState extends State<MyProfileScreen>
                               hinttext: "Phone Number",
                               controllers: _phoneController,
                               isReadOnly: true,
-                              icon: "assets/images/telephone_icon.png",
+                              icon: "assets/icons/calling.png",
                               isNumber: true,
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -383,7 +383,7 @@ class _MyProfileScreenState extends State<MyProfileScreen>
             },
             hinttext: "Date of Birth",
             controllers: _dateofbirthController,
-            icon: "assets/images/calender_icon.png",
+            icon: "assets/icons/my_appointments.png",
             isClickable: true,
             isReadOnly: true,
             validator: (value) {
@@ -391,6 +391,7 @@ class _MyProfileScreenState extends State<MyProfileScreen>
                 return GlobalVariableForShowMessage.EmptyErrorMessage +
                     "Date of Birth";
               }
+              return null;
             },
           ),
         ),
