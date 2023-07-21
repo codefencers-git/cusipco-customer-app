@@ -21,14 +21,14 @@ class EyeCareCategoryScreen extends StatefulWidget {
   EyeCareCategoryScreen({Key? key}) : super(key: key);
 
   @override
-  State<EyeCareCategoryScreen> createState() =>
-      _EyeCareCategoryScreenState();
+  State<EyeCareCategoryScreen> createState() => _EyeCareCategoryScreenState();
 }
 
 class _EyeCareCategoryScreenState extends State<EyeCareCategoryScreen> {
   CarouselController buttonCarouselController = CarouselController();
 
   var _futureCall;
+
   @override
   void initState() {
     super.initState();
@@ -146,7 +146,6 @@ class _EyeCareCategoryScreenState extends State<EyeCareCategoryScreen> {
                     SizedBox(
                       height: 20,
                     ),
-
                   ],
                 ),
               )),
@@ -178,10 +177,13 @@ class _EyeCareCategoryScreenState extends State<EyeCareCategoryScreen> {
                   (width - 60) / (MediaQuery.of(context).size.height / 1.8),
               crossAxisSpacing: 0,
               mainAxisSpacing: 0),
-          itemCount: data.length,
+          itemCount: data.length + 1,
           itemBuilder: (BuildContext ctx, index) {
+            if(index==0){
+              return _buildStaticButton(data[index]);
+            }
             return GridListTileWidget(
-                data: data[index],
+                data: data[index - 1],
                 callback: () {
                   pushNewScreen(
                     context,
@@ -196,6 +198,28 @@ class _EyeCareCategoryScreenState extends State<EyeCareCategoryScreen> {
             // _buildCardItem(data[index]);
           }),
     );
+  }
+
+  _buildStaticButton(CategoryData data){
+    var eye_care_consultation = CategoryData();
+    eye_care_consultation.id = "100";
+    eye_care_consultation.title =
+    "Eye Care Consultation";
+    eye_care_consultation.image = "assets/images/eye_care.jpg";
+    eye_care_consultation.status = "1";
+    return  GridListTileWidget(
+        data: eye_care_consultation,
+        callback: () {
+          pushNewScreen(
+            context,
+            screen: productListScreen(
+              categoryId: data.id.toString(),
+              routeName: "DentalCare",
+            ),
+            withNavBar: true,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+          );
+        });
   }
 
   InkWell _buildCardItem(CategoryData data) {

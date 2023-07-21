@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cusipco/screens/main_screen/common_screens/single_category_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cusipco/Global/global_variable_for_show_messge.dart';
 import 'package:cusipco/model/category_model.dart';
@@ -113,7 +114,6 @@ class _DentalCareCategoryScreenState extends State<DentalCareCategoryScreen> {
                               if (snapshot.data != null) {
                                 if (snapshot.data!.isNotEmpty) {
                                   var list = snapshot.data!;
-
                                   return _buildGrid(width, context, list);
                                 } else {
                                   return Container(
@@ -180,18 +180,47 @@ class _DentalCareCategoryScreenState extends State<DentalCareCategoryScreen> {
               mainAxisSpacing: 0),
           itemCount: data.length,
           itemBuilder: (BuildContext ctx, index) {
+
+            if(data[index].id == "56"){
+              data[index].isLocal =  true;
+              data[index].image =  "assets/images/dental_care.jpg";
+            }
+
             return GridListTileWidget(
                 data: data[index],
                 callback: () {
-                  pushNewScreen(
-                    context,
-                    screen: productListScreen(
-                      categoryId: data[index].id.toString(),
-                      routeName: "DentalCare",
-                    ),
-                    withNavBar: true,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
+                  if(data[index].id == "27"){
+                    pushNewScreen(
+                      context,
+                      screen: SingleCategoryScreen(
+                        categoryId: data[index].id.toString(), mode: 'Offline',
+                      ),
+                      withNavBar: true,
+                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    );
+                  }
+                  else if(data[index].id == "56"){
+                    pushNewScreen(
+                      context,
+                      screen: SingleCategoryScreen(
+                        categoryId: data[index].id.toString(), mode: 'Offline',
+                      ),
+                      withNavBar: true,
+                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    );
+                  }
+                  else {
+                    pushNewScreen(
+                      context,
+                      screen: productListScreen(
+                        categoryId: data[index].id.toString(),
+                        routeName: "DentalCare",
+                      ),
+                      withNavBar: true,
+                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    );
+                  }
+
                 });
             // _buildCardItem(data[index]);
           }),
@@ -250,7 +279,7 @@ class _DentalCareCategoryScreenState extends State<DentalCareCategoryScreen> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
                   child: Text(
-                    "${data.title.toString()}",
+                    data.title.toString(),
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                     maxLines: 2,

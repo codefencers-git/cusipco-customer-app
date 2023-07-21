@@ -14,6 +14,9 @@ class GridListTileWidget extends StatefulWidget {
 class _GridListTileWidgetState extends State<GridListTileWidget> {
   @override
   Widget build(BuildContext context) {
+    if(widget.data.id == "100"){
+      print("obbb"+widget.data.title.toString());
+    }
     return InkWell(
       onTap: () {
         widget.callback();
@@ -24,7 +27,25 @@ class _GridListTileWidgetState extends State<GridListTileWidget> {
             flex: 5,
             child: Container(
               padding: EdgeInsets.all(10),
-              child: Container(
+              child: widget.data.id == "100" || widget.data.isLocal == true ? Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 0,
+                      blurRadius: 5,
+                      offset: Offset(0, 4), // changes position of shadow
+                    ),
+                  ],
+                  image: DecorationImage(
+                    image: AssetImage(widget.data.image.toString()),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ) :Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(
                     Radius.circular(15),

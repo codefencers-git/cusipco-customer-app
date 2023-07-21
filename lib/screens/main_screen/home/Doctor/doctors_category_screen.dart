@@ -88,7 +88,7 @@ class _DoctorsCategoryScreenState extends State<DoctorsCategoryScreen> {
                               itemBuilder: (BuildContext context, int index,
                                   Animation<double> animation) {
                                 final data = model.categoryModel.data![index];
-
+                                // print("doooo"+data.title.toString() + " id: " +data.id.toString());
                                 return FadeTransition(
                                   opacity: Tween<double>(
                                     begin: 0,

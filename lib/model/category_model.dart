@@ -47,17 +47,20 @@ class CategoryData {
     this.id,
     this.title,
     this.image,
+    this.isLocal,
     this.status,
   });
 
   String? id;
   String? title;
   String? image;
+  bool? isLocal;
   String? status;
 
   factory CategoryData.fromJson(Map<String, dynamic> json) => CategoryData(
         id: json["id"] == null ? null : json["id"],
         title: json["title"] == null ? null : json["title"],
+        isLocal: json["isLocal"] == false ? false : json["isLocal"],
         image: json["image"] == null ? null : json["image"],
         status: json["status"] == null ? null : json["status"],
       );
@@ -66,6 +69,7 @@ class CategoryData {
         "id": id == null ? null : id,
         "title": title == null ? null : title,
         "image": image == null ? null : image,
+        "isLocal": isLocal == false ? false : isLocal,
         "status": status == null ? null : status,
       };
 }
